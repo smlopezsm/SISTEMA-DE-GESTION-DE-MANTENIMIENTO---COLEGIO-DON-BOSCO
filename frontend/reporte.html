@@ -1,53 +1,65 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Reportar Problema</title>
-</head>
-<body>
+    <link rel="stylesheet" href="styles/index.css" />
+  </head>
+  <body>
     <header id="header">
-         <nav>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="reporte.html">Reportar Problema</a></li>
-                <li><a href="historial.html">Historial</a></li>
-            </ul>
-        </nav>
+      <nav>
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="reporte.html">Reportar Problema</a></li>
+          <li><a href="historial.html">Historial</a></li>
+        </ul>
+      </nav>
+      <img src="assets/colegio/logo4.png" alt="" class="logo" />
     </header>
     <main>
-         <section class="contenedor">
-            <h2>Emitir Nuevo Requerimiento</h2>
+      <section class="contenedor">
+        <h2>Emitir Nuevo Requerimiento</h2>
 
-            <form action="#" method="POST" class="formulario">
-                <label for="titulo">Titulo del Requerimiento</label>
-                <input type="text" id="titulo" name="titulo" required>
-                
-                <label for="email">e-Mail del Remitente</label>
-                <input type="email" id="mail" name="mail" required>
+        <form action="#" method="POST" class="formulario">
+          <label for="titulo">Titulo del Requerimiento</label>
+          <input type="text" id="titulo" name="titulo" required />
 
-                <label for="fecha">Fecha de Emision</label>
-                <input type="date" id="fecha" name="fecha" min="2026-01-01" max="31-12-2026" required>
+          <label for="mail">e-Mail del Remitente</label>
+          <input type="mail" id="mail" name="mail" required />
 
-                <label for="prioridad">Seleccionar prioridad</label>
-                <select id="prioridad" name="prioridad">
-                    <option value="urgente">Urgente</option>
-                    <option value="alta">Alta</option>
-                    <option value="media">Media</option>
-                    <option value="baja">Baja</option>
-                </select>
+          <label for="fecha">Fecha de Emision</label>
+          <input
+            type="date"
+            id="fecha"
+            name="fecha"
+            min="2026-01-01"
+            max="31-12-2026"
+            required
+          />
 
-                <label for="descripcion">Descripcion:</label>
-                <textarea id="descripcion" name="descripcion" rows="5" required></textarea>
+          <label for="prioridad">Seleccionar prioridad</label>
+          <select id="prioridad" name="prioridad">
+            <option value="urgente">Urgente</option>
+            <option value="alta">Alta</option>
+            <option value="media">Media</option>
+            <option value="baja">Baja</option>
+          </select>
 
-                <button type="submit">Enviar Requerimiento</button>
-            </form>
-        </section>
+          <label for="descripcion">Descripcion:</label>
+          <textarea
+            id="descripcion"
+            name="descripcion"
+            rows="5"
+            required
+          ></textarea>
+
+          <button type="submit">Enviar Requerimiento</button>
+        </form>
+      </section>
     </main>
-     <footer id="contacto">
-        <p>
-            Colegio Don Bosco - Sistema de Mantenimiento
-        </p>
+    <footer id="contacto">
+      <p>Colegio Don Bosco - Sistema de Mantenimiento</p>
     </footer>
-</body>
+  </body>
 </html>

@@ -1,0 +1,166 @@
+:root {
+  --color-principal: #ff6634;
+  --color-secundario: #5c697d;
+  --color-fondo: #f4f6f9;
+  --color-blanco: #ffffff;
+  --color-hover: #ff8a33;
+  --fuente-base: "Segoe UI", sans-serif;
+  --espacio-md: 1.25rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--fuente-base);
+  background-color: var(--color-fondo);
+  color: var(--color-secundario);
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+#header {
+  background-color: var(--color-principal);
+  padding: 1rem var(--espacio-md);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+
+nav a {
+  color: var(--color-blanco);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+nav a:hover {
+  color: #ffdab9;
+  text-decoration: underline;
+}
+
+#contacto {
+  background-color: var(--color-principal);
+  color: var(--color-blanco);
+  padding: var(--espacio-md);
+  text-align: center;
+}
+
+.contenedor {
+  background-color: var(--color-blanco);
+  border: 1px solid #dddddd;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 950px;
+  padding: var(--espacio-md);
+  margin: 1.5rem auto;
+}
+
+.lista-tareas {
+  list-style-type: none;
+  padding-left: 1.5rem;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.formulario input,
+.formulario select,
+.formulario textarea,
+.formulario button {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.formulario button {
+  background-color: var(--color-principal);
+  color: var(--color-blanco);
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+.formulario button:hover {
+  background-color: var(--color-hover);
+}
+
+.tabla-contenedor {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+th,
+td {
+  border: 1px solid #dddddd;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+th {
+  background-color: #eeeeee;
+  color: var(--color-secundario);
+}
+
+.imagen {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1rem auto 0 auto;
+  border-radius: 16px;
+}
+
+.logo {
+  width: 50px;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  #header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .contenedor {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    width: 95%;
+    padding: 1rem;
+    margin: 1rem auto;
+  }
+}
