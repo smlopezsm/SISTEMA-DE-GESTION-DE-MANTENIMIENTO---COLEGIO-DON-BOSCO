@@ -1,0 +1,193 @@
+:root {
+    --color-principal: #E41D22;
+    --color-secundario: #3D4196;
+    --color-app-bg: #f4f6f9;
+    --color-surface: #FFFFFF;
+    --color-text: #2d2d2d;
+    --color-text-muted: #6c757d;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, Roboto, Inter, sans-serif;
+    background-color: var(--color-app-bg);
+    margin: 0;
+    padding: 0;
+}
+
+/* Main content */
+.main-content {
+    margin-left: 250px;
+    min-height: 100vh;
+    transition: margin-left 0.3s ease;
+    padding: 20px 0;
+}
+
+/* Titulo */
+.titulo-panel {
+    color: var(--color-principal);
+}
+
+.titulo-panel .icono-panel {
+    color: var(--color-principal);
+}
+
+/* Tarjetas*/
+.card-stats {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 12px;
+}
+
+.card-stats:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.card-stats .icon-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+/* Notificaciones*/
+.notification-item {
+    transition: transform 0.2s ease;
+    text-align: center;
+    height: 100%;
+}
+
+.notification-item:hover {
+    transform: scale(1.02);
+}
+
+/* tabla*/
+.table th {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    color: var(--color-text-muted);
+    border-bottom-width: 1px;
+}
+
+.table td {
+    font-size: 14px;
+    vertical-align: middle;
+    padding: 14px 12px;
+}
+
+.table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(228, 29, 34, 0.04);
+}
+
+/* Badges personalizados */
+.badge {
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .main-content {
+        margin-left: 250px;
+        padding: 20px 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 60px;
+        padding: 15px 0;
+    }
+
+    .titulo-panel {
+        font-size: 22px;
+    }
+
+    .card-stats .icon-circle {
+        width: 40px;
+        height: 40px;
+    }
+
+    .card-stats .icon-circle i {
+        font-size: 18px;
+    }
+
+    .notification-item {
+        padding: 12px !important;
+    }
+
+    .notification-item h4 {
+        font-size: 20px;
+    }
+
+    .table-responsive {
+        font-size: 13px;
+    }
+
+    .table td, .table th {
+        padding: 10px 8px;
+        font-size: 13px;
+    }
+
+    .table td small {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-content {
+        margin-left: 50px;
+        padding: 10px 0;
+    }
+
+    .titulo-panel {
+        font-size: 18px;
+    }
+
+    .card-stats h3 {
+        font-size: 20px;
+    }
+
+    .card-stats p {
+        font-size: 11px;
+    }
+
+    .badge {
+        font-size: 10px;
+        padding: 3px 8px;
+    }
+}
+
+/* Barra Lateral */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+@media (max-width: 768px) {
+    .sidebar-overlay.active {
+        display: block;
+    }
+}

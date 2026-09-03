@@ -1,0 +1,125 @@
+:root {
+    --color-principal: #E41D22;
+    --color-secundario: #3D4196;
+    --color-app-bg: #f4f6f9;
+    --color-text: #2d2d2d;
+    --color-text-muted: #6c757d;
+}
+
+body {
+    font-family: system-ui, Roboto, Inter, sans-serif;
+    background-color: var(--color-app-bg);
+    margin: 0;
+    padding: 0;
+}
+
+/* Main content */
+.main-content {
+    margin-left: 250px;
+    min-height: 100vh;
+    transition: margin-left 0.3s ease;
+    padding: 20px 0;
+}
+
+/* Titulo de Bienvenida */
+.titulo-bienvenida {
+    color: var(--color-principal);
+    font-weight: 800;
+}
+
+/* Boton principal de Nuevo Requerimiento */
+.boton-principal-bienvenida {
+    background-color: var(--color-principal);
+    border-color: var(--color-principal);
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(61, 65, 150, 0.3);
+    transition: all 0.3s ease;
+}
+
+.boton-principal-bienvenida:hover {
+    background-color: #2d327a;
+    border-color: #2d327a;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(61, 65, 150, 0.4);
+}
+
+/* Tarjetas de Pasos */
+.tarjeta-paso {
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.tarjeta-paso:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Iconos de Pasos */
+.icono-paso {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: rgba(61, 65, 150, 0.1);
+    color: var(--color-secundario);
+    font-size: 2rem;
+}
+
+.tarjeta-paso:nth-child(1) .icono-paso {
+    background-color: rgba(228, 29, 34, 0.1);
+    color: var(--color-principal);
+}
+
+.tarjeta-paso:nth-child(2) .icono-paso {
+    background-color: rgba(13, 202, 240, 0.1);
+    color: #0dcaf0;
+}
+
+.tarjeta-paso:nth-child(3) .icono-paso {
+    background-color: rgba(25, 135, 84, 0.1);
+    color: #198754;
+}
+
+.tarjeta-paso:nth-child(4) .icono-paso {
+    background-color: rgba(102, 16, 242, 0.1);
+    color: #6610f2;
+}
+
+/* Nota para Ordenanzas */
+.nota-ordenanza {
+    border-left: 5px solid var(--color-principal);
+    border-radius: 8px;
+}
+
+.nota-ordenanza i {
+    color: var(--color-principal);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 60px;
+        padding: 15px 0;
+    }
+
+    .titulo-bienvenida {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-content {
+        margin-left: 50px;
+        padding: 10px 0;
+    }
+
+    .titulo-bienvenida {
+        font-size: 1.5rem;
+    }
+
+    .nota-ordenanza i {
+        font-size: 1.5rem !important;
+    }
+}
