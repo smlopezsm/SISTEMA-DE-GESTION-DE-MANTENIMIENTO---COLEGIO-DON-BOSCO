@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Inicio - Sistema de Mantenimiento</title>
+  <link rel="icon" type="image/png" href="assets/colegio/logo2.png">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <link rel="stylesheet" href="https://use.typekit.net/tzc4mfh.css">
+  
+  <link rel="stylesheet" href="styles/panelIzquierdo.css" />
+  <link rel="stylesheet" href="styles/panel.css" />
+</head>
+
+<body>
+
+  <!-- Barra Lateral -->
+  <div class="sidebar" id="sidebar">
+    <img src="assets/colegio/logo2.png" alt="Logo Colegio Don Bosco" class="logo mb-2">
+
+    <button class="hamburger btn btn-link text-white p-0" onclick="toggleSidebar()" aria-label="Toggle menu">
+      <i class="bi bi-list fs-2"></i>
+    </button>
+
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link text-white active" href="panel.html">
+          <i class="bi bi-speedometer2 me-2"></i>Panel Principal
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="requerimientos.html">
+          <i class="bi bi-pencil-square me-2"></i>Nuevo Requerimiento
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="gestionTareas.html">
+          <i class="bi bi-bar-chart me-2"></i>Gestion de Tareas
+          <span class="badge bg-danger rounded-pill ms-1"></span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="listaRequerimientos.html">
+          <i class="bi bi-clock-history me-2"></i>Historial
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="panelJefe.html">
+          <i class="bi bi-people me-2"></i> Panel Jefe
+        </a>
+      </li>
+    </ul>
+
+    <div class="user-profile text-center">
+      <div class="avatar mx-auto"></div>
+      <span class="d-block">Usuario</span>
+      <small class="d-block text-white-50">Rol</small>
+    </div>
+  </div>
+
+  <!-- Para celu -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+  <!-- Main -->
+  <div class="main-content">
+    <div class="container-fluid px-3 px-md-4">
+
+      <!-- Bienvenida -->
+      <div class="text-center mt-4 mb-5">
+        <h1 class="display-6 fw-bold titulo-bienvenida">¡Bienvenido al Sistema!</h1>
+        <p class="text-muted fs-5 mt-2">Sistema de gestión de mantenimiento del Colegio Don Bosco</p>
+      </div>
+
+      <!-- Boton Nuevo Requerimiento -->
+      <div class="text-center mb-5">
+        <a href="requerimientos.html" class="btn btn-lg btn-primary px-5 py-3 boton-principal-bienvenida">
+          <i class="bi bi-plus-circle me-2"></i>Hacer un Nuevo Requerimiento
+        </a>
+        <p class="text-muted small mt-2">Si detectó un problema, repórtelo aquí.</p>
+      </div>
+
+      <!-- Tarjetas -->
+      <div class="row g-4 justify-content-center mb-5">
+        
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 border-0 shadow-sm tarjeta-paso">
+            <div class="card-body text-center p-4">
+              <div class="icono-paso mx-auto mb-3">
+                <i class="bi bi-clipboard-check"></i>
+              </div>
+              <h5 class="fw-bold">1. Reportar</h5>
+              <p class="text-muted small">Cualquier persona puede emitir un requerimiento al detectar un problema edilicio o de infraestructura.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 border-0 shadow-sm tarjeta-paso">
+            <div class="card-body text-center p-4">
+              <div class="icono-paso mx-auto mb-3">
+                <i class="bi bi-tools"></i>
+              </div>
+              <h5 class="fw-bold">2. Gestión</h5>
+              <p class="text-muted small">El Jefe de Mantenimiento toma la tarea, la planifica, asigna responsables y gestiona los materiales.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 border-0 shadow-sm tarjeta-paso">
+            <div class="card-body text-center p-4">
+              <div class="icono-paso mx-auto mb-3">
+                <i class="bi bi-check2-circle"></i>
+              </div>
+              <h5 class="fw-bold">3. Finalizar</h5>
+              <p class="text-muted small">Al terminar, el responsable registra la finalización con fecha, hora y observaciones.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 border-0 shadow-sm tarjeta-paso">
+            <div class="card-body text-center p-4">
+              <div class="icono-paso mx-auto mb-3">
+                <i class="bi bi-person-check"></i>
+              </div>
+              <h5 class="fw-bold">4. Aprobar</h5>
+              <p class="text-muted small">Un Directivo revisa el trabajo y da la aprobación final o rechaza la tarea para que sea retomada.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="card border-0 shadow-sm nota-ordenanza mb-5">
+        <div class="card-body p-4 d-flex align-items-center">
+          <i class="bi bi-info-circle-fill fs-1 me-3"></i>
+          <div>
+            <h6 class="fw-bold mb-1">¿Sabías que...?</h6>
+            <p class="text-muted small mb-0">Si usted es <strong>Ordenanza</strong>, su función principal es reportar los problemas. El sistema se encargará de avisar al Jefe de Mantenimiento para que lo resuelva. Usted puede seguir el estado de sus requerimientos desde la pestaña <strong>"Solicitados"</strong>.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="mt-4 pt-3 border-top text-muted d-flex justify-content-between align-items-center">
+        <div>
+          <span class="fw-bold">Usuario</span>
+          <span class="mx-2">•</span>
+          <span>Rol</span>
+        </div>
+        <small>© 2026 Colegio Don Bosco</small>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebarOverlay');
+      sidebar.classList.toggle('active');
+      if (sidebar.classList.contains('active')) {
+        overlay.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+      } else {
+        overlay.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    }
+
+    function closeSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebarOverlay');
+      sidebar.classList.remove('active');
+      overlay.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('click', function(event) {
+      const sidebar = document.getElementById('sidebar');
+      const hamburger = document.querySelector('.hamburger');
+      if (window.innerWidth <= 768 && sidebar.classList.contains('active') && !sidebar.contains(event.target) && !hamburger.contains(event.target)) {
+        closeSidebar();
+      }
+    });
+
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 768) {
+        closeSidebar();
+      }
+    });
+  </script>
+
+</body>
+</html>
