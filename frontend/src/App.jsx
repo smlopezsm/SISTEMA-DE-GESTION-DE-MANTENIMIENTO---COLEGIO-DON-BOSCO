@@ -1,10 +1,11 @@
-import LayoutPublico from "./shared/layout/LayoutPublico";
+import { RouterProvider } from "react-router/dom";
+import { router } from "./router";
 import "./App.css";
 
 function App() {
   return (
     <>
-      <LayoutPublico></LayoutPublico>
+      <RouterProvider router={router} />
     </>
   );
 }
