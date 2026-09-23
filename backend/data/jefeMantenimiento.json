@@ -1,0 +1,10 @@
+{
+  "jefe_mantenimiento": {
+    "id": 1,
+    "nombre": "Juan Rodríguez",
+    "usuario": "jrodriguez",
+    "email": "jrodriguez@empresa.com",
+    "rol": "Jefe de Mantenimiento",
+    "activo": true
+  }
+}

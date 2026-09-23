@@ -1,0 +1,28 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "nombre": "Ana Torres",
+      "usuario": "atorres",
+      "email": "atorres@empresa.com",
+      "rol": "Usuario",
+      "activo": true
+    },
+    {
+      "id": 2,
+      "nombre": "Luis Fernández",
+      "usuario": "lfernandez",
+      "email": "lfernandez@empresa.com",
+      "rol": "Usuario",
+      "activo": true
+    },
+    {
+      "id": 3,
+      "nombre": "Sofía Martínez",
+      "usuario": "smartinez",
+      "email": "smartinez@empresa.com",
+      "rol": "Usuario",
+      "activo": false
+    }
+  ]
+}

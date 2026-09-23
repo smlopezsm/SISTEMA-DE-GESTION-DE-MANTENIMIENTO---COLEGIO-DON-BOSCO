@@ -1,0 +1,20 @@
+{
+  "administradores": [
+    {
+      "id": 1,
+      "nombre": "Carlos Pérez",
+      "usuario": "cperez",
+      "email": "cperez@empresa.com",
+      "rol": "Administrador",
+      "activo": true
+    },
+    {
+      "id": 2,
+      "nombre": "María Gómez",
+      "usuario": "mgomez",
+      "email": "mgomez@empresa.com",
+      "rol": "Administrador",
+      "activo": true
+    }
+  ]
+}
