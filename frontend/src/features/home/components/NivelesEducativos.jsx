@@ -1,3 +1,5 @@
+import '../styles/NivelesEducativos.css';
+
 const niveles = [
   { id: 1, img: '/assets/colegio/jardin.png', nombre: 'Inicial' },
   { id: 2, img: '/assets/colegio/primario.jfif', nombre: 'Primario' },

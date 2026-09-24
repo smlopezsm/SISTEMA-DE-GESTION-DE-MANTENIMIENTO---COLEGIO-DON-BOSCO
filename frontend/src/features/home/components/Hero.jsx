@@ -1,3 +1,5 @@
+import '../styles/Hero.css';
+
 const slides = [
   { id: 1, img: 'public/assets/colegio/foto4.PNG', titulo: 'Don Bosco San Luis', texto: 'Formando jóvenes con valores y compromiso' },
   { id: 2, img: 'public/assets/colegio/foto2.png', titulo: 'Movimiento Juvenil Salesiano', texto: 'Pastoral y creatividad al servicio' },

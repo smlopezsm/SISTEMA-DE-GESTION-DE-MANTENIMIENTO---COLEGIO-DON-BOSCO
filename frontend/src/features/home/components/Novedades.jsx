@@ -1,3 +1,5 @@
+import '../styles/Novedades.css';
+
 const novedades = [
   { id: 1, img: '/assets/colegio/agosto.webp', titulo: 'Valores Cuota Agosto 2026', extracto: 'Estimadas familias: En función de los incrementos salariales de público conocimiento...' },
   { id: 2, img: '/assets/colegio/inscripciones.png', titulo: 'Inscripciones Nivel Inicial', extracto: '¡Inscripciones Abiertas Nivel Inicial 2027! Querida comunidad, informamos que ya está habilitada la postulación...' },

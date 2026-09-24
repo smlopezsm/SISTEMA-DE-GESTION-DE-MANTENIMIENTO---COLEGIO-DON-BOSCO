@@ -1,0 +1,38 @@
+:root {
+  --color-principal: #E41D22;
+  --color-secundario: #3D4196;
+  --color-fondo: #f4f6f9;
+  --color-blanco: hsl(0, 0%, 100%);
+  --color-negro: rgb(0, 0, 0);
+  --color-hover: #310303;
+  --color-card: #FFFFFF;
+  --color-borde: #E5E7EB;
+  --color-fondo-trans: rgba(255, 255, 255, 0.7);
+  --color-text-casi: #aaaf9c;
+  --color-text-quote: #4B5563;
+  --color-texto-casillas: #9CA3AF;
+
+  --fuente-base: "Segoe UI", sans-serif;
+  --font-family-base: sans-serif, system-ui, Roboto, Inter;
+  --logo-size: 100px;
+  --espacio-md: 1.25rem;
+
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+
+  --radius-small: 4px;
+  --radius-medium: 8px;
+  --radius-large: 12px;
+}
+
+/* Compartido por Niveles Educativos, Identidad Salesiana y Novedades */
+.title-line {
+  height: 3px;
+  background-color: var(--color-secundario);
+  flex-grow: 1;
+  max-width: 2000px;
+}

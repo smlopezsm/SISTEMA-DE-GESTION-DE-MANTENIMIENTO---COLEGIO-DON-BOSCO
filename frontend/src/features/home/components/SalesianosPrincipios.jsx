@@ -1,3 +1,5 @@
+import '../styles/SalesianosPrincipios.css';
+
 const pilares = [
   { id: 1, icono: 'fa-solid fa-house-chimney', nombre: 'Casa' },
   { id: 2, icono: 'fa-solid fa-book-open', nombre: 'Escuela' },
