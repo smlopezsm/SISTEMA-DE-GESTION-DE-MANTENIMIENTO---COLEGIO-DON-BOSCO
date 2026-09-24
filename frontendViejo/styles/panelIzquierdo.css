@@ -1,0 +1,154 @@
+:root {
+    --color-sidebar-bg: #E41D22;
+    --color-sidebar-text: #F3F4F6;
+    --color-sidebar-text-hover: #FFFFFF;
+    --color-sidebar-active: rgba(255, 255, 255, 0.1);
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: var(--color-sidebar-bg);
+    color: var(--color-sidebar-text);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+/* Logo */
+.sidebar .logo {
+    display: block;
+    margin: 0 auto 16px;
+    width: 80px;
+    height: auto;
+}
+
+/* los estilos base los da Bootstrap */
+.sidebar .nav-link {
+    color: var(--color-sidebar-text);
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.sidebar .nav-link:hover {
+    background-color: var(--color-sidebar-active);
+    color: var(--color-sidebar-text-hover);
+}
+
+.sidebar .nav-link.active {
+    background-color: var(--color-sidebar-active);
+    color: var(--color-sidebar-text-hover);
+}
+
+.sidebar .nav-link i {
+    width: 20px;
+}
+
+/* Perfil */
+.sidebar .user-profile {
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.user-profile .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin-bottom: 8px;
+}
+
+.user-profile span {
+    font-size: 13px;
+}
+
+.user-profile small {
+    font-size: 11px;
+}
+
+/* Botón hamburguesa */
+.hamburger {
+    display: none;
+    margin: 0 auto 8px;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 60px;
+        padding: 8px;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .sidebar .logo {
+        width: 40px;
+        margin-bottom: 4px;
+    }
+
+    .hamburger {
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    .sidebar .nav {
+        display: none;
+        width: 100%;
+    }
+
+    .sidebar.active {
+        width: 250px;
+        padding: 16px;
+        align-items: flex-start;
+    }
+
+    .sidebar.active .logo {
+        width: 80px;
+        margin-bottom: 16px;
+    }
+
+    .sidebar.active .nav {
+        display: flex;
+    }
+
+    .sidebar.active .user-profile {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Ocultar texto en modo colapsado */
+    .sidebar:not(.active) .nav-link {
+        font-size: 0;
+        padding: 12px;
+        justify-content: center;
+    }
+
+    .sidebar:not(.active) .nav-link i {
+        font-size: 20px;
+        margin: 0;
+    }
+
+    .sidebar:not(.active) .user-profile span {
+        font-size: 0;
+    }
+
+    .sidebar:not(.active) .user-profile .avatar {
+        width: 32px;
+        height: 32px;
+    }
+
+    .sidebar:not(.active) .user-profile small {
+        display: none;
+    }
+}

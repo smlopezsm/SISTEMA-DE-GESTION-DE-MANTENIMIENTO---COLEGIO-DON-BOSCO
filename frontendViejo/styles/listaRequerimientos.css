@@ -1,0 +1,178 @@
+:root {
+    --color-principal: #E41D22;
+    --color-secundario: #3D4196;
+    --color-app-bg: #f4f6f9;
+    --color-text: #2d2d2d;
+    --color-text-muted: #6c757d;
+    --color-tabla-bg: #FFFFFF;
+}
+
+body {
+    font-family: system-ui, Roboto, Inter, sans-serif;
+    background-color: var(--color-app-bg);
+    margin: 0;
+    padding: 0;
+}
+
+/* Main content (Estructura estándar) */
+.main-content {
+    margin-left: 250px;
+    min-height: 100vh;
+    transition: margin-left 0.3s ease;
+    padding: 20px 0;
+}
+
+/* Titulo */
+.titulo-requerimientos {
+    color: var(--color-principal);
+    font-weight: 700;
+}
+
+/*Boton nuevo requerimiento */
+.boton-nuevo {
+    background-color: var(--color-principal);
+    border-color: var(--color-principal);
+}
+
+.boton-nuevo a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.boton-nuevo:hover {
+    background-color: #2d327a;
+    border-color: #2d327a;
+}
+
+/* Tarjetas de filtros y tabla */
+.filtros-card, .tabla-card {
+    border-radius: 12px;
+    background-color: var(--color-tabla-bg);
+}
+
+/* Inputs y selects */
+.form-select, .form-control {
+    border-color: #dee2e6;
+    font-size: 0.9rem;
+}
+
+.form-select:focus, .form-control:focus {
+    border-color: var(--color-secundario);
+    box-shadow: 0 0 0 0.2rem rgba(61, 65, 150, 0.15);
+}
+
+/* Cabecera de la tabla */
+.table thead th {
+    background-color: #f8f9fa;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    border-bottom: 1px solid #e9ecef;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.table tbody td {
+    font-size: 0.9rem;
+    color: var(--color-text);
+    border-bottom: 1px solid #f1f3f5;
+}
+
+/* Badges de Prioridad */
+.prioridad-media {
+    background-color: #0dcaf0;
+    color: #fff;
+}
+
+.prioridad-urgente {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.prioridad-baja {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+.prioridad-alta {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+/* Badges de Estado */
+.estado-enproceso {
+    background-color: #0dcaf0;
+    color: #fff;
+}
+
+.estado-pendiente {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+.estado-demorada {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.estado-finalizada {
+    background-color: #198754;
+    color: #fff;
+}
+
+.estado-aprobada {
+    background-color: #6610f2;
+    color: #fff;
+}
+
+/* Paginacion */
+.pagination .page-link {
+    color: var(--color-secundario);
+    border: none;
+    padding: 6px 12px;
+    margin: 0 2px;
+    border-radius: 6px;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--color-secundario);
+    color: #fff;
+}
+
+.pagination .page-item.disabled .page-link {
+    color: #cbd3da;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .main-content {
+        margin-left: 250px;
+        padding: 20px 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 60px;
+        padding: 15px 0;
+    }
+
+    .filtros-card .row > div {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-content {
+        margin-left: 50px;
+        padding: 10px 0;
+    }
+
+    .table thead th {
+        font-size: 0.75rem;
+    }
+
+    .table tbody td {
+        font-size: 0.8rem;
+    }
+}

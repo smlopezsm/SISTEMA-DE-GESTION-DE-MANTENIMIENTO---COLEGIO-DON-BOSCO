@@ -1,0 +1,177 @@
+:root {
+  --color-text-casi: #aaaf9c;
+  --color-text-quote: #4B5563;
+  --color-border-focus: #E41D22;
+  --color-borde: #E5E7EB;
+  --color-fondo-trans: rgba(255, 255, 255, 0.7);
+  --color-texto-casillas: #9CA3AF;
+  --color-card: #FFFFFF;
+  --color-principal: #E41D22;
+  --color-secundario: #3D4196;
+  --color-fondo: #f4f6f9;
+  --color-blanco: hsl(0, 0%, 100%);
+  --color-negro: rgb(0, 0, 0);
+  --color-hover: #310303;
+
+  --fuente-base: "Segoe UI", sans-serif;
+  --logo-size: 100px;
+  --font-family-base: sans-serif, system-ui, Roboto, Inter;
+
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+
+  --radius-small: 4px;
+  --radius-medium: 8px;
+  --radius-large: 12px;
+}
+
+body {
+  background: url('../assets/colegio/foto4.PNG') no-repeat center center fixed;
+  background-size: cover;
+}
+
+
+.overlay {
+  background: var(--color-fondo-trans);
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+}
+
+.card-custom {
+  background-color: var(--color-card);
+  border-radius: var(--radius-large);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  padding: var(--spacing-xxl);
+  max-width: 600px;
+  width: 100%;
+  /* para que se adapte */
+}
+
+h1 {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-principal);
+}
+h2 {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-secundario);
+}
+
+p {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-negro);
+}
+
+.btn-primary-custom {
+  background-color: var(--color-principal);
+  color: var(--color-blanco);
+  border-radius: var(--radius-small);
+  padding: 12px 24px;
+  border: none;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.form-control-custom {
+  background-color: var(--color-card);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radius-small);
+  padding: 12px 16px;
+  color: var(--color-negro);
+  width: 100%;
+  font-size: 14px;
+}
+
+.form-control-custom::placeholder {
+  color: var(--color-text-casi);
+}
+
+.form-check-input {
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+  border: 1px solid var(--color-borde);
+}
+
+.form-check-label {
+  font-size: 14px;
+  color: var(--color-negro);
+  margin-left: var(--spacing-sm);
+}
+
+.link-custom {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-principal);
+  text-decoration: none;
+}
+
+.link-custom:hover {
+  text-decoration: underline;
+}
+
+.logo-card {
+  max-width: 120px;
+  /* Ajusta el tamaño del logo */
+  height: auto;
+}
+
+/* Caja de la frase */
+.quote-box {
+  text-align: left;
+  margin-top: 400px;
+  max-width: 500px;
+}
+
+/* Texto principal */
+.quote-text {
+  font-family: "cooper-black-std", serif;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--color-secundario);
+  line-height: 1.4;
+}
+
+/* Autor */
+.quote-author {
+  font-family: "cooper-black-std", serif;
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 10px;
+  color: var(--color-secundario);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .card-custom {
+    margin: 0 auto;
+    /* centra horizontalmente */
+    max-width: 90%;
+    /* ocupa casi todo el ancho */
+  }
+
+  .quote-box {
+    text-align: center;
+    margin-top: 40px;
+  }
+
+  .quote-text {
+    font-size: 22px;
+  }
+
+  .quote-author {
+    font-size: 18px;
+  }
+}

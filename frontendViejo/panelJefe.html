@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Panel - Jefe de Mantenimiento</title>
+  <link rel="icon" type="image/png" href="assets/colegio/logo2.png">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <link rel="stylesheet" href="styles/panelJefe.css" />
+  <link rel="stylesheet" href="styles/panelIzquierdo.css" />
+
+  <link rel="stylesheet" href="https://use.typekit.net/tzc4mfh.css">
+</head>
+
+<body>
+  <!-- Barra Lateral -->
+  <div class="sidebar" id="sidebar">
+    <img src="assets/colegio/logo2.png" alt="Logo Colegio Don Bosco" class="logo mb-2">
+
+    <button class="hamburger btn btn-link text-white p-0" onclick="toggleSidebar()" aria-label="Toggle menu">
+      <i class="bi bi-list fs-2"></i>
+    </button>
+
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a class="nav-link text-white active" href="panel.html">
+          <i class="bi bi-speedometer2 me-2"></i>Panel Principal
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="requerimientos.html">
+          <i class="bi bi-pencil-square me-2"></i>Nuevo Requerimiento
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="gestionTareas.html">
+          <i class="bi bi-bar-chart me-2"></i>Gestion de Tareas
+          <span class="badge bg-danger rounded-pill ms-1"></span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="listaRequerimientos.html">
+          <i class="bi bi-clock-history me-2"></i>Historial
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="panelJefe.html">
+          <i class="bi bi-people me-2"></i> Panel Jefe
+        </a>
+      </li>
+    </ul>
+
+    <div class="user-profile text-center">
+      <div class="avatar mx-auto"></div>
+      <span class="d-block">Usuario</span>
+      <small class="d-block text-white-50">Rol</small>
+    </div>
+  </div>
+
+  <!-- Para celu -->
+  <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+  <!-- Main -->
+  <div class="main-content">
+    <div class="container-fluid px-3 px-md-4">
+
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h2 mt-3 mb-0 titulo-panel">
+          <i class="bi bi-speedometer2 me-2 icono-panel"></i>Panel Mantenimiento
+        </h1>
+        <span class="badge bg-danger px-3 py-2">
+          <i class="bi bi-clock me-1"></i>Actualizado: 04/06/2024
+        </span>
+      </div>
+
+      <!-- TARJETAS-->
+      <div class="row g-4 mb-4">
+        <!-- Requerimientos Totales -->
+        <div class="col-12 col-sm-6 col-xl-3">
+          <div class="card card-stats h-100 border-0 shadow-sm">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <p class="text-muted mb-1 small fw-semibold">REQUERIMIENTOS</p>
+                  <h3 class="fw-bold mb-0">28</h3>
+                  <p class="text-muted small mb-0">Totales registrados</p>
+                </div>
+                <div class="icon-circle bg-primary bg-opacity-10 text-primary">
+                  <i class="bi bi-clipboard-data fs-4"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tareas Pendientes -->
+        <div class="col-12 col-sm-6 col-xl-3">
+          <div class="card card-stats h-100 border-0 shadow-sm">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <p class="text-muted mb-1 small fw-semibold">PENDIENTES</p>
+                  <h3 class="fw-bold mb-0">12</h3>
+                  <p class="text-muted small mb-0">Tareas por hacer</p>
+                </div>
+                <div class="icon-circle bg-warning bg-opacity-10 text-warning">
+                  <i class="bi bi-hourglass-split fs-4"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- En Proceso -->
+        <div class="col-12 col-sm-6 col-xl-3">
+          <div class="card card-stats h-100 border-0 shadow-sm">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <p class="text-muted mb-1 small fw-semibold">EN PROCESO</p>
+                  <h3 class="fw-bold mb-0">8</h3>
+                  <p class="text-muted small mb-0">Tareas activas</p>
+                </div>
+                <div class="icon-circle bg-info bg-opacity-10 text-info">
+                  <i class="bi bi-arrow-repeat fs-4"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Demoradas -->
+        <div class="col-12 col-sm-6 col-xl-3">
+          <div class="card card-stats h-100 border-0 shadow-sm">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <p class="text-muted mb-1 small fw-semibold">DEMORADAS</p>
+                  <h3 class="fw-bold mb-0">5</h3>
+                  <p class="text-muted small mb-0">Por aprobación</p>
+                </div>
+                <div class="icon-circle bg-danger bg-opacity-10 text-danger">
+                  <i class="bi bi-clock-history fs-4"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--NOTIFICACIONES -->
+      <div class="row g-4 mb-4">
+        <div class="col-12">
+          <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent border-0 pt-3">
+              <h5 class="fw-bold mb-0">
+                <i class="bi bi-bell me-2 text-danger"></i>Notificaciones
+              </h5>
+            </div>
+            <div class="card-body pt-0">
+              <div class="row g-3">
+                <!-- Finalizadas -->
+                <div class="col-12 col-sm-6 col-md-4">
+                  <div class="notification-item p-3 rounded-3 bg-success bg-opacity-10">
+                    <i class="bi bi-check-circle-fill text-success fs-4"></i>
+                    <h4 class="fw-bold mb-0 mt-2">6</h4>
+                    <p class="text-muted small mb-0">Finalizadas</p>
+                    <small class="text-success">En espera</small>
+                  </div>
+                </div>
+                <!-- Aprobadas -->
+                <div class="col-12 col-sm-6 col-md-4">
+                  <div class="notification-item p-3 rounded-3 bg-primary bg-opacity-10">
+                    <i class="bi bi-check2-circle text-primary fs-4"></i>
+                    <h4 class="fw-bold mb-0 mt-2">15</h4>
+                    <p class="text-muted small mb-0">Aprobadas</p>
+                    <small class="text-primary">Completadas</small>
+                  </div>
+                </div>
+                <!-- Vencidas -->
+                <div class="col-12 col-sm-6 col-md-4">
+                  <div class="notification-item p-3 rounded-3 bg-danger bg-opacity-10">
+                    <i class="bi bi-exclamation-triangle-fill text-danger fs-4"></i>
+                    <h4 class="fw-bold mb-0 mt-2">2</h4>
+                    <p class="text-muted small mb-0">Vencidas</p>
+                    <small class="text-danger">¡Atención urgente!</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--  PROXIMAS A VENCER  -->
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-transparent border-0 pt-3">
+          <div class="d-flex justify-content-between align-items-center">
+            <h5 class="fw-bold mb-0">
+              <i class="bi bi-clock me-2 text-danger"></i>Tareas próximas a vencer
+            </h5>
+            <a href="listaRequerimientos.html" class="text-danger text-decoration-none small fw-semibold">
+              Ver todas <i class="bi bi-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+        <div class="card-body pt-0">
+          <div class="table-responsive">
+            <table class="table table-hover align-middle">
+              <thead class="table-light">
+                <tr>
+                  <th class="fw-semibold">Tarea</th>
+                  <th class="fw-semibold">Lugar</th>
+                  <th class="fw-semibold">Fecha planificada</th>
+                  <th class="fw-semibold">Prioridad</th>
+                  <th class="fw-semibold">Estado</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Fila 1 - Urgente -->
+                <tr>
+                  <td>
+                    <span class="fw-semibold">#T-3024-0015</span>
+                    <br>
+                    <small class="text-muted">Fuga de agua en baño - P8</small>
+                  </td>
+                  <td>Baño - Pabellón 8</td>
+                  <td>05/06/2024</td>
+                  <td>
+                    <span class="badge bg-danger">Urgente</span>
+                  </td>
+                  <td>
+                    <span class="badge bg-warning text-dark">Pendiente</span>
+                  </td>
+                </tr>
+                <!-- Fila 2 - Alta -->
+                <tr>
+                  <td>
+                    <span class="fw-semibold">#T-3024-0012</span>
+                    <br>
+                    <small class="text-muted">Reparación de ventilador - Aula 12</small>
+                  </td>
+                  <td>Aula 12</td>
+                  <td>08/06/2024</td>
+                  <td>
+                    <span class="badge bg-warning text-dark">Alta</span>
+                  </td>
+                  <td>
+                    <span class="badge bg-info text-white">En proceso</span>
+                  </td>
+                </tr>
+                <!-- Fila 3 - Media -->
+                <tr>
+                  <td>
+                    <span class="fw-semibold">#T-3024-0009</span>
+                    <br>
+                    <small class="text-muted">Pintura en pasillo central</small>
+                  </td>
+                  <td>Pasillo central</td>
+                  <td>07/06/2024</td>
+                  <td>
+                    <span class="badge bg-primary">Media</span>
+                  </td>
+                  <td>
+                    <span class="badge bg-info text-white">En proceso</span>
+                  </td>
+                </tr>
+                <!-- Fila 4 - Alta -->
+                <tr>
+                  <td>
+                    <span class="fw-semibold">#T-3024-0011</span>
+                    <br>
+                    <small class="text-muted">Puerta de aula descolgada</small>
+                  </td>
+                  <td>Aula 3</td>
+                  <td>08/06/2024</td>
+                  <td>
+                    <span class="badge bg-warning text-dark">Alta</span>
+                  </td>
+                  <td>
+                    <span class="badge bg-warning text-dark">Pendiente</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="mt-4 pt-3 border-top text-muted d-flex justify-content-between align-items-center">
+        <div>
+          <span class="fw-bold">Usuario</span>
+          <span class="mx-2">•</span>
+          <span>Jefe de Mantenimiento</span>
+        </div>
+        <small>© 2026 Colegio Don Bosco</small>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebarOverlay');
+
+      sidebar.classList.toggle('active');
+
+      if (sidebar.classList.contains('active')) {
+        overlay.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+      } else {
+        overlay.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    }
+
+    function closeSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebarOverlay');
+
+      sidebar.classList.remove('active');
+      overlay.style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    // Cerrar sidebar al hacer click fuera
+    document.addEventListener('click', function (event) {
+      const sidebar = document.getElementById('sidebar');
+      const hamburger = document.querySelector('.hamburger');
+
+      if (window.innerWidth <= 768 &&
+        sidebar.classList.contains('active') &&
+        !sidebar.contains(event.target) &&
+        !hamburger.contains(event.target)) {
+        closeSidebar();
+      }
+    });
+
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 768) {
+        closeSidebar();
+      }
+    });
+  </script>
+
+</body>
+
+</html>

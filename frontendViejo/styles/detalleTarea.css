@@ -1,0 +1,124 @@
+:root {
+    --color-principal: #E41D22;
+    --color-secundario: #3D4196;
+    --color-app-bg: #f4f6f9;
+    --color-text: #2d2d2d;
+    --color-text-muted: #6c757d;
+    --color-caja-gris: #f8f9fa;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+body {
+    font-family: system-ui, Roboto, Inter, sans-serif;
+    background-color: var(--color-app-bg);
+    margin: 0;
+    padding: 0;
+}
+
+/* Main */
+.main-content {
+    margin-left: 250px;
+    min-height: 100vh;
+    transition: margin-left 0.3s ease;
+    padding: 20px 0;
+}
+
+/* Titulo principal */
+.titulo-detalle {
+    color: var(--color-principal);
+    font-weight: 700;
+}
+
+/* Tarjeta principal */
+.tarjeta-detalle {
+    border-radius: 12px;
+    background-color: #fff;
+}
+
+/* Separador */
+.separador {
+    border-top: 1px solid #e9ecef;
+    opacity: 1;
+}
+
+/* Cajas grises */
+.caja-gris {
+    background-color: var(--color-caja-gris);
+    border-radius: 8px;
+    padding: 1.25rem;
+    border: 1px solid #e9ecef;
+}
+
+/* Titulos de seccion */
+.titulo-seccion {
+    color: var(--color-secundario);
+    font-size: 1rem;
+}
+
+/* Badges de estado y prioridad */
+.badge {
+    font-weight: 500;
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.estado-enproceso {
+    background-color: #0dcaf0;
+    color: #fff;
+}
+
+.prioridad-alta {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.prioridad-urgente {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+/* Tabla de materiales */
+.table th, .table td {
+    font-size: 0.9rem;
+}
+
+.table thead th {
+    background-color: #f1f3f5;
+    border-bottom: 1px solid #dee2e6;
+}
+
+/* Boton Editar */
+.boton-editar {
+    background-color: var(--color-principal);
+    border-color: var(--color-principal);
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(61, 65, 150, 0.3);
+    transition: all 0.3s ease;
+}
+
+.boton-editar:hover {
+    background-color: #2d327a;
+    border-color: #2d327a;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(61, 65, 150, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 60px;
+        padding: 15px 0;
+    }
+
+    .tarjeta-detalle .card-body {
+        padding: 1.5rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-content {
+        margin-left: 50px;
+        padding: 10px 0;
+    }
+}
