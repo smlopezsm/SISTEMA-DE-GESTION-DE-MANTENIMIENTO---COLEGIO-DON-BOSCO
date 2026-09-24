@@ -1,42 +1,32 @@
-const NIVELES = [
-  {
-    id: 1,
-    nombre: "Inicial",
-    imagen: "/assets/colegio/jardin.png",
-  },
-  {
-    id: 2,
-    nombre: "Primario",
-    imagen: "/assets/colegio/primario.jfif",
-  },
-  {
-    id: 3,
-    nombre: "Secundario",
-    imagen: "/assets/colegio/secundario.jpg",
-  },
+const niveles = [
+  { id: 1, img: '/assets/colegio/jardin.png', nombre: 'Inicial' },
+  { id: 2, img: '/assets/colegio/primario.jfif', nombre: 'Primario' },
+  { id: 3, img: '/assets/colegio/secundario.jpg', nombre: 'Secundario' },
 ];
 
-export default function NivelesEducativos() {
+function NivelesEducativos() {
   return (
-    <section className="niveles-section">
-      <div className="section-container">
-        <div className="section-title-wrapper">
-          <div className="title-line"></div>
-          <h2 className="section-title">Niveles Educativos</h2>
-          <div className="title-line"></div>
-        </div>
+    <section id="niveles-educativos" className="py-5">
+      <div className="container text-center">
+        <section className="salesiano-title py-5">
+          <div className="container text-center">
+            <div className="d-flex align-items-center justify-content-center">
+              <div className="title-line"></div>
+              <h2 className="niveles-heading mx-4">Niveles Educativos</h2>
+              <div className="title-line"></div>
+            </div>
+          </div>
+        </section>
 
-        <div className="niveles-grid">
-          {NIVELES.map((nivel) => (
-            <div key={nivel.id} className="nivel-card">
-              <div className="nivel-image-wrapper">
-                <img
-                  src={nivel.imagen}
-                  alt={nivel.nombre}
-                  className="nivel-image"
-                />
+        <div className="row justify-content-center">
+          {niveles.map((nivel) => (
+            <div key={nivel.id} className="col-md-4 col-sm-6 mb-4">
+              <div className="nivel-item">
+                <div className="circle-container">
+                  <img src={nivel.img} alt={nivel.nombre} className="nivel-img" />
+                </div>
+                <h3 className="nivel-name">{nivel.nombre}</h3>
               </div>
-              <h3 className="nivel-name">{nivel.nombre}</h3>
             </div>
           ))}
         </div>
@@ -44,3 +34,5 @@ export default function NivelesEducativos() {
     </section>
   );
 }
+
+export default NivelesEducativos;

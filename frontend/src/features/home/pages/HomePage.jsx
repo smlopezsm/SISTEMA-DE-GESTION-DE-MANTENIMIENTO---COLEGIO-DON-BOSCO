@@ -1,18 +1,16 @@
-import HeroBanner from "../components/HeroBanner";
-import NivelesEducativos from "../components/NivelesEducativos";
-import SalesianoPrincipios from "../components/SalecianosPrincipios";
-import Novedades from "../components/Novedades";
-import "../styles/home.css";
+import Hero from '../components/Hero';
+import NivelesEducativos from '../components/NivelesEducativos';
+import IdentidadSalesiana from '../components/SalesianosPrincipios';
+import Novedades from '../components/Novedades';
 
 function HomePage() {
   return (
-    <div className="site-container">
-      <div className="top-line"></div>
-      <HeroBanner />
+    <>
+      <Hero />
       <NivelesEducativos />
-      <SalesianoPrincipios />
+      <IdentidadSalesiana />
       <Novedades />
-    </div>
+    </>
   );
 }
 
