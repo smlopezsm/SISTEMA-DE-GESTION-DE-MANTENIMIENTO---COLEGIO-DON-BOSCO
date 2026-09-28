@@ -1,0 +1,28 @@
+{
+  "directivos": [
+    {
+      "id": 1,
+      "nombre": "Carlos",
+      "apellido": "Pérez",
+      "usuario": "cperez",
+      "dni": "20123456",
+      "email": "cperez@donbosco.org.ar",
+      "password": "1234",
+      "cargo": "Rector",
+      "rol": "directivo",
+      "activo": true
+    },
+    {
+      "id": 2,
+      "nombre": "María",
+      "apellido": "Gómez",
+      "usuario": "mgomez",
+      "dni": "21234567",
+      "email": "mgomez@donbosco.org.ar",
+      "password": "1234",
+      "cargo": "Secretaria",
+      "rol": "directivo",
+      "activo": true
+    }
+  ]
+}

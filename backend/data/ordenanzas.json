@@ -1,0 +1,40 @@
+{
+  "ordenanzas": [
+    {
+      "id": 1,
+      "nombre": "Ana",
+      "apellido": "Torres",
+      "usuario": "atorres",
+      "dni": "30123456",
+      "email": "atorres@donbosco.org.ar",
+      "password": "1234",
+      "telefono": "266 4551234",
+      "rol": "ordenanza",
+      "activo": true
+    },
+    {
+      "id": 2,
+      "nombre": "Luis",
+      "apellido": "Fernández",
+      "usuario": "lfernandez",
+      "dni": "31234567",
+      "email": "lfernandez@donbosco.org.ar",
+      "password": "1234",
+      "telefono": "266 4552345",
+      "rol": "ordenanza",
+      "activo": true
+    },
+    {
+      "id": 3,
+      "nombre": "Sofía",
+      "apellido": "Martínez",
+      "usuario": "smartinez",
+      "dni": "32345678",
+      "email": "smartinez@donbosco.org.ar",
+      "password": "1234",
+      "telefono": "266 4553456",
+      "rol": "ordenanza",
+      "activo": false
+    }
+  ]
+}
