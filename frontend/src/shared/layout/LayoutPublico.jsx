@@ -1,12 +1,17 @@
+import { Outlet, ScrollRestoration  } from "react-router";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
-function LayoutPublico({ children }) {
+
+function LayoutPublico() {
   return (
     <>
       <Navbar />
-      <main>{children}</main>
+      <main>
+        <Outlet />
+      </main>
       <Footer />
+      <ScrollRestoration />
     </>
   );
 }

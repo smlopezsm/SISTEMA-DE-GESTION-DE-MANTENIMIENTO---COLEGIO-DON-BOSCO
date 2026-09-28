@@ -1,0 +1,38 @@
+.banner-img {
+  height: 500px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.carousel-caption {
+  background: rgba(0, 0, 0, 0.4);
+  padding: var(--espacio-md);
+  border-radius: 10px;
+}
+
+.carousel-indicators [data-bs-target] {
+  background-color: var(--color-blanco);
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+}
+
+.carousel-indicators .active {
+  background-color: var(--color-principal);
+}
+
+.animate-text h1,
+.animate-text p {
+  animation: fadeInUp 1s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

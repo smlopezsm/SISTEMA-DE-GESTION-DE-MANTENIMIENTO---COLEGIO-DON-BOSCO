@@ -1,0 +1,7 @@
+@import './shared/styles/variables.css';
+
+body {
+  margin: 0;
+  font-family: var(--fuente-base);
+  background-color: var(--color-fondo);
+}
