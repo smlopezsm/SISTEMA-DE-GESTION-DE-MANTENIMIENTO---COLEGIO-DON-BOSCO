@@ -11,10 +11,12 @@ import {
 function Footer() {
   return (
     <footer className="footer">
-      <div className="footer-conent">
+      <div className="footer-content">
 
         <div className="container">
           <div className="row footer-info align-items-center">
+
+            {/*columna izquierda*/}
             <div className="col-md-6 footer-medios">
               <h3 className="footer-info-title">Otros medios</h3>
 
@@ -73,6 +75,7 @@ function Footer() {
               </div>
             </div>
 
+            {/*columna derecha*/}
             <div className="col-md-6 footer-ubicacion">
               <h3 className="footer-info-title">Ubicación:</h3>
               <div className="footer-map-wrapper">
@@ -86,8 +89,11 @@ function Footer() {
             </div>
           </div>
         </div>
+
+        {/*linea divisoria*/}
         <div className="bottom-line1 bg-white"></div>
 
+        {/*franja de abajo*/}
         <div className="container d-flex justify-content-between align-items-center footer-top">
           <div className="footer-left">
             <img

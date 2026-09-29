@@ -19,6 +19,7 @@ function LoginPage() {
               <img src="/assets/colegio/logo2.png" alt="Logo Colegio Don Bosco" className="logo-card mb-4" />
               <h1 className="mb-4">Sistema de Gestión de Mantenimiento</h1>
               <h2 className="mb-4">Iniciar Sesión</h2>
+              {/*se inserta el form*/}
               <LoginForm />
             </div>
           </div>
