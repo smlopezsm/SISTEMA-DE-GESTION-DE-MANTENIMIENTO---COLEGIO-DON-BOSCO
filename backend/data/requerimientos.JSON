@@ -1,0 +1,24 @@
+[
+  {
+    "id": "REQ-0342",
+    "titulo": "Fuga de agua en baño",
+    "descripcion": "Pérdida constante en la canilla del baño de hombres.",
+    "lugar": "Pabellón B - Baño",
+    "emitidoPor": "María González",
+    "rolEmisor": "Ordenanza",
+    "fechaEmision": "2025-06-25T09:12:00",
+    "estado": "pendiente",
+    "tareaId": null
+  },
+  {
+    "id": "REQ-0341",
+    "titulo": "Luz de emergencia sin funcionar",
+    "descripcion": "La luz de emergencia del pasillo principal no enciende.",
+    "lugar": "Pasillo principal",
+    "emitidoPor": "Carlos Méndez",
+    "rolEmisor": "Directivo",
+    "fechaEmision": "2025-06-25T08:47:00",
+    "estado": "con-tarea",
+    "tareaId": "T-0127"
+  }
+]
