@@ -1,22 +1,79 @@
+
 :root {
+  /*COLORES INSTITUCIONALES */
   --color-principal: #E41D22;
   --color-secundario: #3D4196;
-  --color-fondo: #f4f6f9;
+  --color-fondo: #f8f9fa;
   --color-blanco: hsl(0, 0%, 100%);
   --color-negro: rgb(0, 0, 0);
-  --color-hover: #310303;
-  --color-card: #FFFFFF;
   --color-borde: #E5E7EB;
-  --color-fondo-trans: rgba(255, 255, 255, 0.7);
-  --color-text-casi: #aaaf9c;
-  --color-text-quote: #4B5563;
-  --color-texto-casillas: #9CA3AF;
+  --texto-principal: #1a1d20;
+  --texto-secundario: #6c757d;
 
+  /* PRIORIDADES */
+
+  /* Alta / Urgente */
+  --prioridad-alta-bg: #FEE2E2;
+  --prioridad-alta-texto: #991B1B;
+  --prioridad-alta-solid: #FF0000;
+
+  /* Media */
+  --prioridad-media-bg: #FEF3C7;
+  --prioridad-media-texto: #92400E;
+  --prioridad-media-solid: #d97706;
+
+  /* Baja */
+  --prioridad-baja-bg: #D1FAE5;
+  --prioridad-baja-texto: #065F46;
+  --prioridad-baja-solid: #059669;
+
+  /* ESTADOS */
+
+  /* Pendiente */
+  --estado-pendiente-bg: #FEF3C7;
+  --estado-pendiente-texto: #92400E;
+  --estado-pendiente-solid: #F59E0B;
+
+  /* Con tarea */
+  --estado-con-tarea-bg: #E0E7FF;
+  --estado-con-tarea-texto: #3730A3;
+  --estado-con-tarea-solid: #6366F1;
+
+  /* En proceso */
+  --estado-proceso-bg: #DBEAFE;
+  --estado-proceso-texto: #1E40AF;
+  --estado-proceso-solid: #3D4196;
+
+  /* Demorada */
+  --estado-demorada-bg: #FEE2E2;
+  --estado-demorada-texto: #991B1B;
+  --estado-demorada-solid: #E41D22;
+
+  /* Finalizada */
+  --estado-finalizada-bg: #D1FAE5;
+  --estado-finalizada-texto: #065F46;
+  --estado-finalizada-solid: #059669;
+
+  /* Aprobada */
+  --estado-aprobada-bg: #D1FAE5;
+  --estado-aprobada-texto: #14532D;
+  --estado-aprobada-solid: #15803D;
+
+  /* Rechazada */
+  --estado-rechazada-bg: #FEE2E2;
+  --estado-rechazada-texto: #7F1D1D;
+  --estado-rechazada-solid: #991B1B;
+
+  /* Cancelada */
+  --estado-cancelada-bg: #F3F4F6;
+  --estado-cancelada-texto: #374151;
+  --estado-cancelada-solid: #6C757D;
+
+  /* FUENTE */
   --fuente-base: "Segoe UI", sans-serif;
   --font-family-base: sans-serif, system-ui, Roboto, Inter;
-  --logo-size: 100px;
-  --espacio-md: 1.25rem;
 
+  /* ESPACIADOS */
   --spacing-xs: 4px;
   --spacing-sm: 8px;
   --spacing-md: 16px;
@@ -24,9 +81,15 @@
   --spacing-xl: 32px;
   --spacing-xxl: 48px;
 
+  /* RADIOS */
   --radius-small: 4px;
   --radius-medium: 8px;
   --radius-large: 12px;
+
+  /* LAYOUT= */
+  --sidebar-width: 260px;
+  --logo-size: 100px;
+  --espacio-md: 1.25rem;
 }
 
 /* Compartido por Niveles Educativos, Identidad Salesiana y Novedades */

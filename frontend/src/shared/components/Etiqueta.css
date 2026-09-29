@@ -1,0 +1,77 @@
+
+.badge-estado {
+  display: inline-block;
+  padding: 0.35em 0.75em;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  border-radius: 999px;
+}
+
+/* ESTADOS DE REQUERIMIENTO / TAREA*/
+
+.badge-estado--pendiente {
+  background-color: var(--estado-pendiente-bg);
+  color: var(--estado-pendiente-texto);
+}
+
+.badge-estado--con-tarea {
+  background-color: var(--estado-con-tarea-bg);
+  color: var(--estado-con-tarea-texto);
+}
+
+.badge-estado--en-proceso {
+  background-color: var(--estado-proceso-bg);
+  color: var(--estado-proceso-texto);
+}
+
+.badge-estado--demorada {
+  background-color: var(--estado-demorada-bg);
+  color: var(--estado-demorada-texto);
+}
+
+.badge-estado--finalizada {
+  background-color: var(--estado-finalizada-bg);
+  color: var(--estado-finalizada-texto);
+}
+
+.badge-estado--aprobada {
+  background-color: var(--estado-aprobada-bg);
+  color: var(--estado-aprobada-texto);
+}
+
+.badge-estado--rechazada {
+  background-color: var(--estado-rechazada-bg);
+  color: var(--estado-rechazada-texto);
+}
+
+.badge-estado--cancelada {
+  background-color: var(--estado-cancelada-bg);
+  color: var(--estado-cancelada-texto);
+}
+
+/* PRIORIDADES */
+
+.badge-estado--alta {
+  background-color: var(--prioridad-alta-bg);
+  color: var(--prioridad-alta-texto);
+}
+
+.badge-estado--media {
+  background-color: var(--prioridad-media-bg);
+  color: var(--prioridad-media-texto);
+}
+
+.badge-estado--baja {
+  background-color: var(--prioridad-baja-bg);
+  color: var(--prioridad-baja-texto);
+}
+
+/*cuando el estado no esta mapeado*/
+
+.badge-estado--default {
+  background-color: #F3F4F6;
+  color: #374151;
+}

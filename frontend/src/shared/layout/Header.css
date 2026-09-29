@@ -1,0 +1,8 @@
+
+.header-gestor {
+  min-height: 64px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--color-blanco);
+}
