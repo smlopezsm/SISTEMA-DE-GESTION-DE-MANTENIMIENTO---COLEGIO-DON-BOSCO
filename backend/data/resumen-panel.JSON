@@ -1,9 +1,10 @@
 {
-  "requerimientosPendientes": 5,
-  "tareasPendientes": 8,
-  "tareasEnProceso": 6,
-  "tareasDemoradas": 2,
-  "tareasEsperandoAprobacion": 4,
-  "tareasFinalizadas": 12,
-  "totalTareas": 34
+  "requerimientosPendientes": 8,
+  "tareasPendientes": 0,
+  "tareasEnProceso": 3,
+  "tareasDemoradas": 1,
+  "tareasFinalizadas": 2,
+  "tareasAprobadas": 1,
+  "tareasRechazadas": 0,
+  "totalTareas": 33
 }
