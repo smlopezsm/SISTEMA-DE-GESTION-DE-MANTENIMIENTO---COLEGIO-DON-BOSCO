@@ -1,0 +1,43 @@
+{
+  "proximas": [
+    {
+      "id": "T-0128",
+      "titulo": "Reparación de calefacción",
+      "prioridad": "alta",
+      "fechaPrevista": "2025-06-25"
+    },
+    {
+      "id": "T-0129",
+      "titulo": "Cambio de luminaria",
+      "prioridad": "media",
+      "fechaPrevista": "2025-06-26"
+    },
+    {
+      "id": "T-0130",
+      "titulo": "Pintura de aulas",
+      "prioridad": "baja",
+      "fechaPrevista": "2025-06-27"
+    },
+    {
+      "id": "T-0131",
+      "titulo": "Reparación de vereda",
+      "prioridad": "alta",
+      "fechaPrevista": "2025-06-28"
+    },
+    {
+      "id": "T-0132",
+      "titulo": "Mantenimiento de aire",
+      "prioridad": "media",
+      "fechaPrevista": "2025-06-30"
+    }
+  ],
+  "porEstado": [
+    { "estado": "Pendiente",  "clave": "pendiente",  "valor": 8 },
+    { "estado": "En proceso", "clave": "en-proceso", "valor": 6 },
+    { "estado": "Demorada",   "clave": "demorada",   "valor": 2 },
+    { "estado": "Cancelada",  "clave": "cancelada",  "valor": 1 },
+    { "estado": "Finalizada", "clave": "finalizada", "valor": 12 },
+    { "estado": "Aprobada",   "clave": "aprobada",   "valor": 4 },
+    { "estado": "Rechazada",  "clave": "rechazada",  "valor": 1 }
+  ]
+}

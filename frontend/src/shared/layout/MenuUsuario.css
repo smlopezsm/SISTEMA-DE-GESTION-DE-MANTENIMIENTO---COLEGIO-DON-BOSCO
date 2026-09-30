@@ -1,0 +1,115 @@
+
+.menu-usuario {
+  position: relative;
+}
+
+
+.menu-usuario__trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  border: 0;
+  background: transparent;
+  border-radius: var(--radius-medium);
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+
+.menu-usuario__trigger:hover {
+  background-color: var(--color-fondo);
+}
+
+.menu-usuario__trigger:focus-visible {
+  outline: 2px solid var(--color-principal);
+  outline-offset: 2px;
+}
+
+.menu-usuario__avatar {
+  width: 38px;
+  height: 38px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--color-secundario);
+  color: var(--color-blanco);
+}
+
+.menu-usuario__datos {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.menu-usuario__nombre {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--texto-principal);
+}
+
+.menu-usuario__rol {
+  font-size: 0.75rem;
+  color: var(--texto-secundario);
+}
+
+.menu-usuario__chevron {
+  color: var(--texto-secundario);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.menu-usuario__chevron--abierto {
+  transform: rotate(180deg);
+}
+
+.menu-usuario__dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.25rem;
+  min-width: 200px;
+  background-color: var(--color-blanco);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radius-medium);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 0.25rem 0;
+  z-index: 1050;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-usuario__item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  color: var(--texto-principal);
+  text-decoration: none;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.15s ease;
+}
+
+.menu-usuario__item:hover {
+  background-color: var(--color-fondo);
+}
+
+.menu-usuario__item--danger {
+  color: var(--color-principal);
+}
+
+.menu-usuario__divider {
+  margin: 0.25rem 0;
+  border: 0;
+  border-top: 1px solid var(--color-borde);
+}

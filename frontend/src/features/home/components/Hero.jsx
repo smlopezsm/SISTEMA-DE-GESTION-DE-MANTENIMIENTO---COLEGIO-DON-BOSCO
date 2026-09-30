@@ -10,8 +10,9 @@ const slides = [
 
 function Hero() {
   return (
+    //carrusel
     <section id="banner" className="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
-      <div className="carousel-indicators">
+      <div className="carousel-indicators"> 
         {slides.map((slide, indice) => (
           <button
             key={slide.id}

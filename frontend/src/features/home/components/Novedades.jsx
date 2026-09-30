@@ -7,7 +7,7 @@ const novedades = [
 ];
 
 function Novedades() {
-  return (
+  return(
     <section className="novedades-section py-5">
       <div className="container">
         <div className="d-flex align-items-center justify-content-center mb-5">

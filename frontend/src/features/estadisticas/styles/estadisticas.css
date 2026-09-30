@@ -1,0 +1,187 @@
+/* Variación (↑ ↓ =) */
+.variacion {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.variacion--buena { color: var(--estado-finalizada-solid); }
+.variacion--mala { color: var(--estado-demorada-solid); }
+.variacion--neutra { color: var(--estado-cancelada-solid); }
+
+.kpi-variacion {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.kpi-variacion small {
+  font-size: 0.72rem;
+  color: var(--texto-secundario);
+}
+
+/* Sectores más afectados */
+.barras-sectores {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.barras-sectores li {
+  display: grid;
+  grid-template-columns: 88px 1fr 70px;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: 0.85rem;
+}
+.barras-sectores__pista {
+  height: 14px;
+  background: var(--color-fondo);
+  border-radius: var(--radius-small);
+}
+.barras-sectores__barra {
+  height: 100%;
+  background: var(--color-secundario);
+  border-radius: var(--radius-small);
+}
+.barras-sectores__valor {
+  text-align: right;
+  color: var(--texto-secundario);
+}
+
+/* Dona + leyenda */
+.gastos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-lg);
+}
+.leyenda {
+  flex: 1 1 180px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.85rem;
+}
+.leyenda li {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+.leyenda__nombre {
+  flex: 1;
+}
+.leyenda__pct {
+  min-width: 40px;
+  text-align: right;
+  color: var(--texto-secundario);
+}
+.leyenda-punto {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+/* Rendimiento del personal */
+.tabla-personal {
+  width: 100%;
+  font-size: 0.85rem;
+}
+.tabla-personal th {
+  padding: var(--spacing-sm) var(--spacing-xs);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--texto-secundario);
+}
+.tabla-personal td {
+  padding: var(--spacing-sm) var(--spacing-xs);
+}
+.tasa {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+.tasa__pista {
+  height: 8px;
+  background: var(--color-fondo);
+  border-radius: 4px;
+}
+.tasa__barra {
+  height: 100%;
+  background: var(--estado-finalizada-solid);
+  border-radius: 4px;
+}
+
+/* Gráfico de líneas */
+.grafico-lineas svg {
+  width: 100%;
+  height: auto;
+}
+.grafico-lineas__grilla {
+  stroke: var(--color-borde);
+}
+.grafico-lineas__texto {
+  font-size: 11px;
+  fill: var(--texto-secundario);
+}
+.grafico-lineas__leyenda {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-lg);
+  margin: var(--spacing-sm) 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.8rem;
+}
+.grafico-lineas__leyenda li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Tiempo promedio */
+.tiempo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin: var(--spacing-lg) 0;
+}
+.tiempo__icono {
+  display: flex;
+  padding: var(--spacing-md);
+  font-size: 1.75rem;
+  color: var(--color-secundario);
+  background: var(--estado-proceso-bg);
+  border-radius: 50%;
+}
+.tiempo strong {
+  display: block;
+  font-size: 1.75rem;
+  color: var(--color-secundario);
+}
+.tiempo .variacion {
+  margin-top: 2px;
+}
+.tiempo__nota {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: flex-start;
+  margin: 0;
+  padding: var(--spacing-md);
+  font-size: 0.85rem;
+  color: var(--estado-proceso-texto);
+  background: var(--estado-proceso-bg);
+  border-radius: var(--radius-medium);
+}
+.tiempo__nota svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+}

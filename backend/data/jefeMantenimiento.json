@@ -1,10 +1,13 @@
 {
-  "jefe_mantenimiento": {
+  "jefeMantenimiento": {
     "id": 1,
-    "nombre": "Juan Rodríguez",
+    "nombre": "Juan",
+    "apellido": "Rodríguez",
     "usuario": "jrodriguez",
-    "email": "jrodriguez@empresa.com",
-    "rol": "Jefe de Mantenimiento",
+    "dni": "22345678",
+    "email": "jrodriguez@donbosco.org.ar",
+    "password": "1234",
+    "rol": "jefeMantenimiento",
     "activo": true
   }
 }

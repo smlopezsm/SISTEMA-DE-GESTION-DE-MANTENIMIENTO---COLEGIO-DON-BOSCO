@@ -1,5 +1,8 @@
-import { Outlet } from "react-router";
+//es el area publica 
+import { Outlet, ScrollRestoration  } from "react-router";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
+
 
 function LayoutPublico() {
   return (
@@ -8,6 +11,8 @@ function LayoutPublico() {
       <main>
         <Outlet />
       </main>
+      <Footer />
+      <ScrollRestoration />
     </>
   );
 }

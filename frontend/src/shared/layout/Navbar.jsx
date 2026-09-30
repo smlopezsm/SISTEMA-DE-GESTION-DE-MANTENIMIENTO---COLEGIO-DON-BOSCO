@@ -1,4 +1,5 @@
 import './Navbar.css';
+import { Link } from "react-router";
 function Navbar() {
   return (
     <>
@@ -7,13 +8,9 @@ function Navbar() {
       <header className="site-header">
         <nav className="navbar navbar-expand-lg">
           <div className="container">
-            <a className="navbar-brand d-flex align-items-center" href="#">
-              <img
-                src="/assets/colegio/logo1.png"
-                alt="Don Bosco"
-                className="header-logo"
-              />
-            </a>
+            <Link className="navbar-brand d-flex align-items-center" to="/">
+              <img src="/assets/colegio/logo1.png" alt="Don Bosco" className="header-logo" />
+            </Link>
 
             <button
               className="navbar-toggler"

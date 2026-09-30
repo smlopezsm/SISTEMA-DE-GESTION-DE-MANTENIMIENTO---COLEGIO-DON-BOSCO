@@ -1,0 +1,14 @@
+/* src/features/panel/components/Dona.css */
+
+.dona {
+  box-shadow: 0 0 0 1px var(--color-borde);
+}
+
+.dona__centro {
+  background-color: var(--color-blanco);
+}
+
+.dona__etiqueta {
+  color: var(--texto-secundario);
+  font-size: 0.75rem;
+}

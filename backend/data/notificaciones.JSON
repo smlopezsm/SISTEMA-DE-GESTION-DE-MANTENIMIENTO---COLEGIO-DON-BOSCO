@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "tipo": "nuevo-requerimiento",
+    "titulo": "Nuevo requerimiento",
+    "texto": "Se ha emitido un nuevo requerimiento REQ-0342: Fuga de agua en baño.",
+    "hora": "09:12",
+    "leida": false
+  },
+  {
+    "id": 2,
+    "tipo": "tarea-finalizada",
+    "titulo": "Tarea finalizada",
+    "texto": "La tarea T-0123 ha sido finalizada por el personal de mantenimiento.",
+    "hora": "08:40",
+    "leida": false
+  },
+  {
+    "id": 3,
+    "tipo": "tarea-rechazada",
+    "titulo": "Tarea rechazada",
+    "texto": "La tarea T-0119 fue rechazada por el Director. Motivo: Trabajo no conforme.",
+    "hora": "07:55",
+    "leida": false
+  },
+  {
+    "id": 4,
+    "tipo": "nuevo-requerimiento",
+    "titulo": "Nuevo requerimiento",
+    "texto": "Se ha emitido un nuevo requerimiento REQ-0341: Luz de emergencia sin funcionar.",
+    "hora": "08:20",
+    "leida": true
+  }
+]

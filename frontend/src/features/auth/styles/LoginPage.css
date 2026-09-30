@@ -1,3 +1,4 @@
+
 .login-page {
   min-height: 100vh;
   background: url('/assets/colegio/foto4.PNG') no-repeat center center fixed;
@@ -6,19 +7,21 @@
 }
 
 .login-page .overlay {
-  background: var(--color-fondo-trans);
+  background: rgba(255, 255, 255, 0.7);
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: 0;
 }
 
 .login-page .card-custom {
-  background-color: var(--color-card);
+  background-color: var(--color-blanco);
   border-radius: var(--radius-large);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
   padding: var(--spacing-xxl);
   max-width: 600px;
   width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 .login-page h1 {
@@ -37,24 +40,30 @@
 
 .login-page p {
   font-size: 14px;
-  font-weight: 400;
   color: var(--color-negro);
 }
 
-.login-page .btn-primary-custom {
+.boton-ingresar {
   background-color: var(--color-principal);
   color: var(--color-blanco);
-  border-radius: var(--radius-small);
-  padding: 12px 24px;
   border: none;
-  width: 100%;
-  display: flex;
-  justify-content: center;
+  padding: 12px 24px;
+  border-radius: var(--radius-small);
   font-size: 14px;
   font-weight: 500;
+  transition: background-color 0.15s ease;
 }
 
-.login-page .form-control-custom {
+.boton-ingresar:hover:not(:disabled) {
+  background-color: var(--color-hover);
+}
+
+.boton-ingresar:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.form-control-custom {
   background-color: var(--color-card);
   border: 1px solid var(--color-borde);
   border-radius: var(--radius-small);
@@ -64,42 +73,42 @@
   font-size: 14px;
 }
 
-.login-page .form-control-custom::placeholder {
+.form-control-custom:focus {
+  border-color: var(--color-principal);
+  box-shadow: 0 0 0 0.2rem rgba(228, 29, 34, 0.15);
+  outline: none;
+}
+
+.form-control-custom::placeholder {
   color: var(--color-text-casi);
 }
 
-.login-page .form-check-input {
+
+.form-check-input {
   width: 16px;
   height: 16px;
   border-radius: 2px;
   border: 1px solid var(--color-borde);
 }
 
-.login-page .form-check-label {
+.form-check-label {
   font-size: 14px;
   color: var(--color-negro);
   margin-left: var(--spacing-sm);
 }
 
-.login-page .link-custom {
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--color-principal);
-  text-decoration: none;
-}
-
-.login-page .link-custom:hover {
-  text-decoration: underline;
-}
 
 .login-page .logo-card {
   max-width: 120px;
   height: auto;
 }
 
+
 .login-page .quote-box {
   text-align: left;
   max-width: 500px;
+  position: relative;
+  z-index: 1;
 }
 
 .login-page .quote-text {
@@ -118,14 +127,27 @@
   color: var(--color-secundario);
 }
 
+.login-page .link-custom {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-principal);
+  text-decoration: none;
+}
+
+.login-page .link-custom:hover {
+  text-decoration: underline;
+}
+
 @media (max-width: 768px) {
   .login-page .card-custom {
     margin: 0 auto;
     max-width: 90%;
+    padding: var(--spacing-xl);
   }
 
   .login-page .quote-box {
     text-align: center;
+    margin-top: 40px;
   }
 
   .login-page .quote-text {

@@ -1,0 +1,18 @@
+
+.tabla-requerimientos thead th {
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  color: var(--texto-secundario);
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.tabla-requerimientos tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.015);
+}
+
+.tabla-requerimientos tbody td {
+  border-bottom: 1px solid var(--color-borde);
+  vertical-align: middle;
+}
