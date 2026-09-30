@@ -1,0 +1,118 @@
+/* src/features/requerimientos/components/InfoPrincipalRequerimiento.css */
+
+/* ============================================================
+   Título
+   ============================================================ */
+.info-principal-requerimiento__titulo {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--texto-principal);
+  line-height: 1.3;
+  margin-bottom: 1rem;
+}
+
+/* ============================================================
+   Descripción
+   ============================================================ */
+.info-principal-requerimiento__descripcion {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--texto-secundario);
+}
+
+/* ============================================================
+   Metadatos (fecha, hora, sector)
+   ============================================================ */
+.info-principal-requerimiento__meta {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+}
+
+.info-principal-requerimiento__meta-icono {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-medium);
+  background-color: #FDE8E9;
+  color: var(--color-principal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-principal-requerimiento__meta small {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  font-weight: 500;
+  margin-bottom: 0.15rem;
+}
+
+/* ============================================================
+   Imagen
+   ============================================================ */
+.info-principal-requerimiento__imagen-contenedor {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-large);
+  overflow: hidden;
+  background-color: var(--color-fondo);
+}
+
+.info-principal-requerimiento__imagen {
+  width: 100%;
+  height: auto;
+  max-height: 320px;
+  object-fit: cover;
+  display: block;
+}
+
+.info-principal-requerimiento__imagen-boton {
+  display: block;
+  width: 100%;
+  padding: 0.7rem 1rem;
+  background-color: #1E40AF;
+  color: var(--color-blanco);
+  text-align: center;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: background-color 0.15s ease;
+}
+
+.info-principal-requerimiento__imagen-boton:hover {
+  background-color: #1E3A8A;
+  color: var(--color-blanco);
+}
+
+/* ============================================================
+   RESPONSIVE — Móvil
+   ============================================================ */
+@media (max-width: 767.98px) {
+  .info-principal-requerimiento .card-body {
+    padding: 1rem;
+  }
+
+  .info-principal-requerimiento__titulo {
+    font-size: 1.15rem;
+  }
+
+  .info-principal-requerimiento__descripcion {
+    font-size: 0.85rem;
+  }
+
+  .info-principal-requerimiento__meta {
+    font-size: 0.8rem;
+  }
+
+  .info-principal-requerimiento__meta-icono {
+    width: 32px;
+    height: 32px;
+  }
+
+  .info-principal-requerimiento__imagen {
+    max-height: 220px;
+  }
+}

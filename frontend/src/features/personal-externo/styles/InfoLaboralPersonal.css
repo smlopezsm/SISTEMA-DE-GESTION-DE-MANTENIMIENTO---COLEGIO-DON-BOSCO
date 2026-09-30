@@ -1,0 +1,21 @@
+
+.card-personal .form-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--texto-principal);
+  margin-bottom: 0.35rem;
+}
+
+.card-personal .form-control,
+.card-personal .form-select {
+  border-color: var(--color-borde);
+  border-radius: var(--radius-small);
+  font-size: 0.875rem;
+}
+
+.card-personal .form-control:focus,
+.card-personal .form-select:focus {
+  border-color: var(--color-principal);
+  box-shadow: 0 0 0 0.2rem rgba(228, 29, 34, 0.15);
+  outline: none;
+}

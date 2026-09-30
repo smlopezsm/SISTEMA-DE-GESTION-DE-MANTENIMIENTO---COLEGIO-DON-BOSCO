@@ -1,0 +1,82 @@
+
+.acciones-detalle-tarea .btn {
+  font-weight: 500;
+  padding: 0.65rem 1rem;
+  border-radius: var(--radius-small);
+  font-size: 0.9rem;
+}
+
+/* boton editar */
+.acciones-detalle-tarea .btn-primary {
+  background-color: var(--color-principal);
+  border-color: var(--color-principal);
+  color: var(--color-blanco);
+}
+
+.acciones-detalle-tarea .btn-primary:hover {
+  background-color: var(--color-hover);
+  border-color: var(--color-hover);
+}
+
+/* boton aceptar */
+.acciones-detalle-tarea .btn-success {
+  background-color: #059669;
+  border-color: #059669;
+  color: var(--color-blanco);
+}
+
+.acciones-detalle-tarea .btn-success:hover:not(:disabled) {
+  background-color: #047857;
+  border-color: #047857;
+}
+
+/* boton rechazar*/
+.acciones-detalle-tarea .btn-outline-danger {
+  color: #E41D22;
+  border-color: #E41D22;
+  background-color: transparent;
+}
+
+.acciones-detalle-tarea .btn-outline-danger:hover:not(:disabled) {
+  background-color: #E41D22;
+  color: var(--color-blanco);
+  border-color: #E41D22;
+}
+
+/* botones deshabilitados */
+.acciones-detalle-tarea .btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* mensaje */
+.acciones-detalle-tarea .alert-info {
+  background-color: #EEF2FF;
+  border: 0;
+  color: #3730A3;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  padding: 0.75rem;
+  border-radius: var(--radius-medium);
+}
+
+.acciones-detalle-tarea .alert-info svg {
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+ 
+@media (max-width: 575.98px) {
+  .acciones-detalle-tarea .card-body {
+    padding: 1rem;
+  }
+
+  .acciones-detalle-tarea .btn {
+    font-size: 0.85rem;
+    padding: 0.6rem;
+  }
+
+  .acciones-detalle-tarea .alert-info {
+    font-size: 0.72rem;
+  }
+}

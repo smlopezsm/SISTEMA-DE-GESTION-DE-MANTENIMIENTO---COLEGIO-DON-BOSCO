@@ -1,0 +1,77 @@
+
+.modal-personal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+  padding: 1rem;
+}
+
+.modal-personal {
+  background-color: var(--color-blanco);
+  border-radius: var(--radius-large);
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.modal-personal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.modal-personal__body {
+  padding: 1.5rem;
+}
+
+.modal-personal__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--color-borde);
+  background-color: #FAFBFC;
+}
+
+.modal-personal .form-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--texto-principal);
+  margin-bottom: 0.35rem;
+}
+
+.modal-personal .form-control:focus {
+  border-color: var(--color-principal);
+  box-shadow: 0 0 0 0.2rem rgba(228, 29, 34, 0.15);
+}
+
+.modal-personal .btn-primary {
+  background-color: var(--color-principal);
+  border-color: var(--color-principal);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+}
+
+.modal-personal .btn-primary:hover {
+  background-color: var(--color-secundario);
+  border-color: var(--color-secundario);
+}
+
+.modal-personal .btn-outline-secondary {
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  color: var(--texto-secundario);
+  border-color: var(--color-borde);
+}
+
+.modal-personal .btn-outline-secondary:hover {
+  background-color: var(--color-secundario);
+  color: var(--color-blanco);
+}

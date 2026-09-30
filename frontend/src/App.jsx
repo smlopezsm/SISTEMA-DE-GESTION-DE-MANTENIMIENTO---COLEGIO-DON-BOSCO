@@ -1,11 +1,12 @@
-import { RouterProvider } from "react-router";
-import { router } from "./Router";
+import { RouterProvider } from 'react-router/dom';
+import { router } from './Router';
+import { ToastProvider } from './shared/context/ToastContext';
 
 function App() {
   return (
-    <>
+    <ToastProvider>
       <RouterProvider router={router} />
-    </>
+    </ToastProvider>
   );
 }
 

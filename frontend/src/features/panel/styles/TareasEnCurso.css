@@ -1,0 +1,103 @@
+.tareas-en-curso thead th {
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  color: var(--texto-principal) !important;
+  background-color: #dfe0e164 !important;
+  border-bottom: 1px solid #E5E7EB !important;
+}
+
+.tareas-en-curso tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.015);
+}
+
+.tareas-en-curso tbody td {
+  border-bottom: 1px solid var(--color-borde);
+  vertical-align: middle;
+}
+
+.tareas-en-curso-titulo{
+  font-weight: 600;
+  color: var(--texto-principal);
+}
+.proximas-tareas thead th {
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  color: var(--texto-secundario);
+}
+
+.proximas-tareas tbody td {
+  vertical-align: middle;
+}
+
+.link-ver-todos {
+  color: var(--color-principal); 
+}
+
+.link-ver-todos:hover {
+  color: var(--color-secundario);
+}
+
+.table-responsive {
+  overflow-x: auto;
+  scrollbar-width: thin;           
+}
+
+.tareas-en-curso {
+  min-width: 800px;                
+}
+
+/* celular*/
+
+.tarea-panel-card {
+  border-bottom: 1px solid var(--color-borde);
+  padding: 0.85rem 0;
+}
+
+.tarea-panel-card:last-child {
+  border-bottom: 0;
+}
+
+.tarea-panel-card__id {
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--color-principal);
+  letter-spacing: 0.3px;
+}
+
+.tarea-panel-card__titulo {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--texto-principal);
+  line-height: 1.3;
+}
+
+.tarea-panel-card__detalle {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.tarea-panel-card__campo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  font-size: 0.78rem;
+}
+
+.tarea-panel-card__label {
+  color: var(--texto-secundario);
+  flex-shrink: 0;
+  font-weight: 500;
+}
+
+.tarea-panel-card__valor {
+  text-align: right;
+  color: var(--texto-principal);
+  font-weight: 500;
+  word-break: break-word;
+}

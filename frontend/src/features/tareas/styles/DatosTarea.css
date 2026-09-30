@@ -1,0 +1,46 @@
+
+.datos-tarea .form-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--texto-principal);
+  margin-bottom: 0.35rem;
+}
+
+.datos-tarea .form-control,
+.datos-tarea .form-select {
+  border-color: var(--color-borde);
+  border-radius: var(--radius-small);
+  font-size: 0.875rem;
+}
+
+.datos-tarea .form-control:focus,
+.datos-tarea .form-select:focus {
+  border-color: var(--color-principal);
+  box-shadow: 0 0 0 0.2rem rgba(228, 29, 34, 0.15);
+  outline: none;
+}
+
+.datos-tarea .input-group-text {
+  border-color: var(--color-borde);
+  border-right: 0;
+}
+
+.datos-tarea .input-group .form-control,
+.datos-tarea .input-group .form-select {
+  border-left: 0;
+}
+
+.datos-tarea .form-check-input:checked {
+  background-color: var(--color-principal);
+  border-color: var(--color-principal);
+}
+
+.datos-tarea .btn-primary {
+  background-color: var(--color-principal);
+  border-color: var(--color-principal);
+}
+
+.datos-tarea .btn-primary:hover {
+  background-color: var(--color-hover);
+  border-color: var(--color-hover);
+}

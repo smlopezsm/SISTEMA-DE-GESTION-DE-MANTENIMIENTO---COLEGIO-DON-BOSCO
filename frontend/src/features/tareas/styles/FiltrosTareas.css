@@ -1,0 +1,74 @@
+
+.filtros-tareas .form-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--texto-secundario);
+  margin-bottom: 0.25rem;
+}
+
+.filtros-tareas .form-control,
+.filtros-tareas .form-select {
+  border-color: var(--color-borde);
+  border-radius: var(--radius-small);
+  font-size: 0.875rem;
+}
+
+.filtros-tareas .form-control:focus,
+.filtros-tareas .form-select:focus {
+  border-color: var(--color-principal);
+  box-shadow: 0 0 0 0.2rem rgba(228, 29, 34, 0.15);
+  outline: none;
+}
+
+.filtros-tareas .input-group-text {
+  border-color: var(--color-borde);
+  border-right: 0;
+  background-color: var(--color-blanco);
+}
+
+.filtros-tareas .input-group .form-control {
+  border-left: 0;
+}
+
+.filtros-tareas .btn-primary {
+  background-color: var(--color-principal);
+  border-color: var(--color-principal);
+  color: var(--color-blanco);
+  border-radius: var(--radius-small);
+}
+
+.filtros-tareas .btn-primary:hover {
+  background-color: var(--color-hover);
+  border-color: var(--color-hover);
+}
+
+.filtros-tareas .btn-outline-secondary {
+  color: var(--texto-secundario);
+  border-color: var(--color-borde);
+  border-radius: var(--radius-small);
+}
+
+.filtros-tareas .btn-outline-secondary:hover {
+  background-color: var(--color-fondo);
+  color: var(--texto-principal);
+  border-color: var(--texto-secundario);
+}
+
+.filtros-tareas__fechas {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.filtros-tareas__fechas .form-control {
+  flex: 1;
+  min-width: 0;    /* 👈 clave: permite que el input se achique */
+}
+
+/* En móvil chico, se apilan */
+@media (max-width: 575.98px) {
+  .filtros-tareas__fechas {
+    flex-direction: column;
+  }
+}
