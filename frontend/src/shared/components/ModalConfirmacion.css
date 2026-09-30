@@ -1,0 +1,83 @@
+
+.modal-confirmacion-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1200;
+  padding: 1rem;
+}
+
+.modal-confirmacion {
+  background-color: var(--color-blanco);
+  border-radius: var(--radius-large);
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.modal-confirmacion__body {
+  padding: 1.5rem 1.5rem 1rem;
+  text-align: center;
+}
+
+.modal-confirmacion__icono {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1rem;
+}
+
+.modal-confirmacion__icono--danger  { background-color: #FEE2E2; color: #E41D22; }
+.modal-confirmacion__icono--info    { background-color: #DBEAFE; color: #3D4196; }
+.modal-confirmacion__icono--success { background-color: #D1FAE5; color: #059669; }
+
+.modal-confirmacion__titulo {
+  font-weight: 600;
+  color: var(--texto-principal);
+  margin-bottom: 0.5rem;
+}
+
+.modal-confirmacion__mensaje {
+  color: var(--texto-secundario);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+.modal-confirmacion__footer {
+  display: flex; justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem 1.5rem;
+}
+
+.modal-confirmacion__footer .btn {
+  min-width: 120px;
+  font-weight: 500;
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius-small);
+}
+
+.modal-confirmacion__footer .btn-danger {
+  background-color: #E41D22; border-color: #E41D22; color: var(--color-blanco);
+}
+.modal-confirmacion__footer .btn-danger:hover {
+  background-color: #B01519; border-color: #B01519;
+}
+
+.modal-confirmacion__footer .btn-success {
+  background-color: #059669; border-color: #059669; color: var(--color-blanco);
+}
+.modal-confirmacion__footer .btn-success:hover {
+  background-color: #047857; border-color: #047857;
+}
+
+.modal-confirmacion__footer .btn-outline-secondary {
+  color: var(--texto-secundario);
+  border-color: var(--color-borde);
+}
+.modal-confirmacion__footer .btn-outline-secondary:hover {
+  background-color: var(--color-fondo);
+  color: var(--texto-principal);
+}

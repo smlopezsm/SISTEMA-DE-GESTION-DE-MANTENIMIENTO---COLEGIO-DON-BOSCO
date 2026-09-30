@@ -1,17 +1,4 @@
-import {
-  FaHouse,
-  FaCirclePlus,
-  FaClipboardCheck,
-  FaClipboardList,
-  FaScrewdriverWrench,
-  FaUserGroup,
-  FaBell,
-  FaUser,
-  FaChartBar,
-  FaUserGear,
-  FaGraduationCap, 
-} from "react-icons/fa6";
-
+import { FaHouse, FaCirclePlus, FaClipboardCheck, FaClipboardList, FaScrewdriverWrench, FaUserGroup, FaBell, FaUser, FaChartBar, FaUserGear, FaGraduationCap, } from "react-icons/fa6";
 
 export const MENU_POR_ROL = {
   ordenanza: [

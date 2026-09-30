@@ -12,11 +12,11 @@ function PanelInicioPage() {
     return <Navigate to="/gestor/requerimientos/nuevo" replace />;
   }
 
-  // Directivo (placeholder hasta que exista PanelDirectivoPage)
+  // directivo
   return (
     <div className="text-center mt-5">
       <h1 className="h4">¡Hola, {usuario.nombre}!</h1>
-      <p className="text-muted">Panel del Directivo — en construcción.</p>
+      <p className="text-muted">Panel del Directivo en construccion.</p>
     </div>
   );
 }

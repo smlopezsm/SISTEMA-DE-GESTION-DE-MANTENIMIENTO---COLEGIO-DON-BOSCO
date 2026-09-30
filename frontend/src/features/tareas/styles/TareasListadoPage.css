@@ -1,0 +1,70 @@
+/* src/features/tareas/styles/TareasListadoPage.css */
+
+.tareas-listado {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ---------- Encabezado ---------- */
+.tareas-listado .icono-titulo {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-medium);
+  background-color: #FDE8E9;
+  color: var(--color-principal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tareas-listado h1 {
+  color: var(--texto-principal);
+  font-weight: 600;
+}
+
+/* ---------- Botón "Nueva tarea" ---------- */
+.tareas-listado .btn-primary {
+  background-color: var(--color-principal);
+  border-color: var(--color-principal);
+  color: var(--color-blanco);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-medium);
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.tareas-listado .btn-primary:hover {
+  background-color: var(--color-secundario);
+  border-color: var(--color-hover);
+  box-shadow: 0 4px 12px rgba(228, 29, 34, 0.2);
+}
+
+/* ---------- Paginación ---------- */
+.tareas-listado .pagination .page-link {
+  color: var(--texto-secundario);
+  border-color: var(--color-borde);
+  background-color: var(--color-blanco);
+}
+
+.tareas-listado .pagination .page-link:hover {
+  color: var(--color-principal);
+  background-color: #FDE8E9;
+  border-color: var(--color-principal);
+}
+
+.tareas-listado .pagination .page-item.active .page-link {
+  background-color: var(--color-principal);
+  border-color: var(--color-principal);
+  color: var(--color-blanco);
+}
+
+.tareas-listado .pagination .page-item.disabled .page-link {
+  color: var(--texto-secundario);
+  opacity: 0.5;
+}
+
+/* ---------- Contador ---------- */
+.tareas-listado small.text-muted {
+  color: var(--texto-secundario) !important;
+}

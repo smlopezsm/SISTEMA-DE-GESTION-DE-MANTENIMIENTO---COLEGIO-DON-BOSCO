@@ -1,0 +1,159 @@
+
+.modal-compra-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1100;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.modal-compra {
+  background-color: var(--color-blanco);
+  border-radius: var(--radius-large);
+  width: 100%;
+  max-width: 700px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  max-height: 95vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-compra__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--color-borde);
+  gap: 1rem;
+}
+
+.modal-compra__icono {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-medium);
+  background-color: #DBEAFE;
+  color: var(--color-secundario);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.modal-compra__body {
+  padding: 1.5rem;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.modal-compra__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--color-borde);
+  background-color: #FAFBFC;
+}
+
+.modal-compra .form-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--texto-principal);
+  margin-bottom: 0.35rem;
+}
+
+.modal-compra .form-control,
+.modal-compra .form-select {
+  border-color: var(--color-borde);
+  border-radius: var(--radius-small);
+  font-size: 0.9rem;
+}
+
+.modal-compra .form-control:focus {
+  border-color: var(--color-principal);
+  box-shadow: 0 0 0 0.2rem rgba(228, 29, 34, 0.15);
+  outline: none;
+}
+
+.modal-compra .input-group-text {
+  border-color: var(--color-borde);
+  border-right: 0;
+}
+
+.modal-compra .input-group .form-control {
+  border-left: 0;
+}
+
+.modal-compra .btn-primary {
+  background-color: var(--color-principal);
+  border-color: var(--color-principal);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+}
+
+.modal-compra .btn-primary:hover {
+  background-color: var(--color-secundario);
+  border-color: var(--color-secundario);
+}
+
+.modal-compra .btn-outline-secondary {
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  color: var(--texto-secundario);
+  border-color: var(--color-borde);
+}
+
+.modal-compra .btn-outline-secondary:hover {
+  background-color: var(--color-secundario);
+  color: var(--color-blanco);
+}
+
+/* Upload de factura */
+.modal-compra__upload {
+  border: 2px dashed var(--color-borde);
+  border-radius: var(--radius-medium);
+  padding: 1.5rem;
+  text-align: center;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.modal-compra__upload:hover {
+  border-color: var(--color-secundario);
+  background-color: #FAFBFC;
+}
+
+.modal-compra__upload-label {
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--texto-principal);
+  display: block;
+  margin: 0;
+}
+
+.modal-compra__upload-label .text-primary {
+  color: var(--color-secundario) !important;
+  text-decoration: underline;
+}
+
+@media (max-width: 575.98px) {
+  .modal-compra__header {
+    padding: 1rem;
+  }
+
+  .modal-compra__body {
+    padding: 1rem;
+  }
+
+  .modal-compra__footer {
+    padding: 0.75rem 1rem;
+    flex-direction: column-reverse;
+  }
+
+  .modal-compra__footer .btn {
+    width: 100%;
+  }
+}

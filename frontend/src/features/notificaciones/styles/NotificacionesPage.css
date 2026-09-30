@@ -1,0 +1,29 @@
+/* src/features/notificaciones/styles/NotificacionesPage.css */
+
+.notificaciones-page {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.notificaciones-page .icono-titulo {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-medium);
+  background-color: #FDE8E9;
+  color: var(--color-principal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.notificaciones-page h1 {
+  color: var(--texto-principal);
+  font-weight: 600;
+}
+
+.notificaciones-page .card {
+  overflow: hidden;
+  overflow:  visible !important;
+}
+

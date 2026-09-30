@@ -1,0 +1,99 @@
+
+.modal-cancelar-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1200;
+  padding: 1rem;
+}
+
+.modal-cancelar {
+  background-color: var(--color-blanco);
+  border-radius: var(--radius-large);
+  width: 100%;
+  max-width: 520px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.modal-cancelar__header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--color-borde);
+  gap: 1rem;
+}
+
+.modal-cancelar__icono {
+  width: 48px; height: 48px;
+  border-radius: var(--radius-medium);
+  background-color: #FEE2E2;
+  color: #E41D22;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+.modal-cancelar__body {
+  padding: 1.5rem;
+}
+
+.modal-cancelar__body .form-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--texto-principal);
+  margin-bottom: 0.35rem;
+}
+
+.modal-cancelar__body .form-control {
+  border-color: var(--color-borde);
+  border-radius: var(--radius-small);
+  font-size: 0.9rem;
+}
+
+.modal-cancelar__body .form-control:focus {
+  border-color: #E41D22;
+  box-shadow: 0 0 0 0.2rem rgba(228, 29, 34, 0.15);
+  outline: none;
+}
+
+.modal-cancelar__footer {
+  display: flex; justify-content: flex-end;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--color-borde);
+  background-color: #FAFBFC;
+}
+
+.modal-cancelar__footer .btn {
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-small);
+}
+
+.modal-cancelar__footer .btn-danger {
+  background-color: #E41D22; border-color: #E41D22; color: var(--color-blanco);
+}
+
+.modal-cancelar__footer .btn-danger:hover {
+  background-color: #B01519; border-color: #B01519;
+}
+
+.modal-cancelar__footer .btn-outline-secondary {
+  color: var(--texto-secundario);
+  border-color: var(--color-borde);
+}
+
+.modal-cancelar__footer .btn-outline-secondary:hover {
+  background-color: var(--color-fondo);
+  color: var(--texto-principal);
+}
+
+@media (max-width: 575.98px) {
+  .modal-cancelar__header { padding: 1rem; }
+  .modal-cancelar__body { padding: 1rem; }
+  .modal-cancelar__footer {
+    padding: 0.75rem 1rem;
+    flex-direction: column-reverse;
+  }
+  .modal-cancelar__footer .btn { width: 100%; }
+}
