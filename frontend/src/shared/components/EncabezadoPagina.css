@@ -1,0 +1,28 @@
+.encabezado-pagina {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+.encabezado-pagina__icono {
+  display: flex;
+  font-size: 2rem;
+  color: var(--color-secundario);
+}
+.encabezado-pagina__texto {
+  flex: 1 1 220px;
+}
+.encabezado-pagina__texto h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-secundario);
+}
+.encabezado-pagina__texto p {
+  margin: 0;
+  color: var(--texto-secundario);
+}
+.encabezado-pagina__accion {
+  margin-left: auto;
+}

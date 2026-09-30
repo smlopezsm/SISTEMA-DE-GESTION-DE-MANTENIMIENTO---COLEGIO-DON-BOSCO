@@ -2,18 +2,20 @@ import { createBrowserRouter } from "react-router";
 import LayoutPublico from "./shared/layout/LayoutPublico";
 import LayoutGestor from "./shared/layout/LayoutGestor";
 import AccesoDenegadoPage from "./shared/pages/AccesoDenegadoPage";
-import { HomePage } from './features/home';
-import { LoginPage } from './features/auth';
-import ContactoPage from './features/contacto/pages/ContactoPage';
-import { PanelInicioPage } from './features/panel';
-import { protegerRuta } from './features/auth/services/authService';
+import { HomePage } from "./features/home";
+import { LoginPage } from "./features/auth";
+import ContactoPage from "./features/contacto/pages/ContactoPage";
+import { PanelInicioPage } from "./features/panel";
+import { protegerRuta } from "./features/auth/services/authService";
+import { EstadisticasPage } from "./features/estadisticas";
+import { UsuariosPage } from "./features/usuarios";
 
 export const router = createBrowserRouter([
   // publico
   {
     path: "/",
     element: <LayoutPublico />,
-    
+
     children: [
       { index: true, element: <HomePage /> },
       { path: "contacto", element: <ContactoPage /> },
@@ -35,6 +37,8 @@ export const router = createBrowserRouter([
     children: [
       // Inicio
       { index: true, element: <PanelInicioPage /> },
+      { path: "dashboard", element: <EstadisticasPage /> },
+      { path: "usuarios", element: <UsuariosPage /> },
     ],
   },
 ]);
