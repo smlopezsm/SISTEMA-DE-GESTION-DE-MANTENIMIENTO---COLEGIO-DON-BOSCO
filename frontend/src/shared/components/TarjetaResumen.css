@@ -1,0 +1,39 @@
+.tarjeta-resumen {
+  --tono-bg: var(--estado-proceso-bg);
+  --tono-solid: var(--estado-proceso-solid);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  height: 100%;
+  padding: var(--spacing-md);
+  background: var(--tono-bg);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radius-large);
+}
+.tarjeta-resumen--pendiente { --tono-bg: var(--estado-pendiente-bg); --tono-solid: var(--estado-pendiente-solid); }
+.tarjeta-resumen--con-tarea { --tono-bg: var(--estado-con-tarea-bg); --tono-solid: var(--estado-con-tarea-solid); }
+.tarjeta-resumen--demorada { --tono-bg: var(--estado-demorada-bg); --tono-solid: var(--estado-demorada-solid); }
+.tarjeta-resumen--finalizada { --tono-bg: var(--estado-finalizada-bg); --tono-solid: var(--estado-finalizada-solid); }
+.tarjeta-resumen--aprobada { --tono-bg: var(--estado-aprobada-bg); --tono-solid: var(--estado-aprobada-solid); }
+.tarjeta-resumen--rechazada { --tono-bg: var(--estado-rechazada-bg); --tono-solid: var(--estado-rechazada-solid); }
+.tarjeta-resumen--cancelada { --tono-bg: var(--estado-cancelada-bg); --tono-solid: var(--estado-cancelada-solid); }
+
+.tarjeta-resumen__fila {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+.tarjeta-resumen__icono {
+  display: flex;
+  font-size: 1.25rem;
+  color: var(--tono-solid);
+}
+.tarjeta-resumen__etiqueta {
+  font-size: 0.85rem;
+  color: var(--texto-principal);
+}
+.tarjeta-resumen__valor {
+  font-size: 1.9rem;
+  line-height: 1.1;
+  color: var(--texto-principal);
+}

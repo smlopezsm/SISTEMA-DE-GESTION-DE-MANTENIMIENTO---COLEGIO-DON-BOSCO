@@ -1,0 +1,39 @@
+{
+  "kpis": [
+    { "clave": "total-requerimientos", "etiqueta": "Total de requerimientos", "valor": 42, "variacion": 12, "subeEsBueno": true },
+    { "clave": "finalizadas", "etiqueta": "Tareas finalizadas", "valor": 12, "variacion": 20, "subeEsBueno": true },
+    { "clave": "en-proceso", "etiqueta": "Tareas en proceso", "valor": 6, "variacion": -11, "subeEsBueno": false },
+    { "clave": "demoradas", "etiqueta": "Tareas demoradas", "valor": 2, "variacion": -33, "subeEsBueno": false },
+    { "clave": "rechazadas", "etiqueta": "Tareas rechazadas", "valor": 1, "variacion": 0, "subeEsBueno": false },
+    { "clave": "gastos", "etiqueta": "Gastos totales", "valor": 648750, "variacion": 18, "subeEsBueno": false, "formato": "moneda" }
+  ],
+  "sectores": [
+    { "nombre": "Aulas", "cantidad": 12 },
+    { "nombre": "Baños", "cantidad": 8 },
+    { "nombre": "Patio", "cantidad": 7 },
+    { "nombre": "Pabellón B", "cantidad": 6 },
+    { "nombre": "Laboratorios", "cantidad": 5 },
+    { "nombre": "Otros", "cantidad": 4 }
+  ],
+  "gastos": [
+    { "clave": "materiales", "nombre": "Materiales", "valor": 312400 },
+    { "clave": "personal-externo", "nombre": "Personal externo", "valor": 204300 },
+    { "clave": "servicios", "nombre": "Servicios", "valor": 96000 },
+    { "clave": "otros", "nombre": "Otros", "valor": 36050 }
+  ],
+  "evolucionGastos": {
+    "meses": ["Ene", "Feb", "Mar", "Abr", "May", "Jun"],
+    "series": [
+      { "clave": "materiales", "nombre": "Materiales", "valores": [120000, 145000, 175000, 185000, 183000, 250000] },
+      { "clave": "servicios", "nombre": "Servicios externos", "valores": [78000, 98000, 115000, 130000, 145000, 188000] }
+    ]
+  },
+  "personal": [
+    { "nombre": "Juan Torres", "realizadas": 8, "tasa": 100 },
+    { "nombre": "Carlos Méndez", "realizadas": 6, "tasa": 100 },
+    { "nombre": "Matías Silva", "realizadas": 5, "tasa": 83 },
+    { "nombre": "Pedro Ruiz", "realizadas": 4, "tasa": 80 },
+    { "nombre": "Luis Fernández", "realizadas": 4, "tasa": 80 }
+  ],
+  "tiempoResolucion": { "dias": 4.8, "variacion": -22 }
+}

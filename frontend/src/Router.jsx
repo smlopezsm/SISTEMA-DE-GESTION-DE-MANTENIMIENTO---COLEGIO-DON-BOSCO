@@ -16,6 +16,8 @@ import { NotificacionesPage } from './features/notificaciones';
 import { EmitirRequerimientoPage, MisRequerimientosPage } from './features/requerimientos';
 import PerfilPage from './features/perfil/pages/perfilPage';
 import EditarPerfilPage from './features/perfil/pages/editarPerfilPage';
+import { EstadisticasPage } from "./features/estadisticas";
+import { UsuariosPage } from "./features/usuarios";
 
 
 export const router = createBrowserRouter([
