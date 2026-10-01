@@ -1,21 +1,12 @@
-<<<<<<< HEAD
-
 import resumen from '@data/resumen-panel.json';
 import requerimientos from '@data/requerimientos.json';
 import tareas from '@data/tareas.json';
-=======
-import resumen from "@data/resumen-panel.json";
-import requerimientos from "@data/requerimientos.json";
-import tareas from "@data/tareas.json";
-import notificaciones from "@data/notificaciones.json";
 import tareasEvaluacion from "@data/tareas-evaluacion.json";
->>>>>>> directivos
 
 export const obtenerResumenPanel = async () => resumen;
 export const obtenerRequerimientosRecientes = async () => requerimientos;
 export const obtenerTareas = async () => tareas;
-<<<<<<< HEAD
-=======
+
 export const obtenerNotificaciones = async () => notificaciones;
 
 export async function obtenerPanelDirectivo() {
@@ -33,4 +24,4 @@ export async function obtenerPanelDirectivo() {
     notificaciones,
   };
 }
->>>>>>> directivos
+

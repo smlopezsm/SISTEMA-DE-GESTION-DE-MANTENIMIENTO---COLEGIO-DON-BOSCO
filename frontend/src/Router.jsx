@@ -47,7 +47,10 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <PanelInicioPage /> },
       { path: "inicio", element: <PanelInicioJefe />, loader: requerirRol(["jefeMantenimiento"]) },
-      
+      //rutas del santi
+      { path: "dashboard", element: <EstadisticasPage /> },
+      { path: "usuarios", element: <UsuariosPage /> },
+      //hasta aca
       // ---> Nuevas rutas para requerimientos y perfil
       { path: "requerimientos/mis-requerimientos", element: <misRequerimientosPage /> },
       { path: "requerimientos/emitir", element: <emitirRequerimientoPage /> },
@@ -64,6 +67,7 @@ export const router = createBrowserRouter([
       { path: 'personal-externo/:id/editar', element: <FormularioPersonalPage />, loader: requerirRol(["jefeMantenimiento"]) },
       { path: 'personal-externo/nuevo', element: <FormularioPersonalPage /> },
       { path: 'notificaciones', element: <NotificacionesPage />, loader: requerirRol(["jefeMantenimiento"]) },
+
     ],
   },
 ]);
