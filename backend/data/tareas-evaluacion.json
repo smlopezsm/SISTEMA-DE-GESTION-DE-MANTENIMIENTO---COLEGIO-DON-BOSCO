@@ -1,0 +1,6 @@
+[
+  { "id": "T-0126", "titulo": "Reparación de puerta", "requerimientoId": "REQ-0340", "lugar": "Aula 12", "responsable": "Juan Torres", "tipoResponsable": "Interno", "fechaFinalizacion": "2025-06-24T16:30:00", "estado": "finalizada" },
+  { "id": "T-0124", "titulo": "Pintura descascarada", "requerimientoId": "REQ-0338", "lugar": "Patio", "responsable": "Ana Torres", "tipoResponsable": "Ordenanza", "fechaFinalizacion": "2025-06-24T11:15:00", "estado": "finalizada" },
+  { "id": "T-0120", "titulo": "Toma eléctrica suelta", "requerimientoId": "REQ-0335", "lugar": "Laboratorio 3", "responsable": "Luis Fernández", "tipoResponsable": "Ordenanza", "fechaFinalizacion": "2025-06-22T10:05:00", "estado": "finalizada" },
+  { "id": "T-0118", "titulo": "Filtración en techo", "requerimientoId": "REQ-0331", "lugar": "Pabellón B", "responsable": "Carlos Méndez", "tipoResponsable": "Interno", "fechaFinalizacion": "2025-06-21T15:20:00", "estado": "finalizada" }
+]
