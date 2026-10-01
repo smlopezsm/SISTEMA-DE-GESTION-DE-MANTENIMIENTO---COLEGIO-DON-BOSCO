@@ -51,6 +51,26 @@ export function crearRequerimiento(datos) {
   return nuevoRequerimiento;
 }
 
+
+// Codigo nuevo 
+export const getRequerimientos = () => {
+  const reqs = localStorage.getItem('requerimientos');
+  return reqs ? JSON.parse(reqs) : [];
+};
+
+export const guardarRequerimiento = (requerimiento) => {
+  const reqs = getRequerimientos();
+  const nuevoRequerimiento = {
+    ...requerimiento,
+    id: `REQ-${Math.floor(Math.random() * 10000).toString().padStart(4, '0')}`,
+    fecha: new Date().toLocaleString('es-AR', { dateStyle: 'short', timeStyle: 'short' }),
+    estado: 'Pendiente'
+  };
+  localStorage.setItem('requerimientos', JSON.stringify([nuevoRequerimiento, ...reqs]));
+  return nuevoRequerimiento;
+};
+//----------------- hasta aca 
+
 export function actualizarRequerimiento(id, datos) {
   const actual = obtenerRequerimientos();
   const actualizado = actual.map((r) =>
