@@ -12,7 +12,11 @@ import { TareasListadoPage, FormularioTareaPage, DetalleTareaPage, } from './fea
 import { PersonalExternoPage, FormularioPersonalPage } from './features/personal-externo';
 import PanelInicioJefe from './features/panel/pages/PanelInicioJefe';
 import { NotificacionesPage } from './features/notificaciones';
-
+//----
+// En tu Router.jsx
+import { EmitirRequerimientoPage, MisRequerimientosPage } from './features/requerimientos';
+import PerfilPage from './features/perfil/pages/perfilPage';
+import EditarPerfilPage from './features/perfil/pages/editarPerfilPage';
 
 
 export const router = createBrowserRouter([
