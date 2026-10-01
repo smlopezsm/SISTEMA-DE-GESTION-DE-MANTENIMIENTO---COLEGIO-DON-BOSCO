@@ -1,0 +1,20 @@
+
+.footer-gestor {
+  background-color: rgba(240, 238, 238, 0.776);
+  color: rgb(60, 60, 60);
+  padding: 1.25rem 0;
+  text-align: center;
+  font-size: 0.85rem;
+  margin-top: auto;
+}
+
+.footer-gestor__linea {
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  color:  rgba(98, 97, 97, 0.828);
+}
+
+.footer-gestor__copyright {
+  font-size: 0.75rem;
+  color: rgba(98, 97, 97, 0.828);
+}

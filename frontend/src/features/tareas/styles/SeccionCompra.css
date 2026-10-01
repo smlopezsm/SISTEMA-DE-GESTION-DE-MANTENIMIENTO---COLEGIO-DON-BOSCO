@@ -1,0 +1,54 @@
+/* src/features/tareas/components/SeccionCompra.css */
+
+.seccion-compra__registrada {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.seccion-compra__fila {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  font-size: 0.85rem;
+}
+
+.seccion-compra__label {
+  color: var(--texto-secundario);
+  flex-shrink: 0;
+  font-weight: 500;
+}
+
+.seccion-compra__valor {
+  text-align: right;
+  color: var(--texto-principal);
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.seccion-compra .btn-primary {
+  background-color: var(--color-principal);
+  border-color: var(--color-principal);
+  color: var(--color-blanco);
+  font-weight: 500;
+  padding: 0.6rem;
+  border-radius: var(--radius-small);
+}
+
+.seccion-compra .btn-primary:hover {
+  background-color: var(--color-principalclaro);
+  border-color: var(--color-principalclaro);
+}
+
+.seccion-compra .btn-outline-primary {
+  color: var(--color-principal);
+  border-color: var(--color-principal);
+  font-weight: 500;
+  border-radius: var(--radius-small);
+}
+
+.seccion-compra .btn-outline-primary:hover {
+  background-color: var(--color-principal);
+  color: var(--color-blanco);
+}

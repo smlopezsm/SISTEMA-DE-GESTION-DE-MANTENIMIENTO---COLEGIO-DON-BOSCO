@@ -1,13 +1,8 @@
 import './Etiqueta.css';
-//Muestra el estado de un requerimiento o tarea
-const CLASE_POR_ESTADO = {
-  // Estados del requerimiento
-  pendiente: 'pendiente',
-  'con-tarea': 'con-tarea',
-  finalizado: 'finalizada',
-  cancelado: 'cancelada',
 
-  // Estados de la tarea
+
+const CLASE_POR_ESTADO = {
+  pendiente: 'pendiente',
   'en-proceso': 'en-proceso',
   demorada: 'demorada',
   cancelada: 'cancelada',
@@ -15,17 +10,32 @@ const CLASE_POR_ESTADO = {
   aprobada: 'aprobada',
   rechazada: 'rechazada',
 
-  // Prioridades
   alta: 'alta',
   media: 'media',
   baja: 'baja',
 };
 
+const TEXTO_POR_ESTADO = {
+  pendiente: 'Pendiente',
+  'en-proceso': 'En proceso',
+  demorada: 'Demorada',
+  cancelada: 'Cancelada',
+  finalizada: 'Finalizada',
+  aprobada: 'Aprobada',
+  rechazada: 'Rechazada',
+
+  alta: 'Alta',
+  media: 'Media',
+  baja: 'Baja',
+};
+
 function Etiqueta({ estado, children }) {
   const sufijo = CLASE_POR_ESTADO[estado] ?? 'default';
+  const texto = children ?? TEXTO_POR_ESTADO[estado] ?? estado;
+
   return (
     <span className={`badge-estado badge-estado--${sufijo}`}>
-      {children}
+      {texto}
     </span>
   );
 }

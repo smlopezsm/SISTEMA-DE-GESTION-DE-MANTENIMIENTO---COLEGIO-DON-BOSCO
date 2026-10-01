@@ -1,0 +1,35 @@
+
+
+.acciones-tarea .form-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.acciones-tarea .btn-primary {
+  background-color: var(--color-secundario);
+  border-color: var(--color-secundario);
+  font-weight: 500;
+  padding: 0.6rem 1rem;
+}
+
+.acciones-tarea .btn-primary:hover:not(:disabled) {
+  background-color: #2e3282;
+  border-color: #2e3282;
+}
+
+.acciones-tarea .btn-outline-success,
+.acciones-tarea .btn-outline-danger {
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  border-radius: var(--radius-small);
+}
+
+.acciones-tarea .alert-info {
+  background-color: #EEF2FF;
+  border: 0;
+  color: #3730A3;
+  font-size: 0.78rem;
+  line-height: 1.4;
+}

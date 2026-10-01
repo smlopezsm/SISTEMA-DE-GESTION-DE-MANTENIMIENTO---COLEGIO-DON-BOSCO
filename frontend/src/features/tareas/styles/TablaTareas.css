@@ -1,0 +1,119 @@
+/* src/features/tareas/components/TablaTareas.css */
+
+/* ============================================================
+   VISTA DESKTOP (tabla)
+   ============================================================ */
+
+.tabla-tareas thead th {
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.4px;
+  color: var(--texto-secundario);
+  border-bottom: 1px solid var(--color-borde);
+  background-color: #F9FAFB;
+  padding-top: 0.85rem;
+  padding-bottom: 0.85rem;
+  white-space: nowrap;
+}
+
+.tabla-tareas tbody td {
+  vertical-align: middle;
+  border-bottom: 1px solid var(--color-borde);
+  font-size: 0.875rem;
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
+}
+
+.tabla-tareas tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.015);
+}
+
+.tabla-tareas tbody td:first-child {
+  color: var(--color-principal);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.tabla-tareas .btn-outline-primary {
+  color: var(--color-principal);
+  border-color: var(--color-principal);
+  font-size: 0.75rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: var(--radius-small);
+}
+
+.tabla-tareas .btn-outline-primary:hover {
+  background-color: var(--color-principal);
+  color: var(--color-blanco);
+}
+
+/* ============================================================
+   VISTA MÓVIL (cards)
+   ============================================================ */
+
+.tarea-card {
+  transition: box-shadow 0.15s ease;
+}
+
+.tarea-card__id {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--color-principal);
+  letter-spacing: 0.3px;
+}
+
+.tarea-card__titulo {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--texto-principal);
+  line-height: 1.3;
+}
+
+.tarea-card__divisor {
+  height: 1px;
+  background-color: var(--color-borde);
+  margin: 0.75rem 0;
+}
+
+.tarea-card__detalle {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tarea-card__campo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  font-size: 0.8rem;
+}
+
+.tarea-card__label {
+  color: var(--texto-secundario);
+  flex-shrink: 0;
+  font-weight: 500;
+}
+
+.tarea-card__valor {
+  text-align: right;
+  color: var(--texto-principal);
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.tarea-card .btn-primary {
+  background-color: var(--color-principal);
+  border-color: var(--color-principal);
+  color: var(--color-blanco);
+  font-weight: 500;
+  padding: 0.5rem;
+  border-radius: var(--radius-small);
+  font-size: 0.85rem;
+}
+
+.tarea-card .btn-primary:hover {
+  background-color: var(--color-hover);
+  border-color: var(--color-hover);
+}

@@ -2,6 +2,7 @@
 :root {
   /*COLORES INSTITUCIONALES */
   --color-principal: #E41D22;
+  --color-principalclaro: #b7181d;
   --color-secundario: #3D4196;
   --color-fondo: #f8f9fa;
   --color-blanco: hsl(0, 0%, 100%);

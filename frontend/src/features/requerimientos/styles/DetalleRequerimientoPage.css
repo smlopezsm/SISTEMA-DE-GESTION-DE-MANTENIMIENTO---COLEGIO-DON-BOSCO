@@ -1,0 +1,97 @@
+
+.detalle-requerimiento-page {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* encabezado */
+.detalle-requerimiento-page .icono-titulo {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-medium);
+  background-color: #FDE8E9;
+  color: var(--color-principal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.detalle-requerimiento-page h1 {
+  color: var(--texto-principal);
+  font-weight: 600;
+}
+
+/*boton volver */
+.detalle-requerimiento-page .btn-link {
+  color: var(--texto-secundario) !important;
+  font-size: 0.85rem;
+  transition: color 0.15s ease;
+}
+
+.detalle-requerimiento-page .btn-link:hover {
+  color: var(--color-principal) !important;
+}
+
+/* id */
+.badge-id-requerimiento {
+  display: inline-block;
+  padding: 0.5rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: var(--radius-medium);
+  background-color: #ECEDF7;
+  color: var(--color-secundario);
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+
+@media (max-width: 991.98px) {
+  .detalle-requerimiento-page .icono-titulo {
+    width: 42px;
+    height: 42px;
+  }
+
+  .detalle-requerimiento-page .icono-titulo svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+
+@media (max-width: 767.98px) {
+  .detalle-requerimiento-page h1 {
+    font-size: 1.4rem;
+  }
+
+  .detalle-requerimiento-page .btn-link {
+    font-size: 0.8rem;
+  }
+
+  .badge-id-requerimiento {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.75rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .detalle-requerimiento-page .icono-titulo {
+    width: 36px;
+    height: 36px;
+  }
+
+  .detalle-requerimiento-page .icono-titulo svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .detalle-requerimiento-page h1 {
+    font-size: 1.25rem;
+  }
+
+  /* Menos espacio entre las cards en móvil */
+  .detalle-requerimiento-page .row.g-4 {
+    --bs-gutter-y: 1rem;
+  }
+}

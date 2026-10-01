@@ -1,0 +1,48 @@
+
+.acciones-personal-card .btn-primary {
+  background-color: var(--color-secundario);
+  border-color: var(--color-secundario);
+  color: white;
+  font-weight: 500;
+  padding: 0.6rem 1rem;
+}
+
+.acciones-personal-card .btn-primary:hover:not(:disabled) {
+  background-color: #2e3282;
+  border-color: #2e3282;
+}
+
+.acciones-personal-card .btn-outline-danger,
+.acciones-personal-card .btn-outline-secondary {
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  border-radius: var(--radius-small);
+}
+
+.acciones-personal-card .alert-info {
+  background-color: #EEF2FF;
+  border: 0;
+  color: #3730A3;
+  font-size: 0.78rem;
+  line-height: 1.4;
+}
+/* Botón "Dar de alta" */
+.acciones-personal-card .btn-outline-success {
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  border-radius: var(--radius-small);
+}
+
+.acciones-personal-card .btn-outline-success:hover:not(:disabled) {
+  background-color: #059669;
+  color: var(--color-blanco);
+  border-color: #059669;
+}
+
+/* Botones deshabilitados */
+.acciones-personal-card .btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
