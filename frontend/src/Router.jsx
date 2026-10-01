@@ -13,7 +13,6 @@ import { PersonalExternoPage, FormularioPersonalPage } from './features/personal
 import PanelInicioJefe from './features/panel/pages/PanelInicioJefe';
 import { NotificacionesPage } from './features/notificaciones';
 //----
-// En tu Router.jsx
 import { EmitirRequerimientoPage, MisRequerimientosPage } from './features/requerimientos';
 import PerfilPage from './features/perfil/pages/perfilPage';
 import EditarPerfilPage from './features/perfil/pages/editarPerfilPage';
@@ -46,6 +45,13 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <PanelInicioPage /> },
       { path: "inicio", element: <PanelInicioJefe />, loader: requerirRol(["jefeMantenimiento"]) },
+      
+      // ---> Nuevas rutas para requerimientos y perfil
+      { path: "requerimientos/mis-requerimientos", element: <misRequerimientosPage /> },
+      { path: "requerimientos/emitir", element: <emitirRequerimientoPage /> },
+      { path: "perfil", element: <perfilPage /> },
+      { path: "perfil/editar", element: <editarPerfilPage /> },
+      // -----------------------------------------
       { path: "requerimientos", element: <RequerimientosListadoPage />, loader: requerirRol(["jefeMantenimiento"]) },
       { path: 'requerimientos/:id', element: <DetalleRequerimientoPage />, loader: requerirRol(["jefeMantenimiento"])},
       { path: "tareas", element: <TareasListadoPage />, loader: requerirRol(["jefeMantenimiento"]) },
