@@ -13,11 +13,11 @@ import EncabezadoPagina from "../../../shared/components/EncabezadoPagina";
 import TarjetaResumen from "../../../shared/components/TarjetaResumen";
 import SeccionCard from "../../../shared/components/SeccionCard";
 import TablaEvaluacion from "../components/TablaEvaluacion";
-import NotificacionesDirectivo from "../components/NotificacionesDirectivo";
+import PanelNotificacionesDirectivo from "../components/PanelNotificacionesDirectivo";
 import { obtenerPanelDirectivo } from "../services/panelService";
-import "../styles/inicio-directivo.css";
+import "../styles/PanelInicioDirectivo.css";
 
-function InicioDirectivoPage() {
+function PanelInicioDirectivo() {
   const usuario = useOutletContext();
   const [datos, setDatos] = useState(null);
 
@@ -98,10 +98,10 @@ function InicioDirectivoPage() {
             </div>
           </SeccionCard>
 
-          <NotificacionesDirectivo notificaciones={notificaciones} />
+          <PanelNotificacionesDirectivo notificaciones={notificaciones} />
 
           <blockquote className="cita-bosco">
-            <p>“La educación es cosa del corazón.”</p>
+            <p>"La educación es cosa del corazón."</p>
             <footer>San Juan Bosco</footer>
           </blockquote>
         </div>
@@ -110,4 +110,4 @@ function InicioDirectivoPage() {
   );
 }
 
-export default InicioDirectivoPage;
+export default PanelInicioDirectivo;
