@@ -1,5 +1,4 @@
 // Bloque del usuario en el header: avatar, nombre, rol y menú desplegable.
-
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router';
 import { FaChevronDown, FaUser, FaRightFromBracket } from 'react-icons/fa6';
