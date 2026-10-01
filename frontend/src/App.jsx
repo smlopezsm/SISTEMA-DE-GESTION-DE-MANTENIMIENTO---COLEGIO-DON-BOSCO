@@ -1,4 +1,4 @@
-import { RouterProvider } from 'react-router/dom';
+import { RouterProvider } from 'react-router';
 import { router } from './Router';
 import { ToastProvider } from './shared/context/ToastContext';
 

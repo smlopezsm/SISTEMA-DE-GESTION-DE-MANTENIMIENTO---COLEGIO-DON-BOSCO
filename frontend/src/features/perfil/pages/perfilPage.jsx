@@ -1,6 +1,5 @@
 import { useOutletContext, useNavigate } from 'react-router';
-import { ETIQUETA_ROL } from '../../../config/MenuPorRol'; // Ajusta la ruta a tu archivo real
-
+import { ETIQUETA_ROL } from '../../../shared/config/MenuPorRol';
 export default function PerfilPage() {
   const usuario = useOutletContext(); // Viene de <Outlet context={usuario} /> en LayoutGestor
   const navigate = useNavigate();

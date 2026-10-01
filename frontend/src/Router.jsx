@@ -14,8 +14,8 @@ import PanelInicioJefe from './features/panel/pages/PanelInicioJefe';
 import { NotificacionesPage } from './features/notificaciones';
 //----
 import { EmitirRequerimientoPage, MisRequerimientosPage } from './features/requerimientos';
-import PerfilPage from './features/perfil/pages/perfilPage';
-import EditarPerfilPage from './features/perfil/pages/editarPerfilPage';
+import PerfilPage from './features/perfil/pages/PerfilPage';
+import EditarPerfilPage from './features/perfil/pages/EditarPerfilPage';
 import { EstadisticasPage } from "./features/estadisticas";
 import { UsuariosPage } from "./features/usuarios";
 
@@ -52,10 +52,10 @@ export const router = createBrowserRouter([
       { path: "usuarios", element: <UsuariosPage /> },
       //hasta aca
       // ---> Nuevas rutas para requerimientos y perfil
-      { path: "requerimientos/mis-requerimientos", element: <misRequerimientosPage /> },
-      { path: "requerimientos/emitir", element: <emitirRequerimientoPage /> },
-      { path: "perfil", element: <perfilPage /> },
-      { path: "perfil/editar", element: <editarPerfilPage /> },
+      { path: "requerimientos/mis-requerimientos", element: <MisRequerimientosPage /> },
+      { path: "requerimientos/emitir", element: <EmitirRequerimientoPage /> },
+      { path: "perfil", element: <PerfilPage /> },
+      { path: "perfil/editar", element: <EditarPerfilPage /> },
       // -----------------------------------------
       { path: "requerimientos", element: <RequerimientosListadoPage />, loader: requerirRol(["jefeMantenimiento"]) },
       { path: 'requerimientos/:id', element: <DetalleRequerimientoPage />, loader: requerirRol(["jefeMantenimiento"])},
