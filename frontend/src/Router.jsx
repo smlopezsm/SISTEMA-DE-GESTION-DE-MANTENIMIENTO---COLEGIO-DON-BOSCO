@@ -2,20 +2,37 @@ import { createBrowserRouter } from "react-router";
 import LayoutPublico from "./shared/layout/publico/LayoutPublico";
 import LayoutGestor from "./shared/layout/gestor/LayoutGestor";
 import AccesoDenegadoPage from "./shared/pages/AccesoDenegadoPage";
-import { HomePage } from './features/home';
-import { LoginPage } from './features/auth';
-import ContactoPage from './features/contacto/pages/ContactoPage';
-import { PanelInicioPage } from './features/panel';
-import { protegerRuta, requerirRol } from './features/auth/services/authService';
-import { RequerimientosListadoPage, DetalleRequerimientoPage } from './features/requerimientos';
-import { TareasListadoPage, FormularioTareaPage, DetalleTareaPage, } from './features/tareas';
-import { PersonalExternoPage, FormularioPersonalPage } from './features/personal-externo';
-import PanelInicioJefe from './features/panel/pages/PanelInicioJefe';
-import { NotificacionesPage } from './features/notificaciones';
+import { HomePage } from "./features/home";
+import { LoginPage } from "./features/auth";
+import ContactoPage from "./features/contacto/pages/ContactoPage";
+import { PanelInicioPage } from "./features/panel";
+import {
+  protegerRuta,
+  requerirRol,
+} from "./features/auth/services/authService";
+import {
+  RequerimientosListadoPage,
+  DetalleRequerimientoPage,
+} from "./features/requerimientos";
+import {
+  TareasListadoPage,
+  FormularioTareaPage,
+  DetalleTareaPage,
+} from "./features/tareas";
+import {
+  PersonalExternoPage,
+  FormularioPersonalPage,
+} from "./features/personal-externo";
+import PanelInicioJefe from "./features/panel/pages/PanelInicioJefe";
+import { NotificacionesPage } from "./features/notificaciones";
+import NotFoundPage from "../src/shared/pages/NotFound";
 //----
-import { EmitirRequerimientoPage, MisRequerimientosPage } from './features/requerimientos';
-import PerfilPage from './features/perfil/pages/PerfilPage';
-import EditarPerfilPage from './features/perfil/pages/EditarPerfilPage';
+import {
+  EmitirRequerimientoPage,
+  MisRequerimientosPage,
+} from "./features/requerimientos";
+import PerfilPage from "./features/perfil/pages/PerfilPage";
+import EditarPerfilPage from "./features/perfil/pages/EditarPerfilPage";
 import { EstadisticasPage } from "./features/estadisticas";
 import { UsuariosPage } from "./features/usuarios";
 
@@ -46,29 +63,91 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <PanelInicioPage /> },
 
-     
-      { path: "requerimientos/nuevo-requerimiento", element: <EmitirRequerimientoPage />},
+      {
+        path: "requerimientos/nuevo-requerimiento",
+        element: <EmitirRequerimientoPage />,
+      },
       { path: "perfil", element: <PerfilPage /> },
       { path: "perfil/editar", element: <EditarPerfilPage /> },
 
       // Jefe de mantenimiento
-      { path: "inicio", element: <PanelInicioJefe />, loader: requerirRol(["jefeMantenimiento"]) },
-      { path: "requerimientos", element: <RequerimientosListadoPage />, loader: requerirRol(["jefeMantenimiento"]) },
-      { path: 'requerimientos/:id', element: <DetalleRequerimientoPage />, loader: requerirRol(["jefeMantenimiento"]) },
-      { path: 'tareas/nueva', element: <FormularioTareaPage />, loader: requerirRol(["jefeMantenimiento"]) },
-      { path: 'tareas/:id/editar', element: <FormularioTareaPage />, loader: requerirRol(["jefeMantenimiento"]) },
-      { path: 'personal-externo', element: <PersonalExternoPage />, loader: requerirRol(["jefeMantenimiento"]) },
-      { path: 'personal-externo/:id/editar', element: <FormularioPersonalPage />, loader: requerirRol(["jefeMantenimiento"]) },
-      { path: 'personal-externo/nuevo', element: <FormularioPersonalPage /> },
-      { path: 'notificaciones', element: <NotificacionesPage />, loader: requerirRol(["jefeMantenimiento", "directivo"]) },
+      {
+        path: "inicio",
+        element: <PanelInicioJefe />,
+        loader: requerirRol(["jefeMantenimiento"]),
+      },
+      {
+        path: "requerimientos",
+        element: <RequerimientosListadoPage />,
+        loader: requerirRol(["jefeMantenimiento"]),
+      },
+      {
+        path: "requerimientos/:id",
+        element: <DetalleRequerimientoPage />,
+        loader: requerirRol(["jefeMantenimiento"]),
+      },
+      {
+        path: "tareas/nueva",
+        element: <FormularioTareaPage />,
+        loader: requerirRol(["jefeMantenimiento"]),
+      },
+      {
+        path: "tareas/:id/editar",
+        element: <FormularioTareaPage />,
+        loader: requerirRol(["jefeMantenimiento"]),
+      },
+      {
+        path: "personal-externo",
+        element: <PersonalExternoPage />,
+        loader: requerirRol(["jefeMantenimiento"]),
+      },
+      {
+        path: "personal-externo/:id/editar",
+        element: <FormularioPersonalPage />,
+        loader: requerirRol(["jefeMantenimiento"]),
+      },
+      { path: "personal-externo/nuevo", element: <FormularioPersonalPage /> },
+      {
+        path: "notificaciones",
+        element: <NotificacionesPage />,
+        loader: requerirRol(["jefeMantenimiento", "directivo"]),
+      },
       //Directivo
-      { path: "dashboard", element: <EstadisticasPage />, loader: requerirRol(["directivo"]), },
-      { path: "usuarios", element: <UsuariosPage />, loader: requerirRol(["directivo"]), },
-      { path: "notificaciones", element: <NotificacionesPage />, loader: requerirRol(["directivo"]), },
-      { path: "tareas", element: <TareasListadoPage />, loader: requerirRol(["directivo","jefeMantenimiento"]), },
-      { path: "tareas/:id", element: <DetalleTareaPage />, loader: requerirRol(["directivo","jefeMantenimiento"]), },
+      {
+        path: "dashboard",
+        element: <EstadisticasPage />,
+        loader: requerirRol(["directivo"]),
+      },
+      {
+        path: "usuarios",
+        element: <UsuariosPage />,
+        loader: requerirRol(["directivo"]),
+      },
+      {
+        path: "notificaciones",
+        element: <NotificacionesPage />,
+        loader: requerirRol(["directivo"]),
+      },
+      {
+        path: "tareas",
+        element: <TareasListadoPage />,
+        loader: requerirRol(["directivo", "jefeMantenimiento"]),
+      },
+      {
+        path: "tareas/:id",
+        element: <DetalleTareaPage />,
+        loader: requerirRol(["directivo", "jefeMantenimiento"]),
+      },
       //Ordenanza
-       { path: "requerimientos/mis-requerimientos", element: <MisRequerimientosPage />, loader: requerirRol(["ordenanza"]) },
-    ]
+      {
+        path: "requerimientos/mis-requerimientos",
+        element: <MisRequerimientosPage />,
+        loader: requerirRol(["ordenanza"]),
+      },
+    ],
+  },
+  {
+    path: "*",
+    element: <NotFoundPage />,
   },
 ]);
