@@ -17,7 +17,7 @@ export function iniciarSesion(usuarioOEmail, password) {
   const encontrado = todos.find(
     (u) =>
       (u.usuario === usuarioOEmail || u.email === usuarioOEmail) &&
-      u.password === password
+      u.password === password,
   );
 
   if (!encontrado) {
@@ -61,6 +61,8 @@ export function protegerRuta() {
 export function requerirRol(rolesPermitidos) {
   return function loader() {
     const sesion = protegerRuta();
+    console.log("ROL DE SESIÓN:", sesion.rol);
+    console.log("ROLES PERMITIDOS:", rolesPermitidos);
 
     if (!rolesPermitidos.includes(sesion.rol)) {
       throw new Response("No tenés permisos para acceder a esta sección.", {

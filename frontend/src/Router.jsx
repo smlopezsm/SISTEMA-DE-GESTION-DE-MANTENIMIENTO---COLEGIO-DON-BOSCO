@@ -155,7 +155,7 @@ export const router = createBrowserRouter([
       {
         path: "requerimientos/mis-requerimientos",
         element: <MisRequerimientosPage />,
-        loader: requerirRol(["ordenanza"]),
+        loader: requerirRol(["ordenanza", "directivo", "jefeMantenimiento"]),
       },
     ],
   },
