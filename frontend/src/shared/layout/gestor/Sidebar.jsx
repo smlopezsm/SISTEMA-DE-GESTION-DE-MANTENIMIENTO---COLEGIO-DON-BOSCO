@@ -1,9 +1,9 @@
 //barra lateral para los usuarios
-import { useState } from 'react';
-import { NavLink } from 'react-router';
-import { FaBars } from 'react-icons/fa6';
-import { MENU_POR_ROL, ETIQUETA_ROL, ICONO_ROL } from '../../config/MenuPorRol';
-import './Sidebar.css';
+import { useState } from "react";
+import { NavLink } from "react-router";
+import { FaBars, FaUser } from "react-icons/fa6";
+import { MENU_POR_ROL, ETIQUETA_ROL, ICONO_ROL } from "../../config/MenuPorRol";
+import "./Sidebar.css";
 
 function Sidebar({ usuario }) {
   const [abierta, setAbierta] = useState(false);
@@ -13,7 +13,7 @@ function Sidebar({ usuario }) {
 
   return (
     <>
-      <aside className={`sidebar ${abierta ? 'sidebar--abierta' : ''}`}>
+      <aside className={`sidebar ${abierta ? "sidebar--abierta" : ""}`}>
         {/* logo */}
         <img
           src="/assets/colegio/logo2.png"
@@ -26,7 +26,7 @@ function Sidebar({ usuario }) {
           type="button"
           className="sidebar__hamburger btn btn-link text-white p-0"
           onClick={() => setAbierta((v) => !v)}
-          aria-label={abierta ? 'Cerrar menú' : 'Abrir menú'}
+          aria-label={abierta ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={abierta}
         >
           <FaBars size={24} />
@@ -67,7 +67,10 @@ function Sidebar({ usuario }) {
       </aside>
 
       {abierta && (
-        <div className="sidebar-overlay d-lg-none" onClick={() => setAbierta(false)}></div>
+        <div
+          className="sidebar-overlay d-lg-none"
+          onClick={() => setAbierta(false)}
+        ></div>
       )}
     </>
   );
