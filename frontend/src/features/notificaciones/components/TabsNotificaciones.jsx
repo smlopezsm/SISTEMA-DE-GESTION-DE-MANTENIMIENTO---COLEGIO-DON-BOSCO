@@ -1,23 +1,37 @@
-import { FaList, FaClipboardList, FaWrench, FaCircleCheck, FaCircleXmark, FaChevronDown, } from 'react-icons/fa6';
-import '../styles/TabsNotificaciones.css';
+// src/features/notificaciones/components/TabsNotificaciones.jsx
+import {
+  FaList,
+  FaClipboardList,
+  FaCircleCheck,
+  FaCircleXmark,
+  FaChevronDown,
+} from 'react-icons/fa6';
 import { useState, useEffect, useRef } from 'react';
+import '../styles/TabsNotificaciones.css';
 
+// Definición de tabs por rol
+const TABS_POR_ROL = {
+  jefeMantenimiento: [
+    { valor: 'todas', texto: 'Todas', icono: FaList },
+    { valor: 'requerimiento', texto: 'Requerimientos', icono: FaClipboardList },
+    { valor: 'tarea-aprobada', texto: 'Aprobadas', icono: FaCircleCheck },
+    { valor: 'tarea-rechazada', texto: 'Rechazadas', icono: FaCircleXmark },
+  ],
+  directivo: [
+    { valor: 'todas', texto: 'Todas', icono: FaList },
+    { valor: 'tarea-finalizada', texto: 'Finalizadas', icono: FaCircleCheck },
+    { valor: 'tarea-cancelada', texto: 'Canceladas', icono: FaCircleXmark },
+  ],
+};
 
-const TABS = [
-  { valor: 'todas', texto: 'Todas', icono: FaList },
-  { valor: 'requerimiento', texto: 'Requerimientos', icono: FaClipboardList },
-  { valor: 'tarea', texto: 'Tareas', icono: FaWrench },
-  { valor: 'aprobacion', texto: 'Aprobaciones', icono: FaCircleCheck },
-  { valor: 'rechazo', texto: 'Rechazos', icono: FaCircleXmark },
-];
-
-function TabsNotificaciones({ activo, contadores, onCambiar }) {
+function TabsNotificaciones({ rol, activo, contadores, onCambiar }) {
   const [abierto, setAbierto] = useState(false);
   const ref = useRef(null);
 
-  const tabActivo = TABS.find((t) => t.valor === activo) ?? TABS[0];
+  const tabs = TABS_POR_ROL[rol] ?? TABS_POR_ROL.directivo;
+  const tabActivo = tabs.find((t) => t.valor === activo) ?? tabs[0];
 
-  // cerrar
+  // cerrar menú al hacer click afuera
   useEffect(() => {
     if (!abierto) return;
     function handleClickFuera(e) {
@@ -31,9 +45,9 @@ function TabsNotificaciones({ activo, contadores, onCambiar }) {
 
   return (
     <div className="tabs-notificaciones">
-      {/*para compu */}
+      {/* versión desktop */}
       <div className="tabs-notificaciones__desktop d-none d-md-flex">
-        {TABS.map((tab) => {
+        {tabs.map((tab) => {
           const Icono = tab.icono;
           const contador = contadores[tab.valor] ?? 0;
           const esActivo = activo === tab.valor;
@@ -59,9 +73,8 @@ function TabsNotificaciones({ activo, contadores, onCambiar }) {
         })}
       </div>
 
-      {/* para celu */}
+      {/* versión móvil */}
       <div className="tabs-notificaciones__movil d-md-none" ref={ref}>
-        {/* boton del menu */}
         <button
           type="button"
           className={`tabs-notificaciones__select ${
@@ -86,17 +99,20 @@ function TabsNotificaciones({ activo, contadores, onCambiar }) {
           />
         </button>
 
-        {/* menu desplegable */}
         {abierto && (
           <ul className="tabs-notificaciones__menu">
-            {TABS.map((tab) => {
+            {tabs.map((tab) => {
               const Icono = tab.icono;
               const contador = contadores[tab.valor] ?? 0;
               const esActivo = activo === tab.valor;
 
               return (
                 <li key={tab.valor}>
-                  <button type="button" className={`tabs-notificaciones__opcion ${ esActivo ? 'tabs-notificaciones__opcion--activa' : '' }`}
+                  <button
+                    type="button"
+                    className={`tabs-notificaciones__opcion ${
+                      esActivo ? 'tabs-notificaciones__opcion--activa' : ''
+                    }`}
                     onClick={() => {
                       onCambiar(tab.valor);
                       setAbierto(false);

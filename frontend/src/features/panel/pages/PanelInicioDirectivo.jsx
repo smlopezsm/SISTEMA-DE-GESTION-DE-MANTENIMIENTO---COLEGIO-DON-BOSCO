@@ -1,23 +1,14 @@
 import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router";
-import {
-  FaUserTie,
-  FaClipboardCheck,
-  FaClock,
-  FaCircleCheck,
-  FaCircleXmark,
-  FaFileLines,
-  FaClipboardList,
-} from "react-icons/fa6";
+import { FaUserTie, FaClipboardCheck, FaClock, FaCircleCheck, FaCircleXmark, FaFileLines, } from "react-icons/fa6";
 import EncabezadoPagina from "../../../shared/components/EncabezadoPagina";
 import TarjetaResumen from "../../../shared/components/TarjetaResumen";
 import SeccionCard from "../../../shared/components/SeccionCard";
 import TablaEvaluacion from "../components/TablaEvaluacion";
-import NotificacionesDirectivo from "../components/NotificacionesDirectivo";
 import { obtenerPanelDirectivo } from "../services/panelService";
-import "../styles/inicio-directivo.css";
+import "../styles/PanelInicioDirectivo.css";
 
-function InicioDirectivoPage() {
+function PanelInicioDirectivo() {
   const usuario = useOutletContext();
   const [datos, setDatos] = useState(null);
 
@@ -31,11 +22,12 @@ function InicioDirectivoPage() {
 
   return (
     <>
-      <EncabezadoPagina
-        icono={FaUserTie}
-        titulo={`¡Hola, ${usuario.nombre}!`}
-        subtitulo="Aquí podrás ver el estado de las tareas y requerimientos del colegio."
-      />
+      <div className="mb-4">
+        <h4 className="mb-1">¡Hola, {usuario?.nombre}!</h4>
+        <p className="text-muted mb-0 small">
+          Aqui podras ver las tareas de mantenimiento del colegio
+        </p>
+      </div>
 
       <div className="row row-cols-1 row-cols-sm-2 row-cols-xl-4 g-3 mb-4">
         <div className="col">
@@ -73,7 +65,7 @@ function InicioDirectivoPage() {
       </div>
 
       <div className="row g-3">
-        <div className="col-xl-8">
+        <div className="col-12">
           <SeccionCard
             icono={FaFileLines}
             titulo="Tareas pendientes de evaluación"
@@ -83,31 +75,9 @@ function InicioDirectivoPage() {
           </SeccionCard>
         </div>
 
-        <div className="col-xl-4 d-flex flex-column gap-3">
-          <SeccionCard>
-            <div className="rol-directivo">
-              <FaClipboardList className="rol-directivo__icono" />
-              <div>
-                <small>Tu rol</small>
-                <strong>Directivo</strong>
-                <p>
-                  Solo podés aprobar o rechazar tareas finalizadas. No se
-                  permiten ediciones.
-                </p>
-              </div>
-            </div>
-          </SeccionCard>
-
-          <NotificacionesDirectivo notificaciones={notificaciones} />
-
-          <blockquote className="cita-bosco">
-            <p>“La educación es cosa del corazón.”</p>
-            <footer>San Juan Bosco</footer>
-          </blockquote>
-        </div>
       </div>
     </>
   );
 }
 
-export default InicioDirectivoPage;
+export default PanelInicioDirectivo;

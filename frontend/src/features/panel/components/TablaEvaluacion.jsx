@@ -112,8 +112,7 @@ function TablaEvaluacion({ tareas }) {
                   <button
                     type="button"
                     className="btn btn-outline-primary btn-sm d-inline-flex align-items-center gap-2"
-                    // Ajustá esta ruta a la pantalla de aprobación de tareas
-                    onClick={() => navigate(`/gestor/aprobaciones/${t.id}`)}
+                    onClick={() => navigate(`/gestor/tareas/${t.id}`)}
                   >
                     <FaEye /> Ver detalle
                   </button>

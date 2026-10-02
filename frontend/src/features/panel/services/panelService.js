@@ -21,7 +21,7 @@ export async function obtenerPanelDirectivo() {
       rechazadas,
     },
     tareasEvaluacion,
-    notificaciones,
+    notificaciones: notificacionesPorRol('directivo'), // 👈 filtrado, siempre array
   };
 }
 

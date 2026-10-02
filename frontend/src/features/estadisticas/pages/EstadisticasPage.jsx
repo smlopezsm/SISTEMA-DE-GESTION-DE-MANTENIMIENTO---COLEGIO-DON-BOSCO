@@ -1,19 +1,5 @@
 import { useEffect, useState } from 'react';
-import {
-  FaChartColumn,
-  FaFileLines,
-  FaCircleCheck,
-  FaClock,
-  FaHourglassHalf,
-  FaCircleXmark,
-  FaDollarSign,
-  FaLocationDot,
-  FaUsers,
-  FaChartLine,
-  FaChartPie,
-  FaCalendarCheck,
-  FaLightbulb,
-} from 'react-icons/fa6';
+import { FaChartColumn, FaFileLines, FaCircleCheck, FaClock, FaHourglassHalf, FaCircleXmark, FaDollarSign, FaLocationDot, FaUsers, FaChartLine, FaChartPie, FaCalendarCheck, FaLightbulb, } from 'react-icons/fa6';
 import EncabezadoPagina from '../../../shared/components/EncabezadoPagina';
 import TarjetaResumen from '../../../shared/components/TarjetaResumen';
 import SeccionCard from '../../../shared/components/SeccionCard';
@@ -162,43 +148,6 @@ function EstadisticasPage() {
           </SeccionCard>
         </div>
 
-        {/* Rendimiento del personal */}
-        <div className="col-xl-4">
-          <SeccionCard
-            icono={FaUsers}
-            titulo="Rendimiento del personal"
-            subtitulo={`Tareas completadas por persona (últimos ${periodo} días).`}
-          >
-            <table className="tabla-personal">
-              <thead>
-                <tr>
-                  <th>Nombre</th>
-                  <th>Tareas realizadas</th>
-                  <th>Tasa de finalización</th>
-                </tr>
-              </thead>
-              <tbody>
-                {datos.personal.map((p) => (
-                  <tr key={p.nombre}>
-                    <td>{p.nombre}</td>
-                    <td className="text-center">{p.realizadas}</td>
-                    <td>
-                      <div className="tasa">
-                        <span>{p.tasa}%</span>
-                        <div className="tasa__pista">
-                          <div className="tasa__barra" style={{ width: `${p.tasa}%` }} />
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </SeccionCard>
-        </div>
-      </div>
-
-      <div className="row g-3">
         {/* Evolución de gastos */}
         <div className="col-xl-4">
           <SeccionCard

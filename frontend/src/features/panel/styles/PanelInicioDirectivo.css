@@ -1,0 +1,63 @@
+/* src/features/panel/styles/PanelInicioDirectivo.css */
+
+/* ============================
+   Filtros de la tabla de evaluación
+   ============================ */
+.filtros-evaluacion {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-md);
+  background: var(--color-fondo);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radius-medium);
+}
+
+@media (min-width: 768px) {
+  .filtros-evaluacion {
+    grid-template-columns: 2fr 1fr 1fr;
+    align-items: end;
+  }
+}
+
+.filtros-evaluacion__busqueda {
+  position: relative;
+}
+
+.filtros-evaluacion__busqueda svg {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: var(--texto-secundario);
+}
+
+.filtros-evaluacion__busqueda .form-control {
+  padding-left: 36px;
+}
+
+.filtros-evaluacion__campo span {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  font-size: 0.8rem;
+  color: var(--texto-secundario);
+}
+
+/* ============================
+   Tabla de evaluación
+   ============================ */
+.tabla-evaluacion th {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--texto-secundario);
+  white-space: nowrap;
+}
+
+.tabla-evaluacion td {
+  font-size: 0.9rem;
+}
+
+.tabla-evaluacion__pin {
+  color: var(--texto-secundario);
+}

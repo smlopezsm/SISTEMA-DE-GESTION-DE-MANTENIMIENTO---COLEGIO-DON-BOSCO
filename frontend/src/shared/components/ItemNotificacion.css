@@ -1,4 +1,4 @@
-/* src/features/notificaciones/components/ItemNotificacion.css */
+/* src/shared/components/ItemNotificacion.css */
 
 .item-notificacion {
   position: relative;
@@ -16,6 +16,9 @@
   border-bottom: 0;
 }
 
+.item-notificacion:hover {
+  background-color: rgba(0, 0, 0, 0.02);
+}
 
 /* Punto azul (no leída) */
 .item-notificacion__punto {
@@ -40,23 +43,23 @@
 }
 
 .item-notificacion__icono--azul {
-  background-color: #DBEAFE;
-  color: #1E40AF;
+  background-color: #dbeafe;
+  color: #1e40af;
 }
 
 .item-notificacion__icono--violeta {
-  background-color: #E0E7FF;
-  color: #3730A3;
+  background-color: #e0e7ff;
+  color: #3730a3;
 }
 
 .item-notificacion__icono--verde {
-  background-color: #D1FAE5;
-  color: #065F46;
+  background-color: #d1fae5;
+  color: #065f46;
 }
 
 .item-notificacion__icono--rojo {
-  background-color: #FEE2E2;
-  color: #991B1B;
+  background-color: #fee2e2;
+  color: #991b1b;
 }
 
 /* Contenido */
@@ -83,34 +86,4 @@
   margin-top: 0.35rem;
   font-size: 0.75rem;
   color: var(--texto-secundario);
-}
-
-/* Badge */
-.item-notificacion__badge {
-  display: inline-block;
-  padding: 0.25em 0.65em;
-  font-size: 0.7rem;
-  font-weight: 500;
-  border-radius: 999px;
-  white-space: nowrap;
-}
-
-.item-notificacion__badge--azul {
-  background-color: #DBEAFE;
-  color: #1E40AF;
-}
-
-.item-notificacion__badge--violeta {
-  background-color: #E0E7FF;
-  color: #3730A3;
-}
-
-.item-notificacion__badge--verde {
-  background-color: #D1FAE5;
-  color: #065F46;
-}
-
-.item-notificacion__badge--rojo {
-  background-color: #FEE2E2;
-  color: #991B1B;
 }

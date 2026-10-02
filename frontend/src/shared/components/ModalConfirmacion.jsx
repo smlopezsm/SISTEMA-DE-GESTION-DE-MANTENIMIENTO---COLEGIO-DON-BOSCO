@@ -1,12 +1,7 @@
-// src/shared/components/ModalConfirmacion.jsx
 import { FaTriangleExclamation, FaCircleInfo, FaCircleCheck } from 'react-icons/fa6';
 import './ModalConfirmacion.css';
 
-const ICONOS = {
-  danger: FaTriangleExclamation,
-  info: FaCircleInfo,
-  success: FaCircleCheck,
-};
+const ICONOS = { danger: FaTriangleExclamation, info: FaCircleInfo, success: FaCircleCheck, };
 
 function ModalConfirmacion({
   abierto,
