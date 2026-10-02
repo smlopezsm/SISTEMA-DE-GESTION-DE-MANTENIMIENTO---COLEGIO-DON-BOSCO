@@ -1,18 +1,13 @@
 import { Link } from 'react-router';
-import {
-  FaClipboardList,
-  FaCircleCheck,
-  FaCircleXmark,
-} from 'react-icons/fa6';
+import { FaClipboardList, FaCircleCheck, FaCircleXmark, } from 'react-icons/fa6';
 import './ItemNotificacion.css';
 
-// Config visual por tipo de notificación (5 tipos en total)
 const CONFIG_POR_TIPO = {
-  // Jefe de Mantenimiento
+  // jefe de Mantenimiento
   requerimiento: { icono: FaClipboardList, color: 'azul', etiqueta: 'Requerimiento', },
   'tarea-aprobada': { icono: FaCircleCheck, color: 'verde', etiqueta: 'Tarea aprobada', },
   'tarea-rechazada': { icono: FaCircleXmark, color: 'rojo', etiqueta: 'Tarea rechazada', },
-  // Directivo
+  // directivo
   'tarea-finalizada': { icono: FaCircleCheck, color: 'verde', etiqueta: 'Tarea finalizada', },
   'tarea-cancelada': { icono: FaCircleXmark, color: 'rojo', etiqueta: 'Tarea cancelada', },
 };
@@ -28,10 +23,10 @@ function ItemNotificacion({ notificacion, to }) {
         !notificacion.leida ? 'item-notificacion--no-leida' : ''
       }`}
     >
-      {/* punto azul si no está leída */}
+      {/* punto azul si no esta leida */}
       {!notificacion.leida && <span className="item-notificacion__punto" />}
 
-      {/* icono según tipo */}
+      {/* icono segun tipo */}
       <div
         className={`item-notificacion__icono item-notificacion__icono--${config.color}`}
       >
@@ -57,7 +52,6 @@ function ItemNotificacion({ notificacion, to }) {
     </div>
   );
 
-  // Si recibe `to`, envuelve en Link
   if (to) {
     return (
       <Link to={to} className="text-decoration-none text-reset d-block">

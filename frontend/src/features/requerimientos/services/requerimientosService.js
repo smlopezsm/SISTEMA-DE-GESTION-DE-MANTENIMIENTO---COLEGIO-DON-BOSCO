@@ -1,19 +1,14 @@
-// src/features/requerimientos/services/requerimientosService.js
 import dataInicial from '@data/requerimientos.json';
 import { leer, guardar } from '../../../shared/utils/storage';
 
 const CLAVE = 'requerimientos';
-
-// ─────────────────────────────────────────────
-// Lectura
-// ─────────────────────────────────────────────
 
 export function obtenerRequerimientos() {
   return leer(CLAVE, dataInicial);
 }
 
 export function getRequerimientos() {
-  return obtenerRequerimientos();  // alias, por si quedó algún import viejo
+  return obtenerRequerimientos();  
 }
 
 export function obtenerRequerimientoPorId(id) {
@@ -24,10 +19,6 @@ export function obtenerLugares() {
   const requerimientos = obtenerRequerimientos();
   return [...new Set(requerimientos.map((r) => r.lugar))].sort();
 }
-
-// ─────────────────────────────────────────────
-// Escritura
-// ─────────────────────────────────────────────
 
 export function crearRequerimiento(datos) {
   const actual = obtenerRequerimientos();
@@ -64,7 +55,6 @@ export function crearRequerimiento(datos) {
   return nuevoRequerimiento;
 }
 
-// Alias por compatibilidad con código viejo
 export const guardarRequerimiento = crearRequerimiento;
 
 export function actualizarRequerimiento(id, datos) {

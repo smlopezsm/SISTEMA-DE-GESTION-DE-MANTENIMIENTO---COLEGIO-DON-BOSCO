@@ -1,9 +1,8 @@
-// src/features/perfil/pages/EditarPerfilPage.jsx
 import { useState, useEffect } from 'react';
 import { useOutletContext, useNavigate } from 'react-router';
 import { FaCamera, FaFloppyDisk, FaCircleInfo } from 'react-icons/fa6';
-import { actualizarUsuario, actualizarAvatar } from '../services/perfilService';
-import { camposDeRol, esEditable, ETIQUETA_CAMPO, } from '../../../shared/config/camposPerfilPorRol';
+import { actualizarUsuario } from '../services/perfilService';
+import { camposDeRol, esEditable, ETIQUETA_CAMPO } from '../../../shared/config/camposPerfilPorRol';
 import '../styles/EditarPerfilPage.css';
 
 function iniciales(nombre, apellido) {
@@ -12,20 +11,19 @@ function iniciales(nombre, apellido) {
   return `${n}${a}`.toUpperCase() || '?';
 }
 
-export default function EditarPerfilPage() {
+function EditarPerfilPage() {
   const usuarioActual = useOutletContext();
   const navigate = useNavigate();
-
-  const [formData, setFormData] = useState({
-    nombre: '',
-    apellido: '',
-    telefono: '',
-  });
+  const [formData, setFormData] = useState({ nombre: '', apellido: '', telefono: '' });
   const [avatarPreview, setAvatarPreview] = useState(null);
 
   useEffect(() => {
     if (usuarioActual) {
-      setFormData({ nombre: usuarioActual.nombre || '', apellido: usuarioActual.apellido || '', telefono: usuarioActual.telefono || '', });
+      setFormData({
+        nombre: usuarioActual.nombre || '',
+        apellido: usuarioActual.apellido || '',
+        telefono: usuarioActual.telefono || '',
+      });
       setAvatarPreview(usuarioActual.avatar || null);
     }
   }, [usuarioActual]);
@@ -44,13 +42,31 @@ export default function EditarPerfilPage() {
   const handleCambiarAvatar = (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    if (!file.type.startsWith('image/')) return;
-    if (file.size > 2 * 1024 * 1024) {
-      alert('La imagen no puede superar 2 MB');
+    if (!file.type.startsWith('image/')) {
+      alert('Solo se permiten imágenes.');
       return;
     }
+    if (file.size > 1 * 1024 * 1024) {
+      alert('La imagen no puede superar 1 MB.');
+      return;
+    }
+
     const reader = new FileReader();
-    reader.onload = () => setAvatarPreview(reader.result);
+    reader.onload = () => {
+      // Redimensionar antes de guardar
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const MAX = 200;
+        const ratio = Math.min(MAX / img.width, MAX / img.height, 1);
+        canvas.width = img.width * ratio;
+        canvas.height = img.height * ratio;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        setAvatarPreview(canvas.toDataURL('image/jpeg', 0.8));
+      };
+      img.src = reader.result;
+    };
     reader.readAsDataURL(file);
   };
 
@@ -58,12 +74,13 @@ export default function EditarPerfilPage() {
     e.preventDefault();
 
     const datosAGuardar = {};
-    if (esEditable(usuarioActual.rol, 'nombre')) datosAGuardar.nombre = formData.nombre;
-    if (esEditable(usuarioActual.rol, 'apellido')) datosAGuardar.apellido = formData.apellido;
-    if (puedeEditarTelefono) datosAGuardar.telefono = formData.telefono;
+    if (esEditable(usuarioActual.rol, 'nombre')) datosAGuardar.nombre = formData.nombre.trim();
+    if (esEditable(usuarioActual.rol, 'apellido')) datosAGuardar.apellido = formData.apellido.trim();
+    if (puedeEditarTelefono) datosAGuardar.telefono = formData.telefono.trim();
 
-    if (avatarPreview && avatarPreview !== usuarioActual.avatar) {
-      actualizarAvatar(avatarPreview);
+    // 👇 Guardar avatar en la misma operación
+    if (avatarPreview !== usuarioActual.avatar) {
+      datosAGuardar.avatar = avatarPreview;
     }
 
     actualizarUsuario(datosAGuardar);
@@ -82,7 +99,7 @@ export default function EditarPerfilPage() {
       <div className="card border-0 shadow-sm">
         <div className="card-body p-4">
           <div className="row g-4">
-            {/* Columna izquierda */}
+            {/* columna izquierda */}
             <div className="col-12 col-md-4 col-lg-3 text-center">
               <div className="editar-perfil__avatar">
                 {avatarPreview ? (
@@ -104,7 +121,7 @@ export default function EditarPerfilPage() {
               </label>
             </div>
 
-            {/* Columna derecha */}
+            {/* columna derecha */}
             <div className="col-12 col-md-8 col-lg-9">
               <form onSubmit={handleSubmit}>
                 {campos.map((campo) => {
@@ -126,6 +143,7 @@ export default function EditarPerfilPage() {
                         onChange={editable ? handleChange : undefined}
                         disabled={!editable}
                         readOnly={!editable}
+                        required={editable && campo !== 'telefono'}
                       />
                       {!editable && campo === 'usuario' && (
                         <small className="editar-perfil__hint">
@@ -166,3 +184,5 @@ export default function EditarPerfilPage() {
     </div>
   );
 }
+
+export default EditarPerfilPage;

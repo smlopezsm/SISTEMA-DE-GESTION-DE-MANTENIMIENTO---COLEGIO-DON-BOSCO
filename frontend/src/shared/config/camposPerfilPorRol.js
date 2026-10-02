@@ -1,6 +1,5 @@
-// src/shared/config/camposPerfilPorRol.js
 
-// Campos visibles por rol (en orden de aparición)
+// Campos visibles por rol
 export const CAMPOS_POR_ROL = {
   jefeMantenimiento: ['usuario', 'nombre', 'apellido', 'dni', 'email'],
   directivo:         ['usuario', 'nombre', 'apellido', 'dni', 'email', 'cargo'],

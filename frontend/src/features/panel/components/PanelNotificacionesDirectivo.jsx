@@ -1,11 +1,10 @@
-// src/features/panel/components/PanelNotificacionesDirectivo.jsx
 import { Link } from 'react-router';
 import { FaBell } from 'react-icons/fa6';
 import SeccionCard from '../../../shared/components/SeccionCard';
 import ItemNotificacion from '../../../shared/components/ItemNotificacion';
 
 function PanelNotificacionesDirectivo({ notificaciones = [], maximo = 4 }) {
-  // Solo finalizadas y canceladas (lo que le corresponde al Directivo)
+  //solo finalizadas y canceladas
   const recientes = notificaciones
     .filter((n) => ['tarea-finalizada', 'tarea-cancelada'].includes(n.tipo))
     .sort((a, b) => b.hora.localeCompare(a.hora))

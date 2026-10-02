@@ -1,8 +1,5 @@
-/* src/features/requerimientos/components/InfoPrincipalRequerimiento.css */
 
-/* ============================================================
-   Título
-   ============================================================ */
+/* titulo*/
 .info-principal-requerimiento__titulo {
   font-size: 1.35rem;
   font-weight: 700;
@@ -11,18 +8,14 @@
   margin-bottom: 1rem;
 }
 
-/* ============================================================
-   Descripción
-   ============================================================ */
+/* descripcion */
 .info-principal-requerimiento__descripcion {
   font-size: 0.9rem;
   line-height: 1.6;
   color: var(--texto-secundario);
 }
 
-/* ============================================================
-   Metadatos (fecha, hora, sector)
-   ============================================================ */
+/* datos */
 .info-principal-requerimiento__meta {
   display: flex;
   align-items: flex-start;
@@ -50,9 +43,7 @@
   margin-bottom: 0.15rem;
 }
 
-/* ============================================================
-   Imagen
-   ============================================================ */
+/* img */
 .info-principal-requerimiento__imagen-contenedor {
   position: relative;
   width: 100%;
@@ -87,9 +78,7 @@
   color: var(--color-blanco);
 }
 
-/* ============================================================
-   RESPONSIVE — Móvil
-   ============================================================ */
+
 @media (max-width: 767.98px) {
   .info-principal-requerimiento .card-body {
     padding: 1rem;

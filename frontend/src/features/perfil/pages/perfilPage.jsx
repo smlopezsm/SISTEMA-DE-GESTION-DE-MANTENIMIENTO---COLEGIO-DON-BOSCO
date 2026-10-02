@@ -1,11 +1,7 @@
-// src/features/perfil/pages/PerfilPage.jsx
 import { useOutletContext, useNavigate } from 'react-router';
 import { FaUser, FaShieldHalved, FaPen, FaCircleInfo } from 'react-icons/fa6';
 import { ETIQUETA_ROL } from '../../../shared/config/MenuPorRol';
-import {
-  camposDeRol,
-  ETIQUETA_CAMPO,
-} from '../../../shared/config/camposPerfilPorRol';
+import { camposDeRol, ETIQUETA_CAMPO, } from '../../../shared/config/camposPerfilPorRol';
 import '../styles/PerfilPage.css';
 
 const CAMPOS_DESTACADOS = ['email'];
@@ -15,8 +11,7 @@ function iniciales(nombre, apellido) {
   const a = (apellido || '').trim()[0] ?? '';
   return `${n}${a}`.toUpperCase() || '?';
 }
-
-export default function PerfilPage() {
+ function PerfilPage() {
   const usuario = useOutletContext();
   const navigate = useNavigate();
 
@@ -114,3 +109,4 @@ export default function PerfilPage() {
     </div>
   );
 }
+export default PerfilPage;

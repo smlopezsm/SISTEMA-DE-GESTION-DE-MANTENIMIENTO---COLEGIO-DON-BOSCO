@@ -1,6 +1,5 @@
 import './TarjetaResumen.css';
 
-// Tarjeta de indicador. "tono" usa las claves de estado de variables.css:
 // pendiente | en-proceso | con-tarea | demorada | finalizada | aprobada | rechazada | cancelada
 function TarjetaResumen({ icono: Icono, etiqueta, valor, tono = 'en-proceso', children }) {
   return (

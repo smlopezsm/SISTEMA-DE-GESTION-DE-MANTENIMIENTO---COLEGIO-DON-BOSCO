@@ -1,4 +1,3 @@
-// src/shared/layout/gestor/LayoutGestor.jsx
 import { Outlet, useLoaderData, useNavigate } from 'react-router';
 import Sidebar from './Sidebar';
 import Header from './Header';

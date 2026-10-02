@@ -1,22 +1,10 @@
-// src/features/requerimientos/pages/EmitirRequerimientoPage.jsx
 import { useState, useRef } from 'react';
 import { useNavigate, useOutletContext, Link } from 'react-router';
 import { FaArrowLeft, FaFileLines, FaLocationDot, FaCloudArrowUp, FaImage, FaXmark, } from 'react-icons/fa6';
 import { crearRequerimiento } from '../services/requerimientosService';
 import '../styles/EmitirRequerimientoPage.css';
 
-const LUGARES = [
-  'Aula 12',
-  'Baño Pabellón B',
-  'Patio',
-  'Laboratorio 3',
-  'Dirección',
-  'Pasillo principal',
-  'Biblioteca',
-  'Gimnasio',
-  'Cocina',
-  'Otro',
-];
+const LUGARES = [ 'Aula 12', 'Baño Pabellón B', 'Patio', 'Laboratorio 3', 'Dirección', 'Pasillo principal', 'Biblioteca', 'Gimnasio', 'Cocina', 'Otro', ];
 
 const MAX_TITULO = 100;
 const MAX_DESCRIPCION = 500;
@@ -26,26 +14,16 @@ function EmitirRequerimientoPage() {
   const usuario = useOutletContext();
   const inputFileRef = useRef(null);
 
-  const [formData, setFormData] = useState({
-    titulo: '',
-    descripcion: '',
-    lugar: '',
-  });
-  const [imagen, setImagen] = useState(null); // { archivo, url, nombre, peso }
+  const [formData, setFormData] = useState({ titulo: '', descripcion: '', lugar: '', });
+  const [imagen, setImagen] = useState(null); 
   const [error, setError] = useState('');
   const [dragging, setDragging] = useState(false);
 
-  // ─────────────────────────────────────────
-  // Cambios en inputs de texto
-  // ─────────────────────────────────────────
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     if (error) setError('');
   };
-
-  // ─────────────────────────────────────────
-  // Manejo de imagen (input + drag & drop)
-  // ─────────────────────────────────────────
   const aceptarImagen = (file) => {
     if (!file) return;
     if (!file.type.startsWith('image/')) {
@@ -82,9 +60,6 @@ function EmitirRequerimientoPage() {
     if (inputFileRef.current) inputFileRef.current.value = '';
   };
 
-  // ─────────────────────────────────────────
-  // Submit
-  // ─────────────────────────────────────────
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!formData.titulo.trim() || !formData.descripcion.trim() || !formData.lugar.trim()) {
@@ -104,7 +79,7 @@ function EmitirRequerimientoPage() {
 
   return (
     <div className="emitir-requerimiento">
-      {/* ─────────── Encabezado ─────────── */}
+      {/* encabezado */}
       <Link to="/gestor/requerimientos" className="emitir-requerimiento__volver">
         <FaArrowLeft size={14} /> Volver
       </Link>
@@ -121,7 +96,7 @@ function EmitirRequerimientoPage() {
         </div>
       </div>
 
-      {/* ─────────── Error ─────────── */}
+      {/* error */}
       {error && (
         <div className="alert alert-danger mb-3" role="alert">
           {error}
@@ -129,11 +104,11 @@ function EmitirRequerimientoPage() {
       )}
 
       <form onSubmit={handleSubmit}>
-        {/* ─────────── Card principal ─────────── */}
+        {/* card */}
         <div className="card border-0 shadow-sm mb-3">
           <div className="card-body p-3 p-md-4">
             <div className="row g-3 mb-3">
-              {/* Título */}
+              {/* titulo */}
               <div className="col-12 col-md-6">
                 <label className="form-label">
                   Título <span className="text-danger">*</span>
@@ -152,10 +127,10 @@ function EmitirRequerimientoPage() {
                 </small>
               </div>
 
-              {/* Lugar físico */}
+              {/* sector */}
               <div className="col-12 col-md-6">
                 <label className="form-label">
-                  Lugar físico <span className="text-danger">*</span>
+                  Sector <span className="text-danger">*</span>
                 </label>
                 <div className="emitir-requerimiento__select-icono">
                   <FaLocationDot className="emitir-requerimiento__select-icono-svg" />
@@ -174,7 +149,7 @@ function EmitirRequerimientoPage() {
               </div>
             </div>
 
-            {/* Descripción */}
+            {/* descripcion */}
             <div className="mb-0">
               <label className="form-label">
                 Descripción detallada <span className="text-danger">*</span>
@@ -195,13 +170,12 @@ function EmitirRequerimientoPage() {
           </div>
         </div>
 
-        {/* ─────────── Card imagen ─────────── */}
+        {/* imagen */}
         <div className="card border-0 shadow-sm mb-4">
           <div className="card-body p-3 p-md-4">
             <label className="form-label mb-3">Agregar imagen (opcional)</label>
 
             <div className="emitir-requerimiento__imagenes">
-              {/* Zona drag & drop */}
               <div
                 className={`emitir-requerimiento__dropzone ${
                   dragging ? 'emitir-requerimiento__dropzone--activa' : ''
@@ -227,7 +201,7 @@ function EmitirRequerimientoPage() {
                 />
               </div>
 
-              {/* Vista previa */}
+              {/* vista previa */}
               {imagen && (
                 <div className="emitir-requerimiento__preview">
                   <img src={imagen.url} alt={imagen.nombre} />
@@ -253,7 +227,7 @@ function EmitirRequerimientoPage() {
           </div>
         </div>
 
-        {/* ─────────── Botones ─────────── */}
+        {/* botones */}
         <div className="d-flex gap-2 justify-content-end">
           <button
             type="button"

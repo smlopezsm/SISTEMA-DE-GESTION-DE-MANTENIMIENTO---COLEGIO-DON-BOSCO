@@ -1,18 +1,9 @@
-// src/features/requerimientos/pages/MisRequerimientosPage.jsx
 import { useState, useEffect, useMemo } from 'react';
 import { Link, useOutletContext } from 'react-router';
-import {
-  FaFileLines,
-  FaMagnifyingGlass,
-  FaLocationDot,
-  FaEye,
-} from 'react-icons/fa6';
+import { FaFileLines, FaMagnifyingGlass, FaLocationDot, FaEye, } from 'react-icons/fa6';
 import { obtenerRequerimientos } from '../services/requerimientosService';
 import '../styles/MisRequerimientosPage.css';
 
-// ─────────────────────────────────────────────
-// Estilos por estado (fondo + color de texto)
-// ─────────────────────────────────────────────
 const ESTILO_ESTADO = {
   pendiente: { bg: 'var(--estado-pendiente-bg)', color: 'var(--estado-pendiente-texto)', label: 'Pendiente' },
   nuevo:     { bg: 'var(--estado-proceso-bg)',   color: 'var(--estado-proceso-texto)',   label: 'Nuevo' },
@@ -27,18 +18,12 @@ function estiloDeEstado(estado) {
   return ESTILO_ESTADO[estado] ?? { bg: 'var(--color-borde)', color: 'var(--texto-principal)', label: estado };
 }
 
-// ─────────────────────────────────────────────
-// Separa "25/06/2025 09:12" → { fecha, hora }
-// ─────────────────────────────────────────────
 function separarFechaHora(fechaHora) {
   if (!fechaHora) return { fecha: '', hora: '' };
   const [fecha, hora] = fechaHora.split(' ');
   return { fecha: fecha ?? '', hora: hora ? `${hora} hs` : '' };
 }
 
-// ─────────────────────────────────────────────
-// Convierte "25/06/2025 09:12" → "2025-06-25" (para comparar con <input type="date">)
-// ─────────────────────────────────────────────
 function fechaAISO(fechaHora) {
   if (!fechaHora) return '';
   const [fecha] = fechaHora.split(' ');
@@ -50,30 +35,25 @@ function MisRequerimientosPage() {
   const usuario = useOutletContext();
   const [requerimientos, setRequerimientos] = useState([]);
 
-  const [filtros, setFiltros] = useState({
-    busqueda: '',
-    estado: 'todos',
-    lugar: 'todos',
-    fechaDesde: '',
-  });
+  const [filtros, setFiltros] = useState({ busqueda: '', estado: 'todos', lugar: 'todos', fechaDesde: '', });
 
   useEffect(() => {
     setRequerimientos(obtenerRequerimientos());
   }, []);
 
-  // Solo los del usuario logueado
+  // solo los del usuario logueado
   const misRequerimientos = useMemo(
     () => requerimientos.filter((r) => r.reportadoPor === usuario?.nombre),
     [requerimientos, usuario]
   );
 
-  // Lista única de lugares (para el filtro)
+  // lista unica de sectores
   const lugares = useMemo(
     () => [...new Set(misRequerimientos.map((r) => r.lugar))].sort(),
     [misRequerimientos]
   );
 
-  // Filtrado
+  // filtrado
   const filtrados = useMemo(() => {
     return misRequerimientos.filter((req) => {
       const coincideBusqueda =
@@ -95,14 +75,14 @@ function MisRequerimientosPage() {
     });
   }, [misRequerimientos, filtros]);
 
-  // Cambiar un filtro
+  // cambiar un filtro
   const cambiarFiltro = (campo, valor) => {
     setFiltros((f) => ({ ...f, [campo]: valor }));
   };
 
   return (
     <div className="mis-requerimientos">
-      {/* ─────────── Encabezado ─────────── */}
+      {/* encabezado */}
       <div className="d-flex gap-3 align-items-start mb-4">
         <div className="mis-requerimientos__icono">
           <FaFileLines size={22} />
@@ -115,7 +95,7 @@ function MisRequerimientosPage() {
         </div>
       </div>
 
-      {/* ─────────── Filtros ─────────── */}
+      {/* filtros */}
       <div className="card border-0 shadow-sm mb-3">
         <div className="card-body p-3">
           <div className="row g-3 align-items-end">
@@ -133,7 +113,7 @@ function MisRequerimientosPage() {
               </div>
             </div>
 
-            {/* Estado */}
+            {/* estado */}
             <div className="col-12 col-sm-6 col-md-3">
               <label className="mis-requerimientos__filtro-label">Estado</label>
               <select
@@ -150,9 +130,9 @@ function MisRequerimientosPage() {
               </select>
             </div>
 
-            {/* Lugar */}
+            {/* sector */}
             <div className="col-12 col-sm-6 col-md-3">
-              <label className="mis-requerimientos__filtro-label">Lugar</label>
+              <label className="mis-requerimientos__filtro-label">Sector</label>
               <select
                 className="form-select"
                 value={filtros.lugar}
@@ -165,7 +145,7 @@ function MisRequerimientosPage() {
               </select>
             </div>
 
-            {/* Fecha desde */}
+            {/* fecha desde */}
             <div className="col-12 col-sm-6 col-md-2">
               <label className="mis-requerimientos__filtro-label">Fecha desde</label>
               <input
@@ -179,7 +159,7 @@ function MisRequerimientosPage() {
         </div>
       </div>
 
-      {/* ─────────── Tabla ─────────── */}
+      {/* tabla */}
       <div className="card border-0 shadow-sm">
         {filtrados.length === 0 ? (
           <div className="card-body text-center text-muted py-5">

@@ -1,6 +1,5 @@
 import './EncabezadoPagina.css';
 
-// Título de cada pantalla del gestor: icono, título, subtítulo y (opcional) una acción a la derecha
 function EncabezadoPagina({ icono: Icono, titulo, subtitulo, children }) {
   return (
     <div className="encabezado-pagina">

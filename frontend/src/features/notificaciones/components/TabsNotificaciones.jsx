@@ -1,15 +1,7 @@
-// src/features/notificaciones/components/TabsNotificaciones.jsx
-import {
-  FaList,
-  FaClipboardList,
-  FaCircleCheck,
-  FaCircleXmark,
-  FaChevronDown,
-} from 'react-icons/fa6';
+import { FaList, FaClipboardList, FaCircleCheck, FaCircleXmark, FaChevronDown, } from 'react-icons/fa6';
 import { useState, useEffect, useRef } from 'react';
 import '../styles/TabsNotificaciones.css';
 
-// Definición de tabs por rol
 const TABS_POR_ROL = {
   jefeMantenimiento: [
     { valor: 'todas', texto: 'Todas', icono: FaList },
@@ -31,7 +23,6 @@ function TabsNotificaciones({ rol, activo, contadores, onCambiar }) {
   const tabs = TABS_POR_ROL[rol] ?? TABS_POR_ROL.directivo;
   const tabActivo = tabs.find((t) => t.valor === activo) ?? tabs[0];
 
-  // cerrar menú al hacer click afuera
   useEffect(() => {
     if (!abierto) return;
     function handleClickFuera(e) {
@@ -45,7 +36,7 @@ function TabsNotificaciones({ rol, activo, contadores, onCambiar }) {
 
   return (
     <div className="tabs-notificaciones">
-      {/* versión desktop */}
+      {/* para compu */}
       <div className="tabs-notificaciones__desktop d-none d-md-flex">
         {tabs.map((tab) => {
           const Icono = tab.icono;
@@ -53,14 +44,7 @@ function TabsNotificaciones({ rol, activo, contadores, onCambiar }) {
           const esActivo = activo === tab.valor;
 
           return (
-            <button
-              key={tab.valor}
-              type="button"
-              className={`tabs-notificaciones__tab ${
-                esActivo ? 'tabs-notificaciones__tab--activa' : ''
-              }`}
-              onClick={() => onCambiar(tab.valor)}
-            >
+            <button key={tab.valor} type="button" className={`tabs-notificaciones__tab ${ esActivo ? 'tabs-notificaciones__tab--activa' : '' }`} onClick={() => onCambiar(tab.valor)} >
               <Icono size={14} />
               <span>{tab.texto}</span>
               {contador > 0 && (
@@ -73,7 +57,7 @@ function TabsNotificaciones({ rol, activo, contadores, onCambiar }) {
         })}
       </div>
 
-      {/* versión móvil */}
+      {/* para celu */}
       <div className="tabs-notificaciones__movil d-md-none" ref={ref}>
         <button
           type="button"

@@ -1,18 +1,17 @@
-// src/features/notificaciones/services/notificacionesService.js
 import data from '@data/notificaciones.json';
 
-// Qué tipos de notificación ve cada rol
+// que tipos de notificacion ve cada rol
 const TIPOS_POR_ROL = {
   jefeMantenimiento: ['requerimiento', 'tarea-aprobada', 'tarea-rechazada'],
   directivo: ['tarea-finalizada', 'tarea-cancelada'],
 };
 
-// Devuelve TODAS las notificaciones (sin filtrar)
+// todas las notificaciones
 export function obtenerTodasLasNotificaciones() {
   return data.notificaciones ?? [];
 }
 
-// Devuelve solo las del rol indicado
+// solo las del rol indicado
 export function obtenerNotificaciones(rol) {
   const todas = obtenerTodasLasNotificaciones();
   if (!rol) return todas;
@@ -20,7 +19,6 @@ export function obtenerNotificaciones(rol) {
   return todas.filter((n) => tipos.includes(n.tipo));
 }
 
-// Para el badge del header (cantidad de no leídas)
 export function contarNoLeidas(rol) {
   return obtenerNotificaciones(rol).filter((n) => !n.leida).length;
 }

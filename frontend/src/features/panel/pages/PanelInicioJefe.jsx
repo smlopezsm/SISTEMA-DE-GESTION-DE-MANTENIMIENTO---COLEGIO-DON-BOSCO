@@ -1,13 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router';
-import {
-  FaFileCirclePlus,
-  FaClipboardList,
-  FaRotate,
-  FaClock,
-  FaCircleCheck,
-  FaCircleXmark,
-} from 'react-icons/fa6';
+import { FaFileCirclePlus, FaClipboardList, FaRotate, FaClock, FaCircleCheck, FaCircleXmark, } from 'react-icons/fa6';
 import TarjetaResumen from '../../../shared/components/TarjetaResumen';
 import TablaRequerimientos from '../components/TablaRequerimientos';
 import TareasEnCurso from '../components/TareasEnCurso';

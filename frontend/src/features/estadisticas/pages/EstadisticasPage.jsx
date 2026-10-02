@@ -19,18 +19,9 @@ const KPI_CONFIG = {
   gastos: { icono: FaDollarSign, tono: 'finalizada' },
 };
 
-const COLOR_GASTO = {
-  materiales: 'var(--estado-proceso-solid)',
-  'personal-externo': 'var(--estado-con-tarea-solid)',
-  servicios: 'var(--estado-finalizada-solid)',
-  otros: 'var(--estado-pendiente-solid)',
-};
+const COLOR_GASTO = { materiales: 'var(--estado-proceso-solid)', 'personal-externo': 'var(--estado-con-tarea-solid)', servicios: 'var(--estado-finalizada-solid)', otros: 'var(--estado-pendiente-solid)', };
 
-const PERIODOS = [
-  { valor: 7, texto: 'Últimos 7 días' },
-  { valor: 30, texto: 'Últimos 30 días' },
-  { valor: 90, texto: 'Últimos 90 días' },
-];
+const PERIODOS = [ { valor: 7, texto: 'Últimos 7 días' }, { valor: 30, texto: 'Últimos 30 días' }, { valor: 90, texto: 'Últimos 90 días' }, ];
 
 const moneda = (n) => `$${n.toLocaleString('es-AR')}`;
 const suma = (lista, campo) => lista.reduce((acc, item) => acc + item[campo], 0);
@@ -71,7 +62,7 @@ function EstadisticasPage() {
         </select>
       </EncabezadoPagina>
 
-      {/* Indicadores */}
+      {/* indicadores */}
       <div className="row row-cols-2 row-cols-md-3 row-cols-xl-6 g-3 mb-4">
         {datos.kpis.map((k) => {
           const { icono, tono } = KPI_CONFIG[k.clave];
@@ -94,7 +85,7 @@ function EstadisticasPage() {
       </div>
 
       <div className="row g-3 mb-3">
-        {/* Sectores más afectados */}
+        {/* sectores mas afectados */}
         <div className="col-xl-4">
           <SeccionCard
             icono={FaLocationDot}
@@ -120,7 +111,7 @@ function EstadisticasPage() {
           </SeccionCard>
         </div>
 
-        {/* Gastos en insumos y servicios */}
+        {/* gastos en insumos y servicios */}
         <div className="col-xl-4">
           <SeccionCard
             icono={FaDollarSign}
@@ -148,7 +139,7 @@ function EstadisticasPage() {
           </SeccionCard>
         </div>
 
-        {/* Evolución de gastos */}
+        {/* evolucion de gastos */}
         <div className="col-xl-4">
           <SeccionCard
             icono={FaChartLine}
@@ -164,7 +155,7 @@ function EstadisticasPage() {
           </SeccionCard>
         </div>
 
-        {/* Estado actual de tareas */}
+        {/* estado actual de tareas */}
         <div className="col-xl-4">
           <SeccionCard
             icono={FaChartPie}
@@ -187,7 +178,7 @@ function EstadisticasPage() {
           </SeccionCard>
         </div>
 
-        {/* Tiempo promedio de resolución */}
+        {/* tiempo promedio */}
         <div className="col-xl-4">
           <SeccionCard
             icono={FaClock}

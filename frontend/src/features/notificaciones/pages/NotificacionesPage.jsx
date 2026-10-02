@@ -1,4 +1,3 @@
-// src/features/notificaciones/pages/NotificacionesPage.jsx
 import { useState, useMemo } from 'react';
 import { useOutletContext } from 'react-router';
 import { FaBell } from 'react-icons/fa6';
@@ -12,18 +11,18 @@ function NotificacionesPage() {
   const usuario = useOutletContext();
   const rol = usuario?.rol ?? 'directivo';
 
-  // Notificaciones filtradas por rol
+  // notificaciones filtradas por rol
   const visibles = useMemo(() => obtenerNotificaciones(rol), [rol]);
 
   const [tabActivo, setTabActivo] = useState('todas');
 
-  // Filtrado por tab
+  // filtrado por tab
   const notificacionesFiltradas = useMemo(() => {
     if (tabActivo === 'todas') return visibles;
     return visibles.filter((n) => n.tipo === tabActivo);
   }, [visibles, tabActivo]);
 
-  // Contadores por tab
+  // contadores por tab
   const contadores = useMemo(() => {
     const cuenta = { todas: visibles.length };
     visibles.forEach((n) => {
@@ -34,7 +33,7 @@ function NotificacionesPage() {
 
   return (
     <div className="notificaciones-page">
-      {/* Encabezado */}
+      {/* encabezado */}
       <div className="d-flex gap-3 mb-4">
         <div className="icono-titulo">
           <FaBell size={22} />
@@ -45,17 +44,12 @@ function NotificacionesPage() {
         </div>
       </div>
 
-      {/* Tabs */}
+      {/* tabs */}
       <div className="mb-3">
-        <TabsNotificaciones
-          rol={rol}
-          activo={tabActivo}
-          contadores={contadores}
-          onCambiar={setTabActivo}
-        />
+        <TabsNotificaciones rol={rol} activo={tabActivo} contadores={contadores} onCambiar={setTabActivo} />
       </div>
 
-      {/* Lista */}
+      {/* lista */}
       <div className="card border-0 shadow-sm">
         {notificacionesFiltradas.length === 0 ? (
           <div className="card-body text-center text-muted py-5">

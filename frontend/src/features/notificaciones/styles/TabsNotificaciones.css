@@ -1,4 +1,3 @@
-/* src/features/notificaciones/components/TabsNotificaciones.css */
 
 .tabs-notificaciones {
   display: flex;
@@ -55,7 +54,7 @@
   width: 100%;
 }
 
-/* Botón que abre el menú */
+/* boton */
 .tabs-notificaciones__select {
   display: flex;
   align-items: center;
@@ -115,7 +114,7 @@
   transform: rotate(180deg);
 }
 
-/* Menú desplegable */
+/* menu desplegable */
 .tabs-notificaciones__menu {
   position: absolute;
   top: calc(100% + 4px);
@@ -133,7 +132,7 @@
   overflow-y: auto;
 }
 
-/* Cada opción */
+/* opciones */
 .tabs-notificaciones__opcion {
   display: flex;
   align-items: center;
@@ -155,7 +154,7 @@
   background-color: var(--color-fondo);
 }
 
-/* Opción activa (seleccionada) — ROJO */
+/* opcion activa */
 .tabs-notificaciones__opcion--activa {
   background-color: var(--color-principal);
   color: var(--color-blanco);
