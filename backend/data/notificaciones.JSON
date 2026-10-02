@@ -1,81 +1,67 @@
 {
   "notificaciones": [
     {
-      "id": "NOT-001",
+      "id": 1,
       "tipo": "requerimiento",
       "titulo": "Nuevo requerimiento",
-      "texto": "El ordenanza Juan Torres ha solicitado un nuevo requerimiento: \"Filtración en techo - Pabellón B\".",
+      "texto": "Se emitió el requerimiento REQ-0342: Fuga de agua en baño.",
       "fecha": "25/06/2025",
-      "hora": "09:42",
-      "leida": false,
-      "referenciaId": "REQ-0342",
-      "referenciaTipo": "requerimiento"
+      "hora": "09:12",
+      "leida": false
     },
     {
-      "id": "NOT-002",
-      "tipo": "aprobacion",
+      "id": 2,
+      "tipo": "tarea-aprobada",
       "titulo": "Tarea aprobada",
-      "texto": "El directivo Laura Fernández aprobó la tarea T-0115: \"Luz de emergencia\".",
+      "texto": "El Directivo aprobó la tarea T-0123: Reparación de calefacción.",
       "fecha": "25/06/2025",
-      "hora": "08:37",
-      "leida": false,
-      "referenciaId": "T-0115",
-      "referenciaTipo": "tarea"
+      "hora": "08:40",
+      "leida": false
     },
     {
-      "id": "NOT-003",
-      "tipo": "rechazo",
+      "id": 3,
+      "tipo": "tarea-rechazada",
       "titulo": "Tarea rechazada",
-      "texto": "El directivo Carlos Gómez rechazó la tarea T-0108: \"Reparación de puerta\". Motivo: trabajo no conforme.",
-      "fecha": "24/06/2025",
-      "hora": "16:25",
-      "leida": false,
-      "referenciaId": "T-0108",
-      "referenciaTipo": "tarea"
+      "texto": "El Directivo rechazó la tarea T-0119. Motivo: trabajo no conforme.",
+      "fecha": "25/06/2025",
+      "hora": "07:55",
+      "leida": false
     },
     {
-      "id": "NOT-004",
-      "tipo": "requerimiento",
-      "titulo": "Nuevo requerimiento",
-      "texto": "El ordenanza Martín Rojas ha solicitado un nuevo requerimiento: \"Pintura en aula 12\".",
-      "fecha": "24/06/2025",
-      "hora": "11:18",
-      "leida": false,
-      "referenciaId": "REQ-0341",
-      "referenciaTipo": "requerimiento"
-    },
-    {
-      "id": "NOT-005",
-      "tipo": "tarea",
-      "titulo": "Tarea asignada",
-      "texto": "Se te ha asignado la tarea T-0116: \"Mantenimiento de aire acondicionado\".",
-      "fecha": "24/06/2025",
-      "hora": "10:05",
-      "leida": true,
-      "referenciaId": "T-0116",
-      "referenciaTipo": "tarea"
-    },
-    {
-      "id": "NOT-006",
-      "tipo": "tarea",
+      "id": 4,
+      "tipo": "tarea-finalizada",
       "titulo": "Tarea finalizada",
-      "texto": "El personal externo completó la tarea T-0104: \"Cambio de luminarias\".",
-      "fecha": "24/06/2025",
-      "hora": "15:32",
-      "leida": true,
-      "referenciaId": "T-0104",
-      "referenciaTipo": "tarea"
+      "texto": "La tarea T-0130: Pintura de aulas pasó a finalizada y espera tu aprobación.",
+      "fecha": "25/06/2025",
+      "hora": "08:20",
+      "leida": false
     },
     {
-      "id": "NOT-007",
+      "id": 5,
+      "tipo": "tarea-cancelada",
+      "titulo": "Tarea cancelada",
+      "texto": "La tarea T-0120 fue cancelada. Motivo: requerimiento duplicado.",
+      "fecha": "25/06/2025",
+      "hora": "06:32",
+      "leida": true
+    },
+    {
+      "id": 6,
       "tipo": "requerimiento",
       "titulo": "Nuevo requerimiento",
-      "texto": "El ordenanza Pedro Ruiz ha solicitado un nuevo requerimiento: \"Puerta del laboratorio\".",
+      "texto": "Se emitió el requerimiento REQ-0341: Luz de emergencia sin funcionar.",
+      "fecha": "25/06/2025",
+      "hora": "08:47",
+      "leida": true
+    },
+    {
+      "id": 7,
+      "tipo": "tarea-finalizada",
+      "titulo": "Tarea finalizada",
+      "texto": "La tarea T-0128: Reparación de vereda pasó a finalizada.",
       "fecha": "24/06/2025",
-      "hora": "12:17",
-      "leida": true,
-      "referenciaId": "REQ-0340",
-      "referenciaTipo": "requerimiento"
+      "hora": "17:10",
+      "leida": false
     }
   ]
 }

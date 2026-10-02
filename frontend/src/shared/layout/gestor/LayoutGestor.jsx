@@ -1,8 +1,9 @@
-// area privada
+// src/shared/layout/gestor/LayoutGestor.jsx
 import { Outlet, useLoaderData, useNavigate } from 'react-router';
 import Sidebar from './Sidebar';
 import Header from './Header';
 import Footer from './Footer';
+import { cerrarSesion } from '../../../features/auth/services/authService';
 import './LayoutGestor.css';
 
 function LayoutGestor() {
@@ -10,7 +11,8 @@ function LayoutGestor() {
   const navigate = useNavigate();
 
   const handleCerrarSesion = () => {
-    navigate('/login');
+    cerrarSesion();
+    navigate('/login', { replace: true });
   };
 
   return (
