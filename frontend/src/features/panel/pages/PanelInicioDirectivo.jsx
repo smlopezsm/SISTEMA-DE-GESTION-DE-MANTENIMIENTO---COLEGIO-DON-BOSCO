@@ -18,15 +18,16 @@ function PanelInicioDirectivo() {
 
   if (!datos) return <p className="text-secondary">Cargando…</p>;
 
-  const { resumen, tareasEvaluacion} = datos;
+  const { resumen, tareasEvaluacion, notificaciones } = datos;
 
   return (
     <>
-      <EncabezadoPagina
-        icono={FaUserTie}
-        titulo={`¡Hola, ${usuario.nombre}!`}
-        subtitulo="Aquí podrás ver el estado de las tareas y requerimientos del colegio."
-      />
+      <div className="mb-4">
+        <h4 className="mb-1">¡Hola, {usuario?.nombre}!</h4>
+        <p className="text-muted mb-0 small">
+          Aqui podras ver las tareas de mantenimiento del colegio
+        </p>
+      </div>
 
       <div className="row row-cols-1 row-cols-sm-2 row-cols-xl-4 g-3 mb-4">
         <div className="col">
@@ -73,6 +74,7 @@ function PanelInicioDirectivo() {
             <TablaEvaluacion tareas={tareasEvaluacion} />
           </SeccionCard>
         </div>
+
       </div>
     </>
   );
