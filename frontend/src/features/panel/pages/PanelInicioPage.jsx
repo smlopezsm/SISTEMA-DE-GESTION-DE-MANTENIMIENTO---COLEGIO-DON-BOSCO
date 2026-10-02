@@ -1,6 +1,7 @@
 import { useOutletContext, Navigate } from "react-router";
 import PanelInicioJefe from "./PanelInicioJefe";
 import PanelInicioDirectivo from "./PanelInicioDirectivo"
+import { EmitirRequerimientoPage } from "../../requerimientos";
 
 function PanelInicioPage() {
   const usuario = useOutletContext();
@@ -10,17 +11,11 @@ function PanelInicioPage() {
   }
 
   if (usuario.rol === "ordenanza") {
-    return <Navigate to="/gestor/requerimientos/nuevo" replace />;
+    return <EmitirRequerimientoPage />;
   }
 
 
-  if (usuario.rol === "directivo") return <InicioDirectivoPage />;
-  return (
-    <div className="text-center mt-5">
-      <h1 className="h4">¡Hola, {usuario.nombre}!</h1>
-      <p className="text-muted">Panel del Directivo en construccion.</p>
-    </div>
-  );
+  if (usuario.rol === "directivo") return <PanelInicioDirectivo />;
 }
 
 

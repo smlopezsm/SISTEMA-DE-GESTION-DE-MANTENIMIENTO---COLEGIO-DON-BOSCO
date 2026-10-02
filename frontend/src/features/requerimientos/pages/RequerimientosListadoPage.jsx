@@ -66,7 +66,7 @@ function RequerimientosListadoPage() {
             <h1 className="h3 mb-1">Requerimientos pendientes</h1>
           </div>
         </div>
-        <Link to="/gestor/requerimientos/nuevo" className="btn btn-primary w-100-movil">
+        <Link to="/gestor/requerimientos/nuevo-requerimiento" className="btn btn-primary w-100-movil">
           <FaPlus className="me-2" />
           Nuevo requerimiento
         </Link>

@@ -1,31 +1,43 @@
+// src/features/requerimientos/services/requerimientosService.js
 import dataInicial from '@data/requerimientos.json';
 import { leer, guardar } from '../../../shared/utils/storage';
 
 const CLAVE = 'requerimientos';
 
+// ─────────────────────────────────────────────
+// Lectura
+// ─────────────────────────────────────────────
+
 export function obtenerRequerimientos() {
   return leer(CLAVE, dataInicial);
 }
 
-export function obtenerLugares() {
-  const requerimientos = obtenerRequerimientos();
-  const lugares = [...new Set(requerimientos.map((r) => r.lugar))];
-  return lugares.sort();
+export function getRequerimientos() {
+  return obtenerRequerimientos();  // alias, por si quedó algún import viejo
 }
 
 export function obtenerRequerimientoPorId(id) {
   return obtenerRequerimientos().find((r) => r.id === id);
 }
 
+export function obtenerLugares() {
+  const requerimientos = obtenerRequerimientos();
+  return [...new Set(requerimientos.map((r) => r.lugar))].sort();
+}
+
+// ─────────────────────────────────────────────
+// Escritura
+// ─────────────────────────────────────────────
+
 export function crearRequerimiento(datos) {
   const actual = obtenerRequerimientos();
 
+  // Generar ID nuevo: REQ-0001, REQ-0002, ...
   const numeros = actual
     .map((r) => parseInt(String(r.id).replace(/\D/g, ''), 10))
     .filter((n) => !isNaN(n));
-
-  const siguienteNumero = numeros.length > 0 ? Math.max(...numeros) + 1 : 1;
-  const nuevoId = `REQ-${String(siguienteNumero).padStart(4, '0')}`;
+  const siguiente = numeros.length > 0 ? Math.max(...numeros) + 1 : 1;
+  const nuevoId = `REQ-${String(siguiente).padStart(4, '0')}`;
 
   const ahora = new Date().toLocaleString('es-AR', {
     day: '2-digit',
@@ -39,6 +51,7 @@ export function crearRequerimiento(datos) {
     id: nuevoId,
     titulo: datos.titulo,
     descripcion: datos.descripcion,
+    sector: datos.sector ?? '',
     lugar: datos.lugar,
     reportadoPor: datos.reportadoPor,
     rolReportante: datos.rolReportante,
@@ -47,41 +60,21 @@ export function crearRequerimiento(datos) {
     imagen: datos.imagen ?? null,
   };
 
-  guardar(CLAVE, [...actual, nuevoRequerimiento]);
+  guardar(CLAVE, [nuevoRequerimiento, ...actual]);  // el nuevo al principio
   return nuevoRequerimiento;
 }
 
-
-// Codigo nuevo 
-export const getRequerimientos = () => {
-  const reqs = localStorage.getItem('requerimientos');
-  return reqs ? JSON.parse(reqs) : [];
-};
-
-export const guardarRequerimiento = (requerimiento) => {
-  const reqs = getRequerimientos();
-  const nuevoRequerimiento = {
-    ...requerimiento,
-    id: `REQ-${Math.floor(Math.random() * 10000).toString().padStart(4, '0')}`,
-    fecha: new Date().toLocaleString('es-AR', { dateStyle: 'short', timeStyle: 'short' }),
-    estado: 'Pendiente'
-  };
-  localStorage.setItem('requerimientos', JSON.stringify([nuevoRequerimiento, ...reqs]));
-  return nuevoRequerimiento;
-};
-//----------------- hasta aca 
+// Alias por compatibilidad con código viejo
+export const guardarRequerimiento = crearRequerimiento;
 
 export function actualizarRequerimiento(id, datos) {
   const actual = obtenerRequerimientos();
-  const actualizado = actual.map((r) =>
-    r.id === id ? { ...r, ...datos } : r
-  );
+  const actualizado = actual.map((r) => (r.id === id ? { ...r, ...datos } : r));
   guardar(CLAVE, actualizado);
   return actualizado.find((r) => r.id === id);
 }
 
 export function eliminarRequerimiento(id) {
   const actual = obtenerRequerimientos();
-  const filtrado = actual.filter((r) => r.id !== id);
-  guardar(CLAVE, filtrado);
+  guardar(CLAVE, actual.filter((r) => r.id !== id));
 }

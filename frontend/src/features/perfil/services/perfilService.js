@@ -1,8 +1,29 @@
-export const actualizarUsuario = (datosActualizados) => {
-  // Asumimos que el usuario actual se guarda en 'usuario_sesion'
-  // Cambia esta key si tu authService usa otra distinta
-  const usuarioActual = JSON.parse(localStorage.getItem('usuario_sesion')) || {};
-  const nuevoUsuario = { ...usuarioActual, ...datosActualizados };
-  localStorage.setItem('usuario_sesion', JSON.stringify(nuevoUsuario));
-  return nuevoUsuario;
-};
+// src/features/perfil/services/perfilService.js
+import { obtenerSesion, actualizarSesion } from '../../auth/services/authService';
+
+// ─────────────────────────────────────────────
+// Lectura
+// ─────────────────────────────────────────────
+
+export function obtenerUsuarioActual() {
+  return obtenerSesion();
+}
+
+// ─────────────────────────────────────────────
+// Actualización
+// ─────────────────────────────────────────────
+
+export function actualizarUsuario(datosActualizados) {
+  return actualizarSesion(datosActualizados);
+}
+
+export function actualizarAvatar(dataUrl) {
+  return actualizarSesion({ avatar: dataUrl });
+}
+
+export function quitarAvatar() {
+  const actual = obtenerSesion() ?? {};
+  const { avatar, ...resto } = actual;
+  sessionStorage.setItem('sesion', JSON.stringify(resto));
+  return resto;
+}

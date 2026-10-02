@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router";
 import { FaUserTie, FaClipboardCheck, FaClock, FaCircleCheck, FaCircleXmark, FaFileLines, } from "react-icons/fa6";
-import EncabezadoPagina from "../../../shared/components/EncabezadoPagina";
 import TarjetaResumen from "../../../shared/components/TarjetaResumen";
 import SeccionCard from "../../../shared/components/SeccionCard";
 import TablaEvaluacion from "../components/TablaEvaluacion";
 import { obtenerPanelDirectivo } from "../services/panelService";
+import PanelNotificacionesDirectivo from '../components/PanelNotificacionesDirectivo';
 import "../styles/PanelInicioDirectivo.css";
 
 function PanelInicioDirectivo() {
