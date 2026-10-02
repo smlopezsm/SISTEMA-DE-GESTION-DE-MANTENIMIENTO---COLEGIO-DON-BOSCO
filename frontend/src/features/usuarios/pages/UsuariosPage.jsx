@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router'; 
 import { FaUsers, FaUser, FaUserTie, FaScrewdriverWrench, FaMagnifyingGlass, FaPlus, FaFilterCircleXmark } from 'react-icons/fa6';
 import EncabezadoPagina from '../../../shared/components/EncabezadoPagina';
 import TarjetaResumen from '../../../shared/components/TarjetaResumen';
@@ -14,13 +15,16 @@ const POR_PAGINA = 8;
 const FILTROS_VACIOS = { busqueda: '', rol: '', estado: '' };
 
 function UsuariosPage() {
+  const navigate = useNavigate();
+  const location = useLocation();   // 👈
+
   const [usuarios, setUsuarios] = useState([]);
   const [filtros, setFiltros] = useState(FILTROS_VACIOS);
   const [pagina, setPagina] = useState(1);
 
   useEffect(() => {
     obtenerUsuarios().then(setUsuarios);
-  }, []);
+  }, [location.key]);
 
   const cantidad = (rol) => usuarios.filter((u) => u.rol === rol).length;
 
@@ -48,14 +52,12 @@ function UsuariosPage() {
   const inicio = (pagina - 1) * POR_PAGINA;
   const visibles = filtrados.slice(inicio, inicio + POR_PAGINA);
 
-  // TODO: abrir el formulario de alta/edición cuando esté hecho
-  const handleAgregar = () => {};
-  const handleEditar = () => {};
+  const handleAgregar = () => {
+    navigate('/gestor/usuarios/nuevo');
+  };
 
-  // TODO: reemplazar por la llamada a la API. Por ahora solo actualiza el estado local.
-  const handleBaja = (usuario) => {
-    if (!window.confirm(`¿Dar de baja a ${usuario.nombre} ${usuario.apellido}?`)) return;
-    setUsuarios((lista) => lista.map((u) => (u.clave === usuario.clave ? { ...u, activo: false } : u)));
+  const handleEditar = (usuario) => {
+    navigate(`/gestor/usuarios/${usuario.clave}`);
   };
 
   return (
@@ -94,10 +96,9 @@ function UsuariosPage() {
             <span>Rol</span>
             <select className="form-select" value={filtros.rol} onChange={cambiar('rol')}>
               <option value="">Todos</option>
-              {Object.entries(ETIQUETA_ROL)
-                .map(([rol, texto]) => (
-                  <option key={rol} value={rol}>{texto}</option>
-                ))}
+              {Object.entries(ETIQUETA_ROL).map(([rol, texto]) => (
+                <option key={rol} value={rol}>{texto}</option>
+              ))}
             </select>
           </label>
           <label>
@@ -113,7 +114,7 @@ function UsuariosPage() {
           </button>
         </div>
 
-        <TablaUsuarios usuarios={visibles} onEditar={handleEditar} onBaja={handleBaja} />
+        <TablaUsuarios usuarios={visibles} onEditar={handleEditar} />
 
         <div className="d-flex flex-wrap align-items-center justify-content-between gap-2 mt-3">
           <small className="text-secondary">

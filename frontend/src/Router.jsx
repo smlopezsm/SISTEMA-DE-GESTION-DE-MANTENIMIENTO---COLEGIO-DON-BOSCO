@@ -17,7 +17,7 @@ import { EmitirRequerimientoPage, MisRequerimientosPage } from './features/reque
 import PerfilPage from './features/perfil/pages/PerfilPage';
 import EditarPerfilPage from './features/perfil/pages/EditarPerfilPage';
 import { EstadisticasPage } from "./features/estadisticas";
-import { UsuariosPage } from "./features/usuarios";
+import { UsuariosPage, EditarUsuarioPage, NuevoUsuarioPage } from "./features/usuarios";
 
 export const router = createBrowserRouter([
   // publico
@@ -66,6 +66,8 @@ export const router = createBrowserRouter([
       { path: "usuarios", element: <UsuariosPage />, loader: requerirRol(["directivo"]), },
       { path: "tareas", element: <TareasListadoPage />, loader: requerirRol(["directivo","jefeMantenimiento"]), },
       { path: "tareas/:id", element: <DetalleTareaPage />, loader: requerirRol(["directivo","jefeMantenimiento"]), },
+      { path: "usuarios/nuevo", element: <NuevoUsuarioPage />, loader: requerirRol(["directivo"]), },
+      { path: "usuarios/:clave", element: <EditarUsuarioPage />, loader: requerirRol(["directivo"]), },
       //Ordenanza
        { path: "requerimientos/mis-requerimientos", element: <MisRequerimientosPage />, loader: requerirRol(["ordenanza"]) },
     ]
