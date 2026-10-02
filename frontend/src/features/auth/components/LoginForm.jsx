@@ -89,10 +89,6 @@ function LoginForm() {
       >
         {cargando ? "Ingresando..." : "Ingresar"}
       </button>
-
-      <div className="mt-4 text-center">
-        <a href="#" className="link-custom">¿Olvidaste tu contraseña?</a>
-      </div>
     </form>
   );
 }

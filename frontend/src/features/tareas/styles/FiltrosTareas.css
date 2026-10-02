@@ -40,8 +40,8 @@
 }
 
 .filtros-tareas .btn-primary:hover {
-  background-color: var(--color-hover);
-  border-color: var(--color-hover);
+  background-color: var(--color-secundario);
+  border-color: var(--color-secundario);
 }
 
 .filtros-tareas .btn-outline-secondary {
@@ -51,8 +51,8 @@
 }
 
 .filtros-tareas .btn-outline-secondary:hover {
-  background-color: var(--color-fondo);
-  color: var(--texto-principal);
+  background-color: var(--color-secundario);
+  color: var(--color-blanco);
   border-color: var(--texto-secundario);
 }
 

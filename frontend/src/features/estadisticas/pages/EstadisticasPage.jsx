@@ -21,7 +21,7 @@ const KPI_CONFIG = {
 
 const COLOR_GASTO = { materiales: 'var(--estado-proceso-solid)', 'personal-externo': 'var(--estado-con-tarea-solid)', servicios: 'var(--estado-finalizada-solid)', otros: 'var(--estado-pendiente-solid)', };
 
-const PERIODOS = [ { valor: 7, texto: 'Últimos 7 días' }, { valor: 30, texto: 'Últimos 30 días' }, { valor: 90, texto: 'Últimos 90 días' }, ];
+const PERIODOS = [{ valor: 7, texto: 'Últimos 7 días' }, { valor: 30, texto: 'Últimos 30 días' }, { valor: 90, texto: 'Últimos 90 días' },];
 
 const moneda = (n) => `$${n.toLocaleString('es-AR')}`;
 const suma = (lista, campo) => lista.reduce((acc, item) => acc + item[campo], 0);
@@ -44,23 +44,28 @@ function EstadisticasPage() {
   const { dias, variacion } = datos.tiempoResolucion;
 
   return (
-    <>
-      <EncabezadoPagina
-        icono={FaChartColumn}
-        titulo="Estadísticas"
-        subtitulo="Indicadores y métricas del sistema de mantenimiento."
+    <div className="estadisticas">
+      <div className="estadisticas__encabezado">
+        <div className="estadistica__icono">
+          <FaChartColumn size={22} />
+        </div>
+        <div>
+          <h1 className="estadisticas__titulo">Estadisticas</h1>
+          <p className="estadisticas__subtitulo">
+            Indicadores y métricas del sistema de mantenimiento
+          </p>
+        </div>
+      </div>
+      <select
+        className="form-select"
+        value={periodo}
+        onChange={(e) => setPeriodo(Number(e.target.value))}
+        aria-label="Período"
       >
-        <select
-          className="form-select"
-          value={periodo}
-          onChange={(e) => setPeriodo(Number(e.target.value))}
-          aria-label="Período"
-        >
-          {PERIODOS.map((p) => (
-            <option key={p.valor} value={p.valor}>{p.texto}</option>
-          ))}
-        </select>
-      </EncabezadoPagina>
+        {PERIODOS.map((p) => (
+          <option key={p.valor} value={p.valor}>{p.texto}</option>
+        ))}
+      </select>
 
       {/* indicadores */}
       <div className="row row-cols-2 row-cols-md-3 row-cols-xl-6 g-3 mb-4">
@@ -201,7 +206,7 @@ function EstadisticasPage() {
           </SeccionCard>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

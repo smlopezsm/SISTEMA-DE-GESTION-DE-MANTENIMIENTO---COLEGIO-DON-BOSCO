@@ -16,7 +16,6 @@ function TablaTareas({ tareas, usuario }) {
   }
 
   const esJefe = usuario?.rol === 'jefeMantenimiento';
-  const esDirectivo = usuario?.rol === 'directivo';
 
   return (
     <>

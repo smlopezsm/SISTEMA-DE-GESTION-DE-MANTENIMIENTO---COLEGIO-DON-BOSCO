@@ -140,7 +140,7 @@ function EmitirRequerimientoPage() {
                     value={formData.lugar}
                     onChange={handleChange}
                   >
-                    <option value="">Seleccioná un lugar</option>
+                    <option value="">Seleccioná el sector</option>
                     {LUGARES.map((l) => (
                       <option key={l} value={l}>{l}</option>
                     ))}
@@ -229,11 +229,7 @@ function EmitirRequerimientoPage() {
 
         {/* botones */}
         <div className="d-flex gap-2 justify-content-end">
-          <button
-            type="button"
-            className="btn btn-light border"
-            onClick={() => navigate(-1)}
-          >
+          <button type="button" className="btn btn-light border" onClick={() => navigate(-1)} >
             Cancelar
           </button>
           <button type="submit" className="btn btn-primary">

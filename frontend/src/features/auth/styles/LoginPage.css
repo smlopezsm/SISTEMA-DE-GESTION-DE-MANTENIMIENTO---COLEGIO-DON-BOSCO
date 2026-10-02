@@ -55,7 +55,8 @@
 }
 
 .boton-ingresar:hover:not(:disabled) {
-  background-color: var(--color-hover);
+  background-color: var(--color-principalclaro);
+  color: var(--color-blanco);
 }
 
 .boton-ingresar:disabled {

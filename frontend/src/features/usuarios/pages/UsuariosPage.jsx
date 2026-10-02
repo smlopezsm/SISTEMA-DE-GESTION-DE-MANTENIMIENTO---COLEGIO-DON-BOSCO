@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router'; 
+import { useNavigate, useLocation } from 'react-router';
 import { FaUsers, FaUser, FaUserTie, FaScrewdriverWrench, FaMagnifyingGlass, FaPlus, FaFilterCircleXmark } from 'react-icons/fa6';
 import EncabezadoPagina from '../../../shared/components/EncabezadoPagina';
 import TarjetaResumen from '../../../shared/components/TarjetaResumen';
@@ -62,15 +62,21 @@ function UsuariosPage() {
 
   return (
     <>
-      <EncabezadoPagina
-        icono={FaUsers}
-        titulo="Gestión de usuarios"
-        subtitulo="Administrá las cuentas del personal del colegio."
-      >
-        <button type="button" className="btn btn-primary d-inline-flex align-items-center gap-2" onClick={handleAgregar}>
+
+      <div className="usuarios__encabezado">
+        <div className="usuarios__icono">
+          <FaUsers size={22} />
+        </div>
+        <div>
+          <h1 className="usuarios__titulo">Gestion de Usuarios</h1>
+          <p className="usuarios__subtitulo">
+            Administración de cuentas del personal del colegio
+          </p>
+        </div>
+         <button type="button" className="btn btn-primary d-inline-flex align-items-center gap-2" onClick={handleAgregar}>
           <FaPlus /> Agregar usuario
         </button>
-      </EncabezadoPagina>
+      </div>
 
       <div className="row row-cols-1 row-cols-sm-2 row-cols-xl-4 g-3 mb-4">
         <div className="col"><TarjetaResumen tono="cancelada" icono={FaUsers} etiqueta="Total de usuarios" valor={usuarios.length} /></div>

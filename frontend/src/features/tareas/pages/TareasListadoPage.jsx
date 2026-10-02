@@ -71,14 +71,25 @@ function TareasListadoPage() {
   const desde = tareasFiltradas.length === 0 ? 0 : (pagina - 1) * POR_PAGINA + 1;
   const hasta = Math.min(pagina * POR_PAGINA, tareasFiltradas.length);
 
+  const esJefe = usuario?.rol === 'jefeMantenimiento';
+  const esDirectivo = usuario?.rol === 'directivo';
+
+
   return (
     <div className="tareas-listado">
       <div className="d-flex justify-content-between align-items-start mb-4 flex-wrap gap-3">
         <div className="d-flex gap-3">
           <div className="icono-titulo"><FaListCheck size={22} /></div>
           <div>
-            <h1 className="h3 mb-1">Mis tareas</h1>
-            <p className="text-muted mb-0">Gestion de tareas</p>
+            {esJefe && (
+              <h1 className="h3 mb-1">Mis tareas</h1>,
+              <p className="text-muted mb-0">Gestion de tareas</p>
+            )}
+            
+            {esDirectivo && (
+              <h1 className="h3 mb-1">Todas las tareas</h1>
+            )}
+
           </div>
         </div>
       </div>

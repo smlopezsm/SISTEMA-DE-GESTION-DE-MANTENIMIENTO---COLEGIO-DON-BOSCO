@@ -10,14 +10,14 @@
   align-items: center;
   gap: 6px;
   font-size: 0.85rem;
-  color: var(--texto-secundario);
+  color: var(--color-principal);
   text-decoration: none;
   margin-bottom: 1rem;
   transition: color 0.15s ease;
 }
 
 .emitir-requerimiento__volver:hover {
-  color: var(--color-principal);
+  color: var(--color-secundario);
 }
 
 .emitir-requerimiento__encabezado {
@@ -31,8 +31,8 @@
   width: 48px;
   height: 48px;
   border-radius: var(--radius-medium);
-  background-color: #e8eaf6;
-  color: var(--color-secundario);
+  background-color: #FDE8E9;
+  color: var(--color-principal);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -212,18 +212,31 @@
 
 /* boton */
 .emitir-requerimiento .btn-primary {
-  background-color: var(--color-secundario);
-  border-color: var(--color-secundario);
+  background-color: var(--color-principal);
+  border-color: var(--color-principal);
   font-weight: 500;
   padding: 0.5rem 1.25rem;
   border-radius: var(--radius-medium);
 }
 
 .emitir-requerimiento .btn-primary:hover {
-  background-color: var(--color-principal);
-  border-color: var(--color-principal);
+  background-color: var(--color-secundario);
+  border-color: var(--color-secundario);
 }
 
+.emitir-requerimiento .btn-light {
+  background-color: var(--texto-blanco);
+  border-color: var(--color-borde);
+  font-weight: 500;
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--radius-medium);
+}
+
+.emitir-requerimiento .btn-light:hover {
+  background-color: var(--color-secundario);
+  border-color: var(--color-secundario);
+  color: var(--color-blanco);
+}
 
 @media (max-width: 767.98px) {
   .emitir-requerimiento__titulo {
