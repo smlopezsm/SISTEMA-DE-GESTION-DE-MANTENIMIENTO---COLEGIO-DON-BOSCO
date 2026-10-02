@@ -158,3 +158,32 @@
     font-size: 18px;
   }
 }
+
+/* Inputs con error de credenciales */
+.form-control-custom.is-invalid {
+  border-color: #dc3545;
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+  padding-right: calc(1.5em + 0.75rem);
+}
+
+.form-control-custom.is-invalid:focus {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+/* Forzar que is-invalid gane sobre :valid de was-validated */
+.was-validated .form-control-custom.is-invalid,
+.form-control-custom.is-invalid {
+  border-color: #dc3545 !important;
+  background-repeat: no-repeat !important;
+  background-position: right calc(0.375em + 0.1875rem) center !important;
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem) !important;
+  padding-right: calc(1.5em + 0.75rem) !important;
+}
+
+/* Opcional: quitar el tilde verde cuando NO hay error */
+.form-control-custom:valid {
+  background-image: none;
+}

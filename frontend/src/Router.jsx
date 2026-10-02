@@ -59,12 +59,11 @@ export const router = createBrowserRouter([
       { path: 'tareas/:id/editar', element: <FormularioTareaPage />, loader: requerirRol(["jefeMantenimiento"]) },
       { path: 'personal-externo', element: <PersonalExternoPage />, loader: requerirRol(["jefeMantenimiento"]) },
       { path: 'personal-externo/:id/editar', element: <FormularioPersonalPage />, loader: requerirRol(["jefeMantenimiento"]) },
-      { path: 'personal-externo/nuevo', element: <FormularioPersonalPage /> },
+      { path: 'personal-externo/nuevo', element: <FormularioPersonalPage />,loader: requerirRol(["jefeMantenimiento"]) },
       { path: 'notificaciones', element: <NotificacionesPage />, loader: requerirRol(["jefeMantenimiento", "directivo"]) },
       //Directivo
       { path: "dashboard", element: <EstadisticasPage />, loader: requerirRol(["directivo"]), },
       { path: "usuarios", element: <UsuariosPage />, loader: requerirRol(["directivo"]), },
-      { path: "notificaciones", element: <NotificacionesPage />, loader: requerirRol(["directivo"]), },
       { path: "tareas", element: <TareasListadoPage />, loader: requerirRol(["directivo","jefeMantenimiento"]), },
       { path: "tareas/:id", element: <DetalleTareaPage />, loader: requerirRol(["directivo","jefeMantenimiento"]), },
       //Ordenanza
