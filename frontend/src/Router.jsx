@@ -46,6 +46,7 @@ export const router = createBrowserRouter([
       { path: "usuarios", element: <UsuariosPage />,loader: requerirRol(["directivo"]), },
       { path: "notificaciones", element: <NotificacionesPage />, loader: requerirRol(["directivo"]), },
       { path: "tareas", element: <TareasListadoPage />, loader: requerirRol(["directivo"]), },
+      { path: "tareas/:id", element: <DetalleTareaPage />, loader: requerirRol(["directivo"]), },
 
       { path: "inicio", element: <PanelInicioJefe />, loader: requerirRol(["jefeMantenimiento"]), },
       { path: "requerimientos", element: <RequerimientosListadoPage />, loader: requerirRol(["jefeMantenimiento"]), },
