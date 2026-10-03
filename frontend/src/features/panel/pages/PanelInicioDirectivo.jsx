@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useOutletContext } from "react-router";
-import { FaUserTie, FaClipboardCheck, FaClock, FaCircleCheck, FaCircleXmark, FaFileLines, } from "react-icons/fa6";
+import { FaUserTie, FaClipboardCheck, FaHouse, FaClock, FaCircleCheck, FaCircleXmark, FaFileLines, } from "react-icons/fa6";
 import TarjetaResumen from "../../../shared/components/TarjetaResumen";
 import SeccionCard from "../../../shared/components/SeccionCard";
 import TablaEvaluacion from "../components/TablaEvaluacion";
 import { obtenerPanelDirectivo } from "../services/panelService";
-import PanelNotificacionesDirectivo from '../components/PanelNotificacionesDirectivo';
+import Encabezado from "../../../shared/components/EncabezadoPagina";
 import "../styles/PanelInicioDirectivo.css";
 
 function PanelInicioDirectivo() {
@@ -22,12 +22,11 @@ function PanelInicioDirectivo() {
 
   return (
     <>
-      <div className="mb-4">
-        <h4 className="mb-1">¡Hola, {usuario?.nombre}!</h4>
-        <p className="text-muted mb-0 small">
-          Aqui podras ver las tareas de mantenimiento del colegio
-        </p>
-      </div>
+      <Encabezado
+        icono={FaHouse}
+        titulo={usuario?.nombre ? `¡Hola, ${usuario.nombre}!` : '¡Hola!'}
+        subtitulo="Aqui podras ver las tareas de mantenimiento del colegio"
+      />
 
       <div className="row row-cols-1 row-cols-sm-2 row-cols-xl-4 g-3 mb-4">
         <div className="col">

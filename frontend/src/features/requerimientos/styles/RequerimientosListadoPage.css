@@ -3,24 +3,6 @@
   max-width: 1400px;
   margin: 0 auto;
 }
-
-.requerimientos-listado .icono-titulo {
-  width: 48px;
-  height: 48px;
-  border-radius: var(--radius-medium);
-  background-color: #FDE8E9;         
-  color: var(--color-principal);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.requerimientos-listado h1 {
-  color: var(--texto-principal);
-  font-weight: 600;
-}
-
 .requerimientos-listado .btn-primary {
   background-color: var(--color-principal);
   border-color: var(--color-principal);

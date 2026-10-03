@@ -3,9 +3,9 @@ import { Link } from 'react-router';
 import { FaFileLines, FaPlus, FaChevronLeft, FaChevronRight, } from 'react-icons/fa6';
 import '../styles/RequerimientosListadoPage.css';
 import { obtenerRequerimientos, obtenerLugares, } from '../services/requerimientosService';
-import FiltrosRequerimientos from '../components/FiltrosRequerimientos';
+import Filtros from '../../../shared/components/Filtros';
 import TablaRequerimientos from '../components/TablaRequerimientos';
-
+import EncabezadoPagina from '../../../shared/components/EncabezadoPagina';
 const POR_PAGINA = 8;
 
 function fechaAISO(fechaHora) {
@@ -49,31 +49,55 @@ function RequerimientosListadoPage() {
       });
   }, [todosLosRequerimientos, filtros]);
 
-  const totalPaginas = Math.max( 1, Math.ceil(requerimientosFiltrados.length / POR_PAGINA) );
-  const requerimientosPagina = requerimientosFiltrados.slice( (pagina - 1) * POR_PAGINA, pagina * POR_PAGINA );
+  const totalPaginas = Math.max(1, Math.ceil(requerimientosFiltrados.length / POR_PAGINA));
+  const requerimientosPagina = requerimientosFiltrados.slice((pagina - 1) * POR_PAGINA, pagina * POR_PAGINA);
   const desde = requerimientosFiltrados.length === 0 ? 0 : (pagina - 1) * POR_PAGINA + 1;
   const hasta = Math.min(pagina * POR_PAGINA, requerimientosFiltrados.length);
 
   return (
     <div className="requerimientos-listado">
       {/* encabezado */}
-      <div className="d-flex justify-content-between align-items-start mb-4 flex-wrap gap-3">
-        <div className="d-flex gap-3">
-          <div className="icono-titulo">
-            <FaFileLines size={22} />
-          </div>
-          <div>
-            <h1 className="h3 mb-1">Requerimientos pendientes</h1>
-          </div>
-        </div>
-        <Link to="/gestor/requerimientos/nuevo-requerimiento" className="btn btn-primary w-100-movil">
-          <FaPlus className="me-2" />
-          Nuevo requerimiento
+      <EncabezadoPagina
+        icono={FaFileLines}
+        titulo="Requerimientos pendientes"
+        subtitulo="Listado de requerimientos pendientes de tarea"
+      >
+        <Link to="/gestor/requerimientos/nuevo-requerimiento" className="btn btn-primary">
+          <FaPlus className="me-2" /> Nuevo requerimiento
         </Link>
-      </div>
+      </EncabezadoPagina>
 
-      {/* filtros */}
-      <FiltrosRequerimientos filtros={filtros} lugares={lugares} onCambiarFiltro={manejarCambioFiltro} />
+      <Filtros
+        filtros={filtros}
+        onCambiar={manejarCambioFiltro}
+        onAplicar={() => { }}   // opcional, si querés mantener el botón
+        campos={[
+          {
+            tipo: 'busqueda',
+            clave: 'busqueda',
+            placeholder: 'Buscar por ID, título o descripción…',
+          },
+          {
+            tipo: 'select',
+            clave: 'lugar',
+            etiqueta: 'Lugar',
+            opciones: [
+              { valor: 'todos', texto: 'Todos' },
+              ...lugares.map((l) => ({ valor: l, texto: l })),
+            ],
+          },
+          {
+            tipo: 'fecha',
+            clave: 'fechaDesde',
+            etiqueta: 'Fecha desde',
+          },
+          {
+            tipo: 'fecha',
+            clave: 'fechaHasta',
+            etiqueta: 'Fecha hasta',
+          },
+        ]}
+      />
 
       {/* tabla */}
       <TablaRequerimientos requerimientos={requerimientosPagina} />

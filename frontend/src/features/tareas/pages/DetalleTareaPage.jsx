@@ -4,7 +4,7 @@ import '../styles/DetalleTareaPage.css';
 
 import { obtenerTareaPorId } from '../services/tareasService';
 import { obtenerCompraPorTarea } from '../services/comprasService';
-
+import EncabezadoPage from '../../../shared/components/EncabezadoPagina';
 import ResumenDetalleTarea from '../components/ResumenDetalleTarea';
 import RequerimientoAsociado from '../components/RequerimientoAsociado';
 import AccionesDetalleTarea from '../components/AccionesDetalleTarea';
@@ -33,27 +33,16 @@ function DetalleTareaPage() {
   return (
     <div className="detalle-tarea-page">
       {/* encabezado */}
-      <div className="mb-4">
-        <Link
-          to="/gestor/tareas"
-          className="btn btn-link text-decoration-none text-muted p-0 mb-2 d-inline-flex align-items-center gap-2"
-        >
-          <FaArrowLeft size={14} />
-          Volver al listado
-        </Link>
-
-        <div className="d-flex gap-3 align-items-start">
-          <div className="icono-titulo">
-            <FaScrewdriverWrench size={22} />
-          </div>
-          <div>
-            <h1 className="h3 mb-1">Detalle de tarea</h1>
-            <p className="text-muted mb-0">
-              Informacion completa de la tarea y su requerimiento asociado
-            </p>
-          </div>
-        </div>
-      </div>
+      <EncabezadoPage
+        volver={{ to: '/gestor/tareas', texto: 'Volver al listado' }}
+        icono={FaScrewdriverWrench}
+        titulo="Detalle de tarea"
+        subtitulo={
+          usuario?.rol === 'directivo'
+            ? 'Revisá la tarea y aprobá o rechazá si está finalizada.'
+            : 'Información completa de la tarea y su requerimiento asociado.'
+        }
+      />
 
       {/* resumen horizontal */}
       <ResumenDetalleTarea tarea={tarea} tieneCompra={tieneCompra} />

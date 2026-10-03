@@ -3,36 +3,6 @@
   max-width: 1000px;
   margin: 0 auto;
 }
-.estadisticas__encabezado {
-  display: flex;
-  gap: 1rem;
-  align-items: flex-start;
-  margin-bottom: 1rem;
-}
-
-.estadistica__icono {
-  width: 48px;
-  height: 48px;
-  border-radius: var(--radius-medium);
-  background-color: #FDE8E9;
-  color: var(--color-principal);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-.estadistica__titulo {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--color-secundario);
-  margin: 0 0 0.25rem;
-}
-
-.estadistica__subtitulo {
-  font-size: 0.875rem;
-  color: var(--texto-secundario);
-  margin: 0;
-}
 
 .form-select {
   max-width: 100%;

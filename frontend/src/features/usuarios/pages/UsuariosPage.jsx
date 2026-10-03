@@ -9,6 +9,7 @@ import { ETIQUETA_ROL } from '../../../shared/config/MenuPorRol';
 import { normalizar } from '../../../shared/utils/texto';
 import TablaUsuarios from '../components/TablaUsuarios';
 import { obtenerUsuarios } from '../services/usuariosService';
+import Filtros from '../../../shared/components/Filtros';
 import '../styles/usuarios.css';
 
 const POR_PAGINA = 8;
@@ -16,7 +17,7 @@ const FILTROS_VACIOS = { busqueda: '', rol: '', estado: '' };
 
 function UsuariosPage() {
   const navigate = useNavigate();
-  const location = useLocation();   // 👈
+  const location = useLocation();
 
   const [usuarios, setUsuarios] = useState([]);
   const [filtros, setFiltros] = useState(FILTROS_VACIOS);
@@ -28,6 +29,11 @@ function UsuariosPage() {
 
   const cantidad = (rol) => usuarios.filter((u) => u.rol === rol).length;
 
+  const manejarCambioFiltro = (campo, valor) => {
+    setFiltros((f) => ({ ...f, [campo]: valor }));
+    setPagina(1);
+  };
+
   const filtrados = useMemo(() => {
     const texto = normalizar(filtros.busqueda);
     return usuarios.filter(
@@ -37,11 +43,6 @@ function UsuariosPage() {
         (!filtros.estado || String(u.activo) === filtros.estado)
     );
   }, [usuarios, filtros]);
-
-  const cambiar = (campo) => (e) => {
-    setFiltros((f) => ({ ...f, [campo]: e.target.value }));
-    setPagina(1);
-  };
 
   const limpiar = () => {
     setFiltros(FILTROS_VACIOS);
@@ -62,21 +63,15 @@ function UsuariosPage() {
 
   return (
     <>
-
-      <div className="usuarios__encabezado">
-        <div className="usuarios__icono">
-          <FaUsers size={22} />
-        </div>
-        <div>
-          <h1 className="usuarios__titulo">Gestion de Usuarios</h1>
-          <p className="usuarios__subtitulo">
-            Administración de cuentas del personal del colegio
-          </p>
-        </div>
-         <button type="button" className="btn btn-primary d-inline-flex align-items-center gap-2" onClick={handleAgregar}>
+      <EncabezadoPagina
+        icono={FaUsers}
+        titulo="Gestión de Usuarios"
+        subtitulo="Administración de cuentas del personal del colegio"
+      >
+        <button className="btn btn-primary d-inline-flex align-items-center gap-2" onClick={handleAgregar}>
           <FaPlus /> Agregar usuario
         </button>
-      </div>
+      </EncabezadoPagina>
 
       <div className="row row-cols-1 row-cols-sm-2 row-cols-xl-4 g-3 mb-4">
         <div className="col"><TarjetaResumen tono="cancelada" icono={FaUsers} etiqueta="Total de usuarios" valor={usuarios.length} /></div>
@@ -86,39 +81,37 @@ function UsuariosPage() {
       </div>
 
       <SeccionCard>
-        <div className="filtros-usuarios">
-          <div className="filtros-usuarios__busqueda">
-            <FaMagnifyingGlass aria-hidden="true" />
-            <input
-              type="search"
-              className="form-control"
-              placeholder="Buscar por nombre, apellido, usuario o DNI…"
-              value={filtros.busqueda}
-              onChange={cambiar('busqueda')}
-              aria-label="Buscar usuarios"
-            />
-          </div>
-          <label>
-            <span>Rol</span>
-            <select className="form-select" value={filtros.rol} onChange={cambiar('rol')}>
-              <option value="">Todos</option>
-              {Object.entries(ETIQUETA_ROL).map(([rol, texto]) => (
-                <option key={rol} value={rol}>{texto}</option>
-              ))}
-            </select>
-          </label>
-          <label>
-            <span>Estado</span>
-            <select className="form-select" value={filtros.estado} onChange={cambiar('estado')}>
-              <option value="">Todos</option>
-              <option value="true">Activo</option>
-              <option value="false">Inactivo</option>
-            </select>
-          </label>
-          <button type="button" className="btn btn-outline-primary d-inline-flex align-items-center justify-content-center gap-2" onClick={limpiar}>
-            <FaFilterCircleXmark /> Limpiar filtros
-          </button>
-        </div>
+        <Filtros
+          filtros={filtros}
+          onCambiar={manejarCambioFiltro}
+          onLimpiar={limpiar}
+          campos={[
+            {
+              tipo: 'busqueda',
+              clave: 'busqueda',
+              placeholder: 'Buscar por nombre, apellido, usuario o DNI…',
+            },
+            {
+              tipo: 'select',
+              clave: 'rol',
+              etiqueta: 'Rol',
+              opciones: [
+                { valor: '', texto: 'Todos' },
+                ...Object.entries(ETIQUETA_ROL).map(([rol, texto]) => ({ valor: rol, texto })),
+              ],
+            },
+            {
+              tipo: 'select',
+              clave: 'estado',
+              etiqueta: 'Estado',
+              opciones: [
+                { valor: '', texto: 'Todos' },
+                { valor: 'true', texto: 'Activo' },
+                { valor: 'false', texto: 'Inactivo' },
+              ],
+            },
+          ]}
+        />
 
         <TablaUsuarios usuarios={visibles} onEditar={handleEditar} />
 

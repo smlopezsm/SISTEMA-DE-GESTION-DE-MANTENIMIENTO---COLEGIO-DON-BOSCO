@@ -4,7 +4,7 @@ import { FaArrowLeft, FaScrewdriverWrench } from 'react-icons/fa6';
 import '../styles/FormularioTareaPage.css';
 import { obtenerTareaPorId, obtenerRequerimientoParaTarea, obtenerOrdenanzas, obtenerPersonalExterno, crearTarea, actualizarTarea, finalizarTarea, cancelarTarea, } from '../services/tareasService';
 import { obtenerCompraPorTarea, crearCompra, actualizarCompra, } from '../services/comprasService';
-
+import Encabezado from '../../../shared/components/EncabezadoPagina';
 import { useToast } from '../../../shared/context/ToastContext';
 import ModalConfirmacion from '../../../shared/components/ModalConfirmacion';
 import ModalCancelarTarea from '../components/ModalCancelarTarea';
@@ -62,7 +62,7 @@ function FormularioTareaPage() {
     return { valores: VALORES_INICIALES_CREAR };
   }, [id, requerimientoId, modoEdicion]);
 
-  const [valores, setValores] = useState( datosIniciales?.valores ?? VALORES_INICIALES_CREAR );
+  const [valores, setValores] = useState(datosIniciales?.valores ?? VALORES_INICIALES_CREAR);
   const [guardando, setGuardando] = useState(false);
 
   // compra asociada
@@ -177,31 +177,16 @@ function FormularioTareaPage() {
   return (
     <div className="formulario-tarea-page">
       {/* encabezado */}
-      <div className="mb-4">
-        <Link
-          to="/gestor/tareas"
-          className="btn btn-link text-decoration-none text-muted p-0 mb-2 d-inline-flex align-items-center gap-2"
-        >
-          <FaArrowLeft size={14} />
-          Volver al listado
-        </Link>
-
-        <div className="d-flex gap-3 align-items-start titulo">
-          <div className="icono-titulo">
-            <FaScrewdriverWrench size={25} />
-          </div>
-          <div>
-            <h1 className="h3 mb-1">
-              {modoEdicion ? 'Editar tarea' : 'Nueva tarea'}
-            </h1>
-            <p className="text-muted mb-0">
-              {modoEdicion
-                ? 'Modificacion de la tarea'
-                : 'Creacion de nueva tarea'}
-            </p>
-          </div>
-        </div>
-      </div>
+      <Encabezado
+        volver={{ to: '/gestor/tareas', texto: 'Volver al listado' }}
+        icono={FaScrewdriverWrench}
+        titulo={modoEdicion ? 'Editar tarea' : 'Nueva tarea'}
+        subtitulo={
+          modoEdicion
+            ? 'Modificación de la tarea'
+            : 'Creación de nueva tarea'
+        }
+      />
 
       <div className="row g-4">
         {/* columna izquierda */}

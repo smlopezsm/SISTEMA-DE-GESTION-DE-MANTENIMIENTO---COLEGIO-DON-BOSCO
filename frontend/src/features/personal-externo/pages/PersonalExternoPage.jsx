@@ -2,12 +2,11 @@ import { useState, useMemo } from 'react';
 import { Link } from 'react-router';
 import { FaPlus, FaUsers, FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
 import '../styles/PersonalExternoPage.css';
-
+import EncabezadoPagina from '../../../shared/components/EncabezadoPagina';
 import { obtenerPersonal, eliminarPersonal, } from '../services/personalService';
 import { useToast } from '../../../shared/context/ToastContext';
 import ModalConfirmacion from '../../../shared/components/ModalConfirmacion';
-
-import FiltrosPersonal from '../components/FiltrosPersonal';
+import Filtros from '../../../shared/components/Filtros';
 import TablaPersonal from '../components/TablaPersonal';
 
 const POR_PAGINA = 8;
@@ -54,7 +53,7 @@ function PersonalExternoPage() {
   }, [todoElPersonal, filtros]);
 
   const totalPaginas = Math.max(1, Math.ceil(personalFiltrado.length / POR_PAGINA));
-  const personalPagina = personalFiltrado.slice( (pagina - 1) * POR_PAGINA, pagina * POR_PAGINA );
+  const personalPagina = personalFiltrado.slice((pagina - 1) * POR_PAGINA, pagina * POR_PAGINA);
 
   function abrirModalEliminar(persona) {
     setModalEliminar({ abierto: true, persona });
@@ -76,23 +75,47 @@ function PersonalExternoPage() {
 
   return (
     <div className="personal-page">
-      <div className="d-flex justify-content-between align-items-start mb-4 flex-wrap gap-3">
-        <div className="d-flex gap-3">
-          <div className="icono-titulo"><FaUsers size={22} /></div>
-          <div>
-            <h1 className="h3 mb-1">Personal externo</h1>
-            <p className="text-muted mb-0">
-              Gestion del personal externo
-            </p>
-          </div>
-        </div>
+
+      <EncabezadoPagina
+        icono={FaUsers}
+        titulo="Editar Usuario"
+        subtitulo="Gestion del personal externo"
+      >
         <Link to="/gestor/personal-externo/nuevo" className="btn btn-primary"> <FaPlus className="me-2" />
           Agregar nuevo personal
         </Link>
-      </div>
+      </EncabezadoPagina>
 
-      <FiltrosPersonal filtros={filtros} especialidades={especialidades} onCambiarFiltro={manejarCambioFiltro} />
-
+      <Filtros
+        filtros={filtros}
+        onCambiar={manejarCambioFiltro}
+        campos={[
+          {
+            tipo: 'busqueda',
+            clave: 'busqueda',
+            placeholder: 'Buscar por nombre, apellido o especialidad…',
+          },
+          {
+            tipo: 'select',
+            clave: 'especialidad',
+            etiqueta: 'Especialidad',
+            opciones: [
+              { valor: 'todas', texto: 'Todas' },
+              ...especialidades.map((esp) => ({ valor: esp, texto: esp })),
+            ],
+          },
+          {
+            tipo: 'select',
+            clave: 'estado',
+            etiqueta: 'Estado',
+            opciones: [
+              { valor: 'todos', texto: 'Todos' },
+              { valor: 'activos', texto: 'Activos' },
+              { valor: 'inactivos', texto: 'Inactivos' },
+            ],
+          },
+        ]}
+      />
       <TablaPersonal personal={personalPagina} onEliminar={abrirModalEliminar} />
 
       <div className="d-flex justify-content-between align-items-center mt-3 flex-wrap gap-2">

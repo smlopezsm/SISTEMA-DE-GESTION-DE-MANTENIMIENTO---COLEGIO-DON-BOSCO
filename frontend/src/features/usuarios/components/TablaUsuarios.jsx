@@ -57,7 +57,11 @@ function TablaUsuarios({ usuarios, onEditar }) {
               </td>
               <td>{u.apellido}</td>
               <td>{u.usuario}</td>
-              <td>{Number(u.dni).toLocaleString('es-AR')}</td>
+              <td>
+                {u.dni && !isNaN(Number(u.dni))
+                  ? Number(u.dni).toLocaleString('es-AR')
+                  : '—'}
+              </td>
               <td>{u.email}</td>
               <td><Etiqueta estado={TONO_ROL[u.rol]}>{ETIQUETA_ROL[u.rol]}</Etiqueta></td>
               <td>{telefonoOCargo(u)}</td>

@@ -1,17 +1,26 @@
 import { useState, useEffect, useMemo } from 'react';
-import { Link, useOutletContext } from 'react-router';
-import { FaFileLines, FaMagnifyingGlass, FaLocationDot, FaEye, } from 'react-icons/fa6';
+import { useOutletContext } from 'react-router';
+import { FaFileLines, FaLocationDot } from 'react-icons/fa6';
+import Encabezado from '../../../shared/components/EncabezadoPagina';
+import Filtros from '../../../shared/components/Filtros';
 import { obtenerRequerimientos } from '../services/requerimientosService';
 import '../styles/MisRequerimientosPage.css';
 
 const ESTILO_ESTADO = {
-  pendiente: { bg: 'var(--estado-pendiente-bg)', color: 'var(--estado-pendiente-texto)', label: 'Pendiente' },
-  nuevo:     { bg: 'var(--estado-proceso-bg)',   color: 'var(--estado-proceso-texto)',   label: 'Nuevo' },
-  'en-proceso': { bg: 'var(--estado-proceso-bg)', color: 'var(--estado-proceso-texto)', label: 'En proceso' },
-  asignado:  { bg: 'var(--estado-con-tarea-bg)', color: 'var(--estado-con-tarea-texto)', label: 'Asignado' },
-  finalizada:{ bg: 'var(--estado-finalizada-bg)',color: 'var(--estado-finalizada-texto)',label: 'Finalizado' },
-  rechazada: { bg: 'var(--estado-rechazada-bg)', color: 'var(--estado-rechazada-texto)', label: 'Rechazado' },
-  cancelada: { bg: 'var(--estado-cancelada-bg)', color: 'var(--estado-cancelada-texto)', label: 'Cancelado' },
+  pendiente:    { bg: 'var(--estado-pendiente-bg)',  color: 'var(--estado-pendiente-texto)',  label: 'Pendiente' },
+  nuevo:        { bg: 'var(--estado-proceso-bg)',    color: 'var(--estado-proceso-texto)',    label: 'Nuevo' },
+  'en-proceso': { bg: 'var(--estado-proceso-bg)',    color: 'var(--estado-proceso-texto)',    label: 'En proceso' },
+  asignado:     { bg: 'var(--estado-con-tarea-bg)',  color: 'var(--estado-con-tarea-texto)',  label: 'Asignado' },
+  finalizada:   { bg: 'var(--estado-finalizada-bg)', color: 'var(--estado-finalizada-texto)', label: 'Finalizado' },
+  rechazada:    { bg: 'var(--estado-rechazada-bg)',  color: 'var(--estado-rechazada-texto)',  label: 'Rechazado' },
+  cancelada:    { bg: 'var(--estado-cancelada-bg)',  color: 'var(--estado-cancelada-texto)',  label: 'Cancelado' },
+};
+
+const FILTROS_VACIOS = {
+  busqueda: '',
+  estado: 'todos',
+  lugar: 'todos',
+  fechaDesde: '',
 };
 
 function estiloDeEstado(estado) {
@@ -34,26 +43,25 @@ function fechaAISO(fechaHora) {
 function MisRequerimientosPage() {
   const usuario = useOutletContext();
   const [requerimientos, setRequerimientos] = useState([]);
-
-  const [filtros, setFiltros] = useState({ busqueda: '', estado: 'todos', lugar: 'todos', fechaDesde: '', });
+  const [filtros, setFiltros] = useState(FILTROS_VACIOS);
 
   useEffect(() => {
     setRequerimientos(obtenerRequerimientos());
   }, []);
 
-  // solo los del usuario logueado
+  // Solo los del usuario logueado
   const misRequerimientos = useMemo(
     () => requerimientos.filter((r) => r.reportadoPor === usuario?.nombre),
     [requerimientos, usuario]
   );
 
-  // lista unica de sectores
+  // Lista única de sectores
   const lugares = useMemo(
     () => [...new Set(misRequerimientos.map((r) => r.lugar))].sort(),
     [misRequerimientos]
   );
 
-  // filtrado
+  // Filtrado
   const filtrados = useMemo(() => {
     return misRequerimientos.filter((req) => {
       const coincideBusqueda =
@@ -75,91 +83,65 @@ function MisRequerimientosPage() {
     });
   }, [misRequerimientos, filtros]);
 
-  // cambiar un filtro
-  const cambiarFiltro = (campo, valor) => {
+  const manejarCambioFiltro = (campo, valor) => {
     setFiltros((f) => ({ ...f, [campo]: valor }));
+  };
+
+  const limpiar = () => {
+    setFiltros(FILTROS_VACIOS);
   };
 
   return (
     <div className="mis-requerimientos">
-      {/* encabezado */}
-      <div className="d-flex gap-3 align-items-start mb-4">
-        <div className="mis-requerimientos__icono">
-          <FaFileLines size={22} />
-        </div>
-        <div>
-          <h1 className="mis-requerimientos__titulo">Mis requerimientos</h1>
-          <p className="mis-requerimientos__subtitulo">
-            Aquí podés ver todos los requerimientos que has emitido.
-          </p>
-        </div>
-      </div>
+      {/* Encabezado unificado */}
+      <Encabezado
+        icono={FaFileLines}
+        titulo="Mis requerimientos"
+        subtitulo="Aquí podés ver todos los requerimientos que has emitido"
+      />
 
-      {/* filtros */}
-      <div className="card border-0 shadow-sm mb-3">
-        <div className="card-body p-3">
-          <div className="row g-3 align-items-end">
-            {/* Buscar */}
-            <div className="col-12 col-md-4">
-              <div className="mis-requerimientos__busqueda">
-                <FaMagnifyingGlass className="mis-requerimientos__busqueda-icono" />
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Buscar por título o lugar..."
-                  value={filtros.busqueda}
-                  onChange={(e) => cambiarFiltro('busqueda', e.target.value)}
-                />
-              </div>
-            </div>
+      {/* Filtros unificados */}
+      <Filtros
+        filtros={filtros}
+        onCambiar={manejarCambioFiltro}
+        onLimpiar={limpiar}
+        campos={[
+          {
+            tipo: 'busqueda',
+            clave: 'busqueda',
+            placeholder: 'Buscar por título o lugar…',
+          },
+          {
+            tipo: 'select',
+            clave: 'estado',
+            etiqueta: 'Estado',
+            opciones: [
+              { valor: 'todos', texto: 'Todos' },
+              { valor: 'pendiente', texto: 'Pendiente' },
+              { valor: 'en-proceso', texto: 'En proceso' },
+              { valor: 'asignado', texto: 'Asignado' },
+              { valor: 'finalizada', texto: 'Finalizado' },
+              { valor: 'rechazada', texto: 'Rechazado' },
+            ],
+          },
+          {
+            tipo: 'select',
+            clave: 'lugar',
+            etiqueta: 'Sector',
+            opciones: [
+              { valor: 'todos', texto: 'Todos' },
+              ...lugares.map((l) => ({ valor: l, texto: l })),
+            ],
+          },
+          {
+            tipo: 'fecha',
+            clave: 'fechaDesde',
+            etiqueta: 'Fecha desde',
+          },
+        ]}
+      />
 
-            {/* estado */}
-            <div className="col-12 col-sm-6 col-md-3">
-              <label className="mis-requerimientos__filtro-label">Estado</label>
-              <select
-                className="form-select"
-                value={filtros.estado}
-                onChange={(e) => cambiarFiltro('estado', e.target.value)}
-              >
-                <option value="todos">Todos</option>
-                <option value="pendiente">Pendiente</option>
-                <option value="en-proceso">En proceso</option>
-                <option value="asignado">Asignado</option>
-                <option value="finalizada">Finalizado</option>
-                <option value="rechazada">Rechazado</option>
-              </select>
-            </div>
-
-            {/* sector */}
-            <div className="col-12 col-sm-6 col-md-3">
-              <label className="mis-requerimientos__filtro-label">Sector</label>
-              <select
-                className="form-select"
-                value={filtros.lugar}
-                onChange={(e) => cambiarFiltro('lugar', e.target.value)}
-              >
-                <option value="todos">Todos</option>
-                {lugares.map((l) => (
-                  <option key={l} value={l}>{l}</option>
-                ))}
-              </select>
-            </div>
-
-            {/* fecha desde */}
-            <div className="col-12 col-sm-6 col-md-2">
-              <label className="mis-requerimientos__filtro-label">Fecha desde</label>
-              <input
-                type="date"
-                className="form-control"
-                value={filtros.fechaDesde}
-                onChange={(e) => cambiarFiltro('fechaDesde', e.target.value)}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* tabla */}
+      {/* Tabla */}
       <div className="card border-0 shadow-sm">
         {filtrados.length === 0 ? (
           <div className="card-body text-center text-muted py-5">

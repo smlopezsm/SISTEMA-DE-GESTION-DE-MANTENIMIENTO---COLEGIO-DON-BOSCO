@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router';
 import { FaUser, FaPlus, FaArrowLeft, FaCircleInfo } from 'react-icons/fa6';
 import { crearUsuario, existeUsuario } from '../services/usuariosService';
 import '../styles/NuevoUsuarioPage.css';
+import EncabezadoPage from '../../../shared/components/EncabezadoPagina';
 
 const ROLES = [ { valor: 'ordenanza', texto: 'Ordenanza' }, { valor: 'directivo', texto: 'Directivo' }, { valor: 'jefeMantenimiento', texto: 'Jefe de Mantenimiento' }, ];
 const CARGOS_DIRECTIVO = [ 'Rector', 'Vicerrector', 'Secretaria', 'Director de Estudios', 'Administrador', ];
@@ -87,15 +88,12 @@ function NuevoUsuarioPage() {
   return (
     <div className="nuevo-usuario">
       {/* encabezado─ */}
-      <div className="mb-4">
-        <Link to="/gestor/usuarios" className="nuevo-usuario__volver">
-          <FaArrowLeft size={14} /> Volver al listado
-        </Link>
-        <h1 className="nuevo-usuario__titulo">Agregar nueva cuenta</h1>
-        <p className="nuevo-usuario__subtitulo">
-          Completá los datos para crear una nueva cuenta de usuario en el sistema.
-        </p>
-      </div>
+     <EncabezadoPage
+        volver={{ to: '/gestor/usuarios', texto: 'Volver al listado' }}
+        icono={FaUser}
+        titulo="Agregar Nuevo Usuario"
+        subtitulo="Completá los datos para crear una nueva cuenta de usuario en el sistema"
+      />
 
       {/* error */}
       {error && (

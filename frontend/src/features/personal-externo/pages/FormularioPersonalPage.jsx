@@ -6,7 +6,7 @@ import '../styles/FormularioPersonalPage.css';
 import { obtenerPersonalPorId, crearPersonal, actualizarPersonal, } from '../services/personalService';
 import { useToast } from '../../../shared/context/ToastContext';
 import ModalConfirmacion from '../../../shared/components/ModalConfirmacion';
-
+import Encabezado from '../../../shared/components/EncabezadoPagina';
 import DatosPersonalesPersonal from '../components/DatosPersonalesPersonal';
 import ContactoPersonal from '../components/ContactoPersonal';
 import InfoLaboralPersonal from '../components/InfoLaboralPersonal';
@@ -108,26 +108,16 @@ function FormularioPersonalPage() {
 
   return (
     <div className="formulario-personal-page">
-      <div className="mb-4">
-        <Link to="/gestor/personal-externo" className="btn btn-link text-decoration-none text-muted p-0 mb-2 d-inline-flex align-items-center gap-2" >
-          <FaArrowLeft size={14} />
-          Volver al listado
-        </Link>
-
-        <div className="d-flex gap-3 align-items-start">
-          <div className="icono-titulo"><FaUsers size={22} /></div>
-          <div>
-            <h1 className="h3 mb-1">
-              {modoEdicion ? 'Editar personal externo' : 'Nuevo personal externo'}
-            </h1>
-            <p className="text-muted mb-0">
-              {modoEdicion
-                ? 'Modificacion del personal externo registrado'
-                : 'Registre los datos de un nuevo personal externo'}
-            </p>
-          </div>
-        </div>
-      </div>
+      <Encabezado
+        volver={{ to: '/gestor/personal-externo', texto: 'Volver al listado' }}
+        icono={FaUsers}
+        titulo={modoEdicion ? 'Editar personal externo' : 'Nuevo personal externo'}
+        subtitulo={
+          modoEdicion
+            ? 'Modificación del personal externo registrado'
+            : 'Registrá los datos de un nuevo personal externo'
+        }
+      />
 
       <div className="row g-4">
         <div className="col-12 col-xl-8">

@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router';
-import { FaUser, FaArrowLeft, FaFloppyDisk, FaCircleInfo, FaUserCheck, FaUserXmark, } from 'react-icons/fa6';
+import { FaUser,FaPen, FaArrowLeft, FaFloppyDisk, FaCircleInfo, FaUserCheck, FaUserXmark, } from 'react-icons/fa6';
 import { ETIQUETA_ROL } from '../../../shared/config/MenuPorRol';
+import EncabezadoPagina from '../../../shared/components/EncabezadoPagina';
 import { obtenerUsuarioPorClave, actualizarUsuario, cambiarEstadoUsuario, } from '../services/usuariosService';
 import '../styles/EditarUsuarioPage.css';
 
@@ -91,19 +92,12 @@ function EditarUsuarioPage() {
 
     return (
         <div className="editar-usuario">
-            {/* encabezado */}
-            <div className="mb-4">
-                <Link
-                    to="/gestor/usuarios"
-                    className="editar-usuario__volver"
-                >
-                    <FaArrowLeft size={14} /> Volver al listado
-                </Link>
-                <h1 className="editar-usuario__titulo">Editar cuenta de usuario</h1>
-                <p className="editar-usuario__subtitulo">
-                    Modificá los datos de la cuenta. Los cambios se guardarán en el sistema.
-                </p>
-            </div>
+            <EncabezadoPagina
+                volver={{ to: '/gestor/usuarios', texto: 'Volver al listado' }}
+                icono={FaPen}
+                titulo="Editar Usuario"
+                subtitulo="Aqui podras editar los datos del usuario, darlo de alta o de baja"
+            />
 
             {/* mensaje*/}
             {mensaje && (
@@ -257,8 +251,8 @@ function EditarUsuarioPage() {
                             <h6 className="editar-usuario__seccion-titulo">Estado de la cuenta</h6>
                             <span
                                 className={`editar-usuario__estado ${usuario.activo
-                                        ? 'editar-usuario__estado--activo'
-                                        : 'editar-usuario__estado--inactivo'
+                                    ? 'editar-usuario__estado--activo'
+                                    : 'editar-usuario__estado--inactivo'
                                     }`}
                             >
                                 <span className="editar-usuario__estado-punto" />

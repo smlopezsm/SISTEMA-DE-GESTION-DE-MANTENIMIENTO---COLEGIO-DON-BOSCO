@@ -4,7 +4,7 @@ import { FaMagnifyingGlass, FaLocationDot, FaEye } from 'react-icons/fa6';
 import Etiqueta from '../../../shared/components/Etiqueta';
 import Paginacion from '../../../shared/components/Paginacion';
 import { normalizar } from '../../../shared/utils/texto';
-
+import Filtros from '../../../shared/components/Filtros';
 const POR_PAGINA = 5;
 
 const formatoFecha = (iso) =>
@@ -44,32 +44,34 @@ function TablaEvaluacion({ tareas }) {
 
   return (
     <>
-      <div className="filtros-evaluacion">
-        <div className="filtros-evaluacion__busqueda">
-          <FaMagnifyingGlass aria-hidden="true" />
-          <input
-            type="search"
-            className="form-control"
-            placeholder="Buscar por ID, título o lugar…"
-            value={filtros.busqueda}
-            onChange={cambiar('busqueda')}
-            aria-label="Buscar tareas"
-          />
-        </div>
-        <label className="filtros-evaluacion__campo">
-          <span>Filtrar por lugar</span>
-          <select className="form-select" value={filtros.lugar} onChange={cambiar('lugar')}>
-            <option value="">Todos</option>
-            {lugares.map((l) => (
-              <option key={l} value={l}>{l}</option>
-            ))}
-          </select>
-        </label>
-        <label className="filtros-evaluacion__campo">
-          <span>Fecha de finalización</span>
-          <input type="date" className="form-control" value={filtros.fecha} onChange={cambiar('fecha')} />
-        </label>
-      </div>
+      <Filtros
+        filtros={filtros}
+        onCambiar={(campo, valor) => {
+          setFiltros((f) => ({ ...f, [campo]: valor }));
+          setPagina(1);
+        }}
+        campos={[
+          {
+            tipo: 'busqueda',
+            clave: 'busqueda',
+            placeholder: 'Buscar por ID, título o lugar…',
+          },
+          {
+            tipo: 'select',
+            clave: 'lugar',
+            etiqueta: 'Filtrar por lugar',
+            opciones: [
+              { valor: '', texto: 'Todos' },
+              ...lugares.map((l) => ({ valor: l, texto: l })),
+            ],
+          },
+          {
+            tipo: 'fecha',
+            clave: 'fecha',
+            etiqueta: 'Fecha de finalización',
+          },
+        ]}
+      />
 
       <div className="table-responsive">
         <table className="table align-middle tabla-evaluacion">

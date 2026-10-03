@@ -17,10 +17,6 @@
   flex-shrink: 0;
 }
 
-.detalle-tarea-page h1 {
-  color: var(--texto-principal);
-  font-weight: 600;
-}
 
 /* boton volver */
 .detalle-tarea-page .btn-link {

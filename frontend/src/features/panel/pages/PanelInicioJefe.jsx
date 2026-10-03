@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router';
-import { FaFileCirclePlus, FaClipboardList, FaRotate, FaClock, FaCircleCheck, FaCircleXmark, } from 'react-icons/fa6';
+import { FaFileCirclePlus, FaClipboardList, FaRotate, FaClock, FaCircleCheck, FaCircleXmark, FaHouse } from 'react-icons/fa6';
 import TarjetaResumen from '../../../shared/components/TarjetaResumen';
 import TablaRequerimientos from '../components/TablaRequerimientos';
 import TareasEnCurso from '../components/TareasEnCurso';
+import Encabezado from '../../../shared/components/EncabezadoPagina';
 
 import {
   obtenerResumenPanel,
@@ -62,12 +63,12 @@ function PanelInicioJefe() {
 
   return (
     <div className="panel-inicio">
-      <div className="mb-4">
-        <h4 className="mb-1">¡Hola, {usuario?.nombre}!</h4>
-        <p className="text-muted mb-0 small">
-          Resumen del estado de las tareas y requerimientos del colegio
-        </p>
-      </div>
+
+      <Encabezado
+        icono={FaHouse}
+        titulo={usuario?.nombre ? `¡Hola, ${usuario.nombre}!` : '¡Hola!'}
+        subtitulo="Resumen del estado de las tareas y requerimientos del colegio"
+      />
 
       {/* Tarjetas */}
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-6 g-2 g-md-3 mb-3 mb-lg-4">

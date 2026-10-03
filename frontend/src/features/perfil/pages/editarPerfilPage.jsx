@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useOutletContext, useNavigate } from 'react-router';
-import { FaCamera, FaFloppyDisk, FaCircleInfo } from 'react-icons/fa6';
+import { FaPen, FaCamera, FaFloppyDisk, FaCircleInfo, FaUser } from 'react-icons/fa6';
 import { actualizarUsuario } from '../services/perfilService';
 import { camposDeRol, esEditable, ETIQUETA_CAMPO } from '../../../shared/config/camposPerfilPorRol';
+import EncabezadoPagina from '../../../shared/components/EncabezadoPagina';
 import '../styles/EditarPerfilPage.css';
 
 function iniciales(nombre, apellido) {
@@ -89,12 +90,12 @@ function EditarPerfilPage() {
 
   return (
     <div className="editar-perfil">
-      <div className="editar-perfil__encabezado">
-        <h1 className="editar-perfil__titulo">Editar perfil</h1>
-        <p className="editar-perfil__subtitulo">
-          Modificá tus datos personales. Los cambios se guardarán en el sistema.
-        </p>
-      </div>
+     <EncabezadoPagina
+        volver={{ to: '/gestor/perfil', texto: 'Volver al listado' }}
+        icono={FaPen}
+        titulo="Editar Perfil"
+        subtitulo="Aqui podras editar los datos de tu perfil"
+      />
 
       <div className="card border-0 shadow-sm">
         <div className="card-body p-4">

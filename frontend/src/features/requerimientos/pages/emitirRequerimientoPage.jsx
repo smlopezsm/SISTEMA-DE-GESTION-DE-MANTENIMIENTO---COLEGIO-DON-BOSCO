@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import { useNavigate, useOutletContext, Link } from 'react-router';
 import { FaArrowLeft, FaFileLines, FaLocationDot, FaCloudArrowUp, FaImage, FaXmark, } from 'react-icons/fa6';
 import { crearRequerimiento } from '../services/requerimientosService';
+import Encabezado from '../../../shared/components/EncabezadoPagina';
 import '../styles/EmitirRequerimientoPage.css';
 
 const LUGARES = [ 'Aula 12', 'Baño Pabellón B', 'Patio', 'Laboratorio 3', 'Dirección', 'Pasillo principal', 'Biblioteca', 'Gimnasio', 'Cocina', 'Otro', ];
@@ -80,21 +81,11 @@ function EmitirRequerimientoPage() {
   return (
     <div className="emitir-requerimiento">
       {/* encabezado */}
-      <Link to="/gestor/requerimientos" className="emitir-requerimiento__volver">
-        <FaArrowLeft size={14} /> Volver
-      </Link>
-
-      <div className="emitir-requerimiento__encabezado">
-        <div className="emitir-requerimiento__icono">
-          <FaFileLines size={22} />
-        </div>
-        <div>
-          <h1 className="emitir-requerimiento__titulo">Emitir requerimiento</h1>
-          <p className="emitir-requerimiento__subtitulo">
-            Completá la información del problema edilicio o de infraestructura que querés reportar.
-          </p>
-        </div>
-      </div>
+      <Encabezado
+        icono={FaFileLines}
+        titulo="Emitir requerimiento"
+        subtitulo="Completá la información del problema edilicio o de infraestructura que querés reportar."
+      />
 
       {/* error */}
       {error && (

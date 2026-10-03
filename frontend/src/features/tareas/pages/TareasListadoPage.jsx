@@ -1,9 +1,10 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useOutletContext, useLocation } from 'react-router';
-import { FaListCheck, FaChevronLeft, FaChevronRight, } from 'react-icons/fa6';
+import { FaScrewdriverWrench, FaChevronLeft, FaChevronRight, } from 'react-icons/fa6';
 import '../styles/TareasListadoPage.css';
+import EncabezadoPagina from '../../../shared/components/EncabezadoPagina';
 import { obtenerTareas, obtenerResponsables } from '../services/tareasService';
-import FiltrosTareas from '../components/FiltrosTareas';
+import Filtros from '../../../shared/components/Filtros';
 import TablaTareas from '../components/TablaTareas';
 
 const POR_PAGINA = 10;
@@ -77,25 +78,85 @@ function TareasListadoPage() {
 
   return (
     <div className="tareas-listado">
-      <div className="d-flex justify-content-between align-items-start mb-4 flex-wrap gap-3">
-        <div className="d-flex gap-3">
-          <div className="icono-titulo"><FaListCheck size={22} /></div>
-          <div>
-            {esJefe && (
-              <h1 className="h3 mb-1">Mis tareas</h1>,
-              <p className="text-muted mb-0">Gestion de tareas</p>
-            )}
-            
-            {esDirectivo && (
-              <h1 className="h3 mb-1">Todas las tareas</h1>
-            )}
 
-          </div>
-        </div>
-      </div>
+     <EncabezadoPagina
+        icono={FaScrewdriverWrench}
+        titulo={usuario?.rol === 'directivo'
+            ? 'Todas las Tareas'
+            : 'Mis Tareas'
+        }
+        subtitulo={
+          usuario?.rol === 'directivo'
+            ? 'Revisá la tarea y aprobá o rechazá si está finalizada'
+            : 'Información completa de la tareas'
+        }
+      />
 
-      <FiltrosTareas filtros={filtros} responsables={responsables} onCambiarFiltro={manejarCambioFiltro} />
-
+      <Filtros
+        filtros={filtros}
+        onCambiar={manejarCambioFiltro}
+        onLimpiar={() => {
+          onCambiarFiltro('busqueda', '');
+          onCambiarFiltro('estado', 'todos');
+          onCambiarFiltro('prioridad', 'todas');
+          onCambiarFiltro('responsable', 'todos');
+          onCambiarFiltro('fechaDesde', '');
+          onCambiarFiltro('fechaHasta', '');
+        }}
+        onAplicar={() => { }}  // opcional
+        campos={[
+          {
+            tipo: 'busqueda',
+            clave: 'busqueda',
+            placeholder: 'Buscar por ID o título…',
+          },
+          {
+            tipo: 'select',
+            clave: 'estado',
+            etiqueta: 'Estado',
+            opciones: [
+              { valor: 'todos', texto: 'Todos' },
+              { valor: 'pendiente', texto: 'Pendiente' },
+              { valor: 'en-proceso', texto: 'En proceso' },
+              { valor: 'demorada', texto: 'Demorada' },
+              { valor: 'cancelada', texto: 'Cancelada' },
+              { valor: 'finalizada', texto: 'Finalizada' },
+              { valor: 'aprobada', texto: 'Aprobada' },
+              { valor: 'rechazada', texto: 'Rechazada' },
+            ],
+          },
+          {
+            tipo: 'select',
+            clave: 'prioridad',
+            etiqueta: 'Prioridad',
+            opciones: [
+              { valor: 'todas', texto: 'Todas' },
+              { valor: 'alta', texto: 'Alta' },
+              { valor: 'media', texto: 'Media' },
+              { valor: 'baja', texto: 'Baja' },
+            ],
+          },
+          {
+            tipo: 'select',
+            clave: 'responsable',
+            etiqueta: 'Responsable',
+            opciones: [
+              { valor: 'todos', texto: 'Todos' },
+              ...responsables.map((r) => ({ valor: r, texto: r })),
+            ],
+          },
+          {
+            tipo: 'fecha',
+            clave: 'fechaDesde',
+            etiqueta: 'Fecha desde',
+          },
+          {
+            tipo: 'fecha',
+            clave: 'fechaHasta',
+            etiqueta: 'Fecha hasta',
+          }
+        ]}
+      />
       <TablaTareas tareas={tareasPagina} usuario={usuario} />
 
       <div className="d-flex justify-content-between align-items-center mt-3">

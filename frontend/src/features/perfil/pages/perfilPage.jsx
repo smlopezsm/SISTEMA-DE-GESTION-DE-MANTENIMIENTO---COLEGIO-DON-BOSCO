@@ -3,6 +3,7 @@ import { FaUser, FaShieldHalved, FaPen, FaCircleInfo } from 'react-icons/fa6';
 import { ETIQUETA_ROL } from '../../../shared/config/MenuPorRol';
 import { camposDeRol, ETIQUETA_CAMPO, } from '../../../shared/config/camposPerfilPorRol';
 import '../styles/PerfilPage.css';
+import EncabezadoPagina from '../../../shared/components/EncabezadoPagina';
 
 const CAMPOS_DESTACADOS = ['email'];
 
@@ -24,12 +25,11 @@ function iniciales(nombre, apellido) {
 
   return (
     <div className="perfil-page">
-      <div className="perfil-page__encabezado">
-        <h1 className="perfil-page__titulo">Perfil del usuario</h1>
-        <p className="perfil-page__subtitulo">
-          Visualizá y gestioná la información de tu perfil.
-        </p>
-      </div>
+      <EncabezadoPagina
+        icono={FaUser}
+        titulo="Perfil del Usuario"
+        subtitulo="Completá los Visualizá y gestioná la información de tu perfil"
+      />
 
       <div className="card border-0 shadow-sm mb-3">
         <div className="card-body p-4">

@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 import { useOutletContext } from 'react-router';
 import { FaBell } from 'react-icons/fa6';
 import '../styles/NotificacionesPage.css';
-
+import EncabezadoPagina from '../../../shared/components/EncabezadoPagina';
 import { obtenerNotificaciones } from '../services/notificacionesService';
 import TabsNotificaciones from '../components/TabsNotificaciones';
 import ItemNotificacion from '../../../shared/components/ItemNotificacion';
@@ -34,15 +34,12 @@ function NotificacionesPage() {
   return (
     <div className="notificaciones-page">
       {/* encabezado */}
-      <div className="d-flex gap-3 mb-4">
-        <div className="icono-titulo">
-          <FaBell size={22} />
-        </div>
-        <div>
-          <h1 className="h3 mb-1">Notificaciones</h1>
-          <p className="text-muted mb-0">Notificaciones recientes</p>
-        </div>
-      </div>
+      <EncabezadoPagina
+        icono={FaBell}
+        titulo="Notificaciones"
+        subtitulo="Notificaciones recientes"
+        tono="secundario"
+      />
 
       {/* tabs */}
       <div className="mb-3">

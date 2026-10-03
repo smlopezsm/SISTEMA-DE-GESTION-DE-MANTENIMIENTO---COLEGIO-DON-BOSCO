@@ -45,27 +45,18 @@ function EstadisticasPage() {
 
   return (
     <div className="estadisticas">
-      <div className="estadisticas__encabezado">
-        <div className="estadistica__icono">
-          <FaChartColumn size={22} />
-        </div>
-        <div>
-          <h1 className="estadisticas__titulo">Estadisticas</h1>
-          <p className="estadisticas__subtitulo">
-            Indicadores y métricas del sistema de mantenimiento
-          </p>
-        </div>
-      </div>
-      <select
-        className="form-select"
-        value={periodo}
-        onChange={(e) => setPeriodo(Number(e.target.value))}
-        aria-label="Período"
+      <EncabezadoPagina
+        icono={FaChartColumn}
+        titulo="Estadísticas"
+        subtitulo="Indicadores y métricas del sistema de mantenimiento"
+        tono="secundario"
       >
-        {PERIODOS.map((p) => (
-          <option key={p.valor} value={p.valor}>{p.texto}</option>
-        ))}
-      </select>
+        <select className="form-select" value={periodo} onChange={(e) => setPeriodo(Number(e.target.value))}>
+          {PERIODOS.map((p) => (
+            <option key={p.valor} value={p.valor}>{p.texto}</option>
+          ))}
+        </select>
+      </EncabezadoPagina>
 
       {/* indicadores */}
       <div className="row row-cols-2 row-cols-md-3 row-cols-xl-6 g-3 mb-4">
