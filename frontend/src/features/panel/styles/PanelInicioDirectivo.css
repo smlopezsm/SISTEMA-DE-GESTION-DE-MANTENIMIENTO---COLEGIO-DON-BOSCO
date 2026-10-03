@@ -1,8 +1,4 @@
-/* src/features/panel/styles/PanelInicioDirectivo.css */
 
-/* ============================
-   Filtros de la tabla de evaluación
-   ============================ */
 .filtros-evaluacion {
   display: grid;
   grid-template-columns: 1fr;
@@ -43,10 +39,6 @@
   font-size: 0.8rem;
   color: var(--texto-secundario);
 }
-
-/* ============================
-   Tabla de evaluación
-   ============================ */
 .tabla-evaluacion th {
   font-size: 0.8rem;
   font-weight: 600;

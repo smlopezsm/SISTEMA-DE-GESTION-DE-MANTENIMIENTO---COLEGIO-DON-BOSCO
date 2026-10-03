@@ -5,6 +5,7 @@ import Etiqueta from '../../../shared/components/Etiqueta';
 import Paginacion from '../../../shared/components/Paginacion';
 import { normalizar } from '../../../shared/utils/texto';
 import Filtros from '../../../shared/components/Filtros';
+import '../styles/TablaEvaluacion.css';
 const POR_PAGINA = 5;
 
 const formatoFecha = (iso) =>
@@ -88,7 +89,7 @@ function TablaEvaluacion({ tareas }) {
           </thead>
           <tbody>
             {visibles.length === 0 && (
-              <tr>
+              <tr key="vacio">
                 <td colSpan={7} className="text-center text-secondary py-4">
                   No hay tareas que coincidan con los filtros.
                 </td>

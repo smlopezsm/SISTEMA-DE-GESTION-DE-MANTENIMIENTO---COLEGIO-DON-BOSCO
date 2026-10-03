@@ -13,11 +13,13 @@
   border-bottom: 1px solid var(--color-principal);
   vertical-align: middle;
   white-space: nowrap; 
+  margin: 5px
 }
 
 .tabla-titulo{
   font-weight: 600;
-  color: var(--texto-principal);
+  color: var(--color-secundario);
+  margin: 10px;
 }
 
 .link-ver-todos {

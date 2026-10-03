@@ -10,7 +10,7 @@ import { normalizar } from '../../../shared/utils/texto';
 import TablaUsuarios from '../components/TablaUsuarios';
 import { obtenerUsuarios } from '../services/usuariosService';
 import Filtros from '../../../shared/components/Filtros';
-import '../styles/usuarios.css';
+import '../styles/Usuarios.css';
 
 const POR_PAGINA = 8;
 const FILTROS_VACIOS = { busqueda: '', rol: '', estado: '' };

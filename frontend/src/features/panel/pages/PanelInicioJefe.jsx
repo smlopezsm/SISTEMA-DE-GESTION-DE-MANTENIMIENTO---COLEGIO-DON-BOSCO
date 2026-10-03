@@ -123,6 +123,7 @@ function PanelInicioJefe() {
       </div>
 
       {/* Tabla de requerimientos */}
+      
       <div className="mb-3 mb-lg-4">
         <TablaRequerimientos requerimientos={requerimientos} />
       </div>

@@ -16,7 +16,7 @@ function TareasEnCurso({ tareas }) {
     <div className="card border-0 shadow-sm h-100">
       <div className="card-body">
         {/* Encabezado */}
-        <div className="d-flex align-items-center justify-content-between mb-3">
+        <div className="titulo-enca d-flex align-items-center justify-content-between mb-3">
           <h5 className="mb-0 d-flex align-items-center gap-2">
             <FaListCheck size={22} /> Tareas en curso
           </h5>
