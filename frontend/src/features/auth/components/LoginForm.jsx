@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { iniciarSesion } from "../services/authService";
 
 function LoginForm() {
@@ -89,6 +89,13 @@ function LoginForm() {
       >
         {cargando ? "Ingresando..." : "Ingresar"}
       </button>
+
+      <p className="mt-3 mb-0">
+        ¿No tenés cuenta?{" "}
+        <Link to="/registro" className="link-custom">
+          Registrate
+        </Link>
+      </p>
     </form>
   );
 }

@@ -1,75 +1,91 @@
-import { redirect } from "react-router";
-import ordenanzasData from "@data/ordenanzas.json";
-import directivosData from "@data/directivos.json";
-import jefeMantenimientoData from "@data/jefeMantenimiento.json";
+import { redirect } from 'react-router';
+import { apiRequest } from '../../../shared/api/apiClient';
 
-function obtenerTodosLosUsuarios() {
-  return [
-    ...ordenanzasData.ordenanzas,
-    ...directivosData.directivos,
-    jefeMantenimientoData.jefeMantenimiento,
-  ];
+const CLAVE_SESION = 'sesion';
+
+function leerSesion() {
+  try {
+    const datos = sessionStorage.getItem(CLAVE_SESION);
+    return datos ? JSON.parse(datos) : null;
+  } catch {
+    return null;
+  }
 }
 
-export function iniciarSesion(usuarioOEmail, password) {
-  const todos = obtenerTodosLosUsuarios();
+function guardarSesion(sesion) {
+  sessionStorage.setItem(CLAVE_SESION, JSON.stringify(sesion));
+}
 
-  const encontrado = todos.find(
-    (u) =>
-      (u.usuario === usuarioOEmail || u.email === usuarioOEmail) &&
-      u.password === password,
-  );
+export async function iniciarSesion(usuarioOEmail, password) {
+  const identificador = String(usuarioOEmail ?? '').trim();
 
-  if (!encontrado) {
-    throw new Error("Usuario o contraseña incorrectos.");
-  }
+  const data = await apiRequest('/auth/login', {
+    method: 'POST',
+    body: {
+      nombreUsuario: identificador,
+      email: identificador,
+      password,
+    },
+  });
 
-  if (!encontrado.activo) {
-    throw new Error("Esta cuenta está dada de baja.");
-  }
+  guardarSesion({ token: data.token, usuario: data.usuario });
+  return data.usuario;
+}
 
-  const sesion = { ...encontrado };
-
-  sessionStorage.setItem("sesion", JSON.stringify(sesion));
-  return sesion;
+export async function registrarUsuario(datos) {
+  return apiRequest('/auth/registro', {
+    method: 'POST',
+    body: datos,
+  });
 }
 
 export function cerrarSesion() {
-  sessionStorage.removeItem("sesion");
+  sessionStorage.removeItem(CLAVE_SESION);
 }
 
 export function obtenerSesion() {
-  const datos = sessionStorage.getItem("sesion");
-  return datos ? JSON.parse(datos) : null;
+  const sesion = leerSesion();
+  return sesion?.usuario ?? null;
+}
+
+export function obtenerToken() {
+  return leerSesion()?.token ?? null;
 }
 
 export function actualizarSesion(datosActualizados) {
-  const actual = obtenerSesion() ?? {};
-  const nuevo = { ...actual, ...datosActualizados };
-  sessionStorage.setItem("sesion", JSON.stringify(nuevo));
-  return nuevo;
+  const sesion = leerSesion();
+
+  if (!sesion) return null;
+
+  const actualizada = {
+    ...sesion,
+    usuario: { ...sesion.usuario, ...datosActualizados },
+  };
+
+  guardarSesion(actualizada);
+  return actualizada.usuario;
 }
 
 export function protegerRuta() {
-  const sesion = obtenerSesion();
-  if (!sesion) {
-    throw redirect("/login");
+  const sesion = leerSesion();
+
+  if (!sesion?.token || !sesion?.usuario) {
+    throw redirect('/login');
   }
-  return sesion;
+
+  return sesion.usuario;
 }
 
 export function requerirRol(rolesPermitidos) {
   return function loader() {
-    const sesion = protegerRuta();
-    console.log("ROL DE SESIÓN:", sesion.rol);
-    console.log("ROLES PERMITIDOS:", rolesPermitidos);
+    const usuario = protegerRuta();
 
-    if (!rolesPermitidos.includes(sesion.rol)) {
-      throw new Response("No tenés permisos para acceder a esta sección.", {
+    if (!rolesPermitidos.includes(usuario.rol)) {
+      throw new Response('No tenés permisos para acceder a esta sección.', {
         status: 403,
       });
     }
 
-    return sesion;
+    return usuario;
   };
 }

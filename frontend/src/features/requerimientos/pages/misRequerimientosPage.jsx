@@ -3,7 +3,7 @@ import { useOutletContext } from 'react-router';
 import { FaFileLines, FaLocationDot } from 'react-icons/fa6';
 import Encabezado from '../../../shared/components/EncabezadoPagina';
 import Filtros from '../../../shared/components/Filtros';
-import { obtenerRequerimientos } from '../services/requerimientosService';
+import { obtenerMisRequerimientos } from '../services/requerimientosApiService';
 import '../styles/MisRequerimientosPage.css';
 
 const ESTILO_ESTADO = {
@@ -44,24 +44,46 @@ function MisRequerimientosPage() {
   const usuario = useOutletContext();
   const [requerimientos, setRequerimientos] = useState([]);
   const [filtros, setFiltros] = useState(FILTROS_VACIOS);
+  const [cargando, setCargando] = useState(true);
+  const [error, setError] = useState('');
+  const [recarga, setRecarga] = useState(0);
 
   useEffect(() => {
-    setRequerimientos(obtenerRequerimientos());
-  }, []);
+    let activo = true;
 
-  // Solo los del usuario logueado
-  const misRequerimientos = useMemo(
-    () => requerimientos.filter((r) => r.reportadoPor === usuario?.nombre),
-    [requerimientos, usuario]
-  );
+    obtenerMisRequerimientos()
+      .then((data) => {
+        if (activo) setRequerimientos(data);
+      })
+      .catch((err) => {
+        if (activo) {
+          setError(err.message || 'No se pudieron cargar tus requerimientos.');
+        }
+      })
+      .finally(() => {
+        if (activo) setCargando(false);
+      });
 
-  // Lista única de sectores
+    return () => {
+      activo = false;
+    };
+  }, [recarga]);
+
+  const nombreCompleto = `${usuario?.nombre ?? ''} ${usuario?.apellido ?? ''}`.trim();
+
+  const misRequerimientos = useMemo(() => {
+    if (usuario?.rol === 'jefeMantenimiento') {
+      return requerimientos.filter((r) => r.reportadoPor === nombreCompleto);
+    }
+
+    return requerimientos;
+  }, [requerimientos, usuario?.rol, nombreCompleto]);
+
   const lugares = useMemo(
     () => [...new Set(misRequerimientos.map((r) => r.lugar))].sort(),
     [misRequerimientos]
   );
 
-  // Filtrado
   const filtrados = useMemo(() => {
     return misRequerimientos.filter((req) => {
       const coincideBusqueda =
@@ -91,16 +113,20 @@ function MisRequerimientosPage() {
     setFiltros(FILTROS_VACIOS);
   };
 
+  const reintentar = () => {
+    setCargando(true);
+    setError('');
+    setRecarga((n) => n + 1);
+  };
+
   return (
     <div className="mis-requerimientos">
-      {/* Encabezado unificado */}
       <Encabezado
         icono={FaFileLines}
         titulo="Mis requerimientos"
         subtitulo="Aquí podés ver todos los requerimientos que has emitido"
       />
 
-      {/* Filtros unificados */}
       <Filtros
         filtros={filtros}
         onCambiar={manejarCambioFiltro}
@@ -122,6 +148,7 @@ function MisRequerimientosPage() {
               { valor: 'asignado', texto: 'Asignado' },
               { valor: 'finalizada', texto: 'Finalizado' },
               { valor: 'rechazada', texto: 'Rechazado' },
+              { valor: 'cancelada', texto: 'Cancelado' },
             ],
           },
           {
@@ -141,9 +168,28 @@ function MisRequerimientosPage() {
         ]}
       />
 
-      {/* Tabla */}
       <div className="card border-0 shadow-sm">
-        {filtrados.length === 0 ? (
+        {cargando ? (
+          <div className="card-body text-center py-5">
+            <div className="spinner-border text-secondary" role="status">
+              <span className="visually-hidden">Cargando...</span>
+            </div>
+            <p className="text-muted mt-3 mb-0">Cargando tus requerimientos...</p>
+          </div>
+        ) : error ? (
+          <div className="card-body text-center py-5">
+            <div className="alert alert-danger" role="alert">
+              {error}
+            </div>
+            <button
+              type="button"
+              className="btn btn-outline-primary btn-sm"
+              onClick={reintentar}
+            >
+              Reintentar
+            </button>
+          </div>
+        ) : filtrados.length === 0 ? (
           <div className="card-body text-center text-muted py-5">
             <p className="mb-1 fw-medium">No tenés requerimientos para mostrar</p>
             <small>Cuando emitas uno, va a aparecer acá.</small>

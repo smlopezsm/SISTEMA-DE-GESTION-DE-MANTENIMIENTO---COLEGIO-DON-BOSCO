@@ -1,0 +1,14 @@
+# Dependencias
+node_modules/
+dist/
+
+# Variables de entorno (nunca subir credenciales)
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+
+# Material de referencia de la cátedra (no forma parte del código del proyecto)
+contexto/
