@@ -6,7 +6,7 @@ import LayoutGestor from "./shared/layout/gestor/LayoutGestor";
 import AccesoDenegadoPage from "./shared/pages/AccesoDenegadoPage";
 //publico
 import { HomePage } from "./features/home";
-import { LoginPage } from "./features/auth";
+import { LoginPage, RegistroPage } from "./features/auth";
 import { ContactoPage } from "./features/contacto";
 import {
   protegerRuta,
@@ -60,6 +60,11 @@ export const router = createBrowserRouter([
   {
     path: "/login",
     element: <LoginPage />,
+  },
+
+  {
+    path: "/registro",
+    element: <RegistroPage />,
   },
 
   // privado

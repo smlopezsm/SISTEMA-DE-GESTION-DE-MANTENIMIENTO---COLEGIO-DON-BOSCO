@@ -1,43 +1,80 @@
 import { useState, useRef } from 'react';
-import { useNavigate, useOutletContext, Link } from 'react-router';
-import { FaArrowLeft, FaFileLines, FaLocationDot, FaCloudArrowUp, FaImage, FaXmark, } from 'react-icons/fa6';
-import { crearRequerimiento } from '../services/requerimientosService';
+import { useNavigate } from 'react-router';
+import { FaFileLines, FaLocationDot, FaCloudArrowUp, FaXmark } from 'react-icons/fa6';
+import { crearRequerimiento } from '../services/requerimientosApiService';
+import { useToast } from '../../../shared/context/ToastContext';
 import Encabezado from '../../../shared/components/EncabezadoPagina';
 import '../styles/EmitirRequerimientoPage.css';
 
-const LUGARES = [ 'Aula 12', 'Baño Pabellón B', 'Patio', 'Laboratorio 3', 'Dirección', 'Pasillo principal', 'Biblioteca', 'Gimnasio', 'Cocina', 'Otro', ];
+const LUGARES = [
+  'Aula 12',
+  'Baño Pabellón B',
+  'Patio',
+  'Laboratorio 3',
+  'Dirección',
+  'Pasillo principal',
+  'Biblioteca',
+  'Gimnasio',
+  'Cocina',
+  'Otro',
+];
 
 const MAX_TITULO = 100;
 const MAX_DESCRIPCION = 500;
 
 function EmitirRequerimientoPage() {
   const navigate = useNavigate();
-  const usuario = useOutletContext();
+  const { mostrarToast } = useToast();
   const inputFileRef = useRef(null);
 
-  const [formData, setFormData] = useState({ titulo: '', descripcion: '', lugar: '', });
-  const [imagen, setImagen] = useState(null); 
+  const [formData, setFormData] = useState({ titulo: '', descripcion: '', lugar: '' });
+  const [imagen, setImagen] = useState(null);
   const [error, setError] = useState('');
   const [dragging, setDragging] = useState(false);
-
+  const [guardando, setGuardando] = useState(false);
+  const [leyendoImagen, setLeyendoImagen] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     if (error) setError('');
   };
+
   const aceptarImagen = (file) => {
     if (!file) return;
+
     if (!file.type.startsWith('image/')) {
       setError('Solo se permiten imágenes (JPG, PNG).');
       return;
     }
+
     if (file.size > 5 * 1024 * 1024) {
       setError('La imagen no puede superar los 5 MB.');
       return;
     }
-    const url = URL.createObjectURL(file);
-    setImagen({ archivo: file, url, nombre: file.name, peso: file.size });
+
+    setLeyendoImagen(true);
     setError('');
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      setImagen({
+        archivo: file,
+        url: reader.result,
+        nombre: file.name,
+        peso: file.size,
+      });
+    };
+
+    reader.onerror = () => {
+      setError('No se pudo leer la imagen seleccionada.');
+    };
+
+    reader.onloadend = () => {
+      setLeyendoImagen(false);
+    };
+
+    reader.readAsDataURL(file);
   };
 
   const handleFileInput = (e) => aceptarImagen(e.target.files?.[0]);
@@ -56,38 +93,49 @@ function EmitirRequerimientoPage() {
   const handleDragLeave = () => setDragging(false);
 
   const quitarImagen = () => {
-    if (imagen?.url) URL.revokeObjectURL(imagen.url);
     setImagen(null);
     if (inputFileRef.current) inputFileRef.current.value = '';
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
+
     if (!formData.titulo.trim() || !formData.descripcion.trim() || !formData.lugar.trim()) {
       setError('Por favor completá los campos obligatorios (*).');
       return;
     }
 
-    crearRequerimiento({
-      ...formData,
-      reportadoPor: usuario?.nombre ?? 'Usuario',
-      rolReportante: usuario?.rol ?? 'ordenanza',
-      imagen: imagen?.url ?? null,
-    });
+    setGuardando(true);
 
-    navigate('/gestor/requerimientos/mis-requerimientos');
+    try {
+      const creado = await crearRequerimiento({
+        titulo: formData.titulo.trim(),
+        descripcion: formData.descripcion.trim(),
+        sector: formData.lugar,
+        imagen: imagen?.url ?? null,
+      });
+
+      mostrarToast(
+        `Requerimiento REQ-${String(creado.id).padStart(4, '0')} emitido correctamente`,
+        'success',
+      );
+      navigate('/gestor/requerimientos/mis-requerimientos');
+    } catch (err) {
+      setError(err.message || 'No se pudo emitir el requerimiento.');
+    } finally {
+      setGuardando(false);
+    }
   };
 
   return (
     <div className="emitir-requerimiento">
-      {/* encabezado */}
       <Encabezado
         icono={FaFileLines}
         titulo="Emitir requerimiento"
         subtitulo="Completá la información del problema edilicio o de infraestructura que querés reportar."
       />
 
-      {/* error */}
       {error && (
         <div className="alert alert-danger mb-3" role="alert">
           {error}
@@ -95,11 +143,9 @@ function EmitirRequerimientoPage() {
       )}
 
       <form onSubmit={handleSubmit}>
-        {/* card */}
         <div className="card border-0 shadow-sm mb-3">
           <div className="card-body p-3 p-md-4">
             <div className="row g-3 mb-3">
-              {/* titulo */}
               <div className="col-12 col-md-6">
                 <label className="form-label">
                   Título <span className="text-danger">*</span>
@@ -118,7 +164,6 @@ function EmitirRequerimientoPage() {
                 </small>
               </div>
 
-              {/* sector */}
               <div className="col-12 col-md-6">
                 <label className="form-label">
                   Sector <span className="text-danger">*</span>
@@ -133,14 +178,15 @@ function EmitirRequerimientoPage() {
                   >
                     <option value="">Seleccioná el sector</option>
                     {LUGARES.map((l) => (
-                      <option key={l} value={l}>{l}</option>
+                      <option key={l} value={l}>
+                        {l}
+                      </option>
                     ))}
                   </select>
                 </div>
               </div>
             </div>
 
-            {/* descripcion */}
             <div className="mb-0">
               <label className="form-label">
                 Descripción detallada <span className="text-danger">*</span>
@@ -161,7 +207,6 @@ function EmitirRequerimientoPage() {
           </div>
         </div>
 
-        {/* imagen */}
         <div className="card border-0 shadow-sm mb-4">
           <div className="card-body p-3 p-md-4">
             <label className="form-label mb-3">Agregar imagen (opcional)</label>
@@ -192,7 +237,6 @@ function EmitirRequerimientoPage() {
                 />
               </div>
 
-              {/* vista previa */}
               {imagen && (
                 <div className="emitir-requerimiento__preview">
                   <img src={imagen.url} alt={imagen.nombre} />
@@ -215,16 +259,28 @@ function EmitirRequerimientoPage() {
                 </div>
               )}
             </div>
+
+            {leyendoImagen && (
+              <small className="text-muted d-block mt-2">Procesando imagen...</small>
+            )}
           </div>
         </div>
 
-        {/* botones */}
         <div className="d-flex gap-2 justify-content-end">
-          <button type="button" className="btn btn-light border" onClick={() => navigate(-1)} >
+          <button
+            type="button"
+            className="btn btn-light border"
+            onClick={() => navigate(-1)}
+            disabled={guardando}
+          >
             Cancelar
           </button>
-          <button type="submit" className="btn btn-primary">
-            Emitir requerimiento
+          <button
+            type="submit"
+            className="btn btn-primary"
+            disabled={guardando || leyendoImagen}
+          >
+            {guardando ? 'Emitiendo...' : 'Emitir requerimiento'}
           </button>
         </div>
       </form>

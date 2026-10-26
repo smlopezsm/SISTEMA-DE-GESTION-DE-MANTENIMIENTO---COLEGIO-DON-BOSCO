@@ -1,0 +1,21 @@
+.registro-page .card-custom {
+  max-width: 760px;
+  padding: var(--spacing-xl);
+}
+
+.registro-page .form-control-custom {
+  padding: 10px 14px;
+}
+
+.registro-page .form-label {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--color-negro);
+}
+
+@media (max-width: 768px) {
+  .registro-page .card-custom {
+    max-width: 95%;
+  }
+}
