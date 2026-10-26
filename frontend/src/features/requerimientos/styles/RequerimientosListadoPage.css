@@ -1,0 +1,93 @@
+
+.requerimientos-listado {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.requerimientos-listado .btn-primary {
+  background-color: var(--color-principal);
+  border-color: var(--color-principal);
+  color: var(--color-blanco);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-medium);
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.requerimientos-listado .btn-primary:hover {
+  background-color: var(--color-secundario);
+  color:  var(--color-blanco);
+  border-color: var(--color-secundario);
+}
+
+.requerimientos-listado .pagination .page-link {
+  color: var(--texto-secundario);
+  border-color: var(--color-borde);
+  background-color: var(--color-blanco);
+}
+
+.requerimientos-listado .pagination .page-link:hover {
+  color: var(--color-principal);
+  background-color: #FDE8E9;
+  border-color: var(--color-principal);
+}
+
+.requerimientos-listado .pagination .page-item.active .page-link {
+  background-color: var(--color-principal);
+  border-color: var(--color-principal);
+  color: var(--color-blanco);
+}
+
+.requerimientos-listado .pagination .page-item.disabled .page-link {
+  color: var(--texto-secundario);
+  opacity: 0.5;
+}
+
+/* contador */
+.requerimientos-listado small.text-muted {
+  color: var(--texto-secundario) !important;
+}
+
+
+@media (max-width: 991.98px) {
+  .requerimientos-listado .icono-titulo {
+    width: 42px;
+    height: 42px;
+  }
+
+  .requerimientos-listado .icono-titulo svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .requerimientos-listado h1 {
+    font-size: 1.4rem;
+  }
+
+  .requerimientos-listado .btn-primary {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.75rem;
+  }
+
+  /* En móvil, el botón "Nuevo requerimiento" ocupa toda la fila */
+  .requerimientos-listado .btn-primary.w-100-movil {
+    width: 100%;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .requerimientos-listado .icono-titulo {
+    width: 36px;
+    height: 36px;
+  }
+
+  .requerimientos-listado .icono-titulo svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .requerimientos-listado h1 {
+    font-size: 1.25rem;
+  }
+}

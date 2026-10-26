@@ -1,0 +1,11 @@
+
+.notificaciones-page {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.notificaciones-page .card {
+  overflow: hidden;
+  overflow:  visible !important;
+}
+

@@ -1,0 +1,45 @@
+
+.filtros-personal .form-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--texto-secundario);
+  margin-bottom: 0.25rem;
+}
+
+.filtros-personal .form-control,
+.filtros-personal .form-select {
+  border-color: var(--color-borde);
+  border-radius: var(--radius-small);
+  font-size: 0.875rem;
+}
+
+.filtros-personal .form-control:focus,
+.filtros-personal .form-select:focus {
+  border-color: var(--color-principal);
+  box-shadow: 0 0 0 0.2rem rgba(228, 29, 34, 0.15);
+  outline: none;
+}
+
+.filtros-personal .input-group-text {
+  border-color: var(--color-borde);
+  border-right: 0;
+  background-color: var(--color-blanco);
+}
+
+.filtros-personal .input-group .form-control {
+  border-left: 0;
+}
+
+
+@media (max-width: 575.98px) {
+  .filtros-personal .card-body {
+    padding: 0.75rem;
+  }
+
+  .filtros-personal .form-control,
+  .filtros-personal .form-select {
+    font-size: 0.8rem;
+  }
+}

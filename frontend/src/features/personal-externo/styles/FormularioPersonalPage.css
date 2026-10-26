@@ -1,0 +1,15 @@
+/* src/features/personalExterno/styles/FormularioPersonalPage.css */
+
+.formulario-personal-page {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.formulario-personal-page .btn-link {
+  color: var(--texto-secundario) !important;
+  font-size: 0.85rem;
+}
+
+.formulario-personal-page .btn-link:hover {
+  color: var(--color-principal) !important;
+}

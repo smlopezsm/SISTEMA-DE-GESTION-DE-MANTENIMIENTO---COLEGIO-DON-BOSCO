@@ -1,0 +1,148 @@
+
+.tabla-personal thead th {
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.4px;
+  color: var(--texto-secundario);
+  border-bottom: 1px solid var(--color-borde);
+  background-color: #FAFBFC;
+  padding-top: 0.85rem;
+  padding-bottom: 0.85rem;
+}
+
+.tabla-personal tbody td {
+  vertical-align: middle;
+  border-bottom: 1px solid var(--color-borde);
+  font-size: 0.875rem;
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
+}
+
+.tabla-personal tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.tabla-personal tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.015);
+}
+
+
+/* estado */
+.badge-personal {
+  display: inline-block;
+  padding: 0.3em 0.7em;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 999px;
+}
+
+.badge-personal--activo {
+  background-color: var(--estado-finalizada-bg);
+  color: var(--estado-finalizada-texto);
+}
+
+.badge-personal--inactivo {
+  background-color: var(--estado-demorada-bg);
+  color: var(--estado-demorada-texto);
+}
+
+/*boton editar */
+.tabla-personal .btn-outline-primary {
+  color: var(--color-principal);
+  border-color: var(--color-principal);
+  font-size: 0.75rem;
+  padding: 0.35rem 0.7rem;
+  border-radius: var(--radius-small);
+  font-weight: 500;
+}
+
+.tabla-personal .btn-outline-primary:hover {
+  background-color: var(--color-principal);
+  color: var(--color-blanco);
+  border-color: var(--color-principal);
+}
+
+/* boton eliminar */
+.tabla-personal .btn-outline-secondary {
+  color: var(--texto-secundario);
+  font-size: 0.75rem;
+  padding: 0.35rem 0.5rem;
+  border-radius: var(--radius-small);
+}
+
+.tabla-personal .btn-outline-secondary:hover {
+  background-color: var(--color-fondo);
+  color: var(--estado-demorada-solid);
+}
+
+/* vista del celu */
+
+.personal-card {
+  transition: box-shadow 0.15s ease;
+}
+
+.personal-card__nombre {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--texto-principal);
+  line-height: 1.2;
+}
+
+.personal-card__divisor {
+  height: 1px;
+  background-color: var(--color-borde);
+  margin: 0.75rem 0;
+}
+
+.personal-card__detalle {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.personal-card__campo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  font-size: 0.8rem;
+}
+
+.personal-card__label {
+  color: var(--texto-secundario);
+  flex-shrink: 0;
+  font-weight: 500;
+}
+
+.personal-card__valor {
+  text-align: right;
+  color: var(--texto-principal);
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.personal-card .btn-primary {
+  background-color: var(--color-principal);
+  border-color: var(--color-principal);
+  color: var(--color-blanco);
+  font-weight: 500;
+  padding: 0.5rem;
+  border-radius: var(--radius-small);
+  font-size: 0.85rem;
+}
+
+.personal-card .btn-primary:hover {
+  background-color: var(--color-hover);
+  border-color: var(--color-hover);
+}
+
+.personal-card .btn-outline-danger {
+  padding: 0.5rem 0.65rem;
+  border-radius: var(--radius-small);
+}
+
+.personal-card .badge-personal {
+  font-size: 0.7rem;
+  padding: 0.3em 0.7em;
+}

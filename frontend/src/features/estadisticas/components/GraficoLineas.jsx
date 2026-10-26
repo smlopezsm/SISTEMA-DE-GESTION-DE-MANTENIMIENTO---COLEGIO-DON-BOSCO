@@ -1,5 +1,3 @@
-// Gráfico de líneas simple en SVG (sin librerías).
-// series: [{ clave, nombre, valores: number[] }] — colores: objeto { [clave]: 'var(--...)' }
 const ANCHO = 420;
 const ALTO = 220;
 const M = { arriba: 12, derecha: 16, abajo: 28, izquierda: 62 };

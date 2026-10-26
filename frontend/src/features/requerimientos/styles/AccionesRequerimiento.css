@@ -1,0 +1,53 @@
+
+.acciones-requerimiento .btn-primary {
+  background-color: var(--color-principal);
+  border-color: var(--color-principal);
+  color: var(--color-blanco);
+  font-weight: 500;
+  padding: 0.7rem 1rem;
+  border-radius: var(--radius-small);
+  font-size: 0.9rem;
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.acciones-requerimiento .btn-primary:hover {
+  background-color: var(--color-hover);
+  border-color: var(--color-hover);
+  box-shadow: 0 4px 12px rgba(228, 29, 34, 0.2);
+}
+
+.acciones-requerimiento .btn-primary:focus {
+  box-shadow: 0 0 0 0.2rem rgba(228, 29, 34, 0.2);
+}
+
+/* mensaje */
+.acciones-requerimiento .alert-info {
+  background-color: #EEF2FF;
+  border: 0;
+  color: #3730A3;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  padding: 0.75rem;
+  border-radius: var(--radius-medium);
+}
+
+.acciones-requerimiento .alert-info svg {
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+
+@media (max-width: 767.98px) {
+  .acciones-requerimiento .card-body {
+    padding: 1rem;
+  }
+
+  .acciones-requerimiento .btn-primary {
+    font-size: 0.85rem;
+    padding: 0.65rem;
+  }
+
+  .acciones-requerimiento .alert-info {
+    font-size: 0.72rem;
+  }
+}

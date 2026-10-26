@@ -1,0 +1,74 @@
+
+.detalle-tarea-page {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* encabezado */
+.detalle-tarea-page .icono-titulo {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-medium);
+  background-color: #FDE8E9;
+  color: var(--color-principal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+
+/* boton volver */
+.detalle-tarea-page .btn-link {
+  color: var(--texto-secundario) !important;
+  font-size: 0.85rem;
+  transition: color 0.15s ease;
+}
+
+.detalle-tarea-page .btn-link:hover {
+  color: var(--color-principal) !important;
+}
+
+
+@media (max-width: 991.98px) {
+  .detalle-tarea-page .icono-titulo {
+    width: 42px;
+    height: 42px;
+  }
+
+  .detalle-tarea-page .icono-titulo svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .detalle-tarea-page h1 {
+    font-size: 1.4rem;
+  }
+
+  .detalle-tarea-page .btn-link {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .detalle-tarea-page .icono-titulo {
+    width: 36px;
+    height: 36px;
+  }
+
+  .detalle-tarea-page .icono-titulo svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .detalle-tarea-page h1 {
+    font-size: 1.25rem;
+  }
+
+  /* Menos espacio entre las cards en móvil */
+  .detalle-tarea-page .row.g-4 {
+    --bs-gutter-y: 1rem;
+  }
+}

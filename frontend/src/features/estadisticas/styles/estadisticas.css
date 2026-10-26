@@ -1,4 +1,14 @@
-/* Variación (↑ ↓ =) */
+
+.estadisticas {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.form-select {
+  max-width: 100%;
+  margin-bottom: 1.5rem;
+}
+
 .variacion {
   display: inline-flex;
   align-items: center;
@@ -20,7 +30,7 @@
   color: var(--texto-secundario);
 }
 
-/* Sectores más afectados */
+/* sectores mas afectados */
 .barras-sectores {
   display: flex;
   flex-direction: column;
@@ -51,7 +61,7 @@
   color: var(--texto-secundario);
 }
 
-/* Dona + leyenda */
+/* dona */
 .gastos {
   display: flex;
   flex-wrap: wrap;
@@ -89,38 +99,7 @@
   border-radius: 50%;
 }
 
-/* Rendimiento del personal */
-.tabla-personal {
-  width: 100%;
-  font-size: 0.85rem;
-}
-.tabla-personal th {
-  padding: var(--spacing-sm) var(--spacing-xs);
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--texto-secundario);
-}
-.tabla-personal td {
-  padding: var(--spacing-sm) var(--spacing-xs);
-}
-.tasa {
-  display: grid;
-  grid-template-columns: 40px 1fr;
-  align-items: center;
-  gap: var(--spacing-sm);
-}
-.tasa__pista {
-  height: 8px;
-  background: var(--color-fondo);
-  border-radius: 4px;
-}
-.tasa__barra {
-  height: 100%;
-  background: var(--estado-finalizada-solid);
-  border-radius: 4px;
-}
-
-/* Gráfico de líneas */
+/* grafico */
 .grafico-lineas svg {
   width: 100%;
   height: auto;
@@ -147,7 +126,7 @@
   gap: 6px;
 }
 
-/* Tiempo promedio */
+/* tiempo promedio */
 .tiempo {
   display: flex;
   align-items: center;
@@ -185,3 +164,4 @@
   flex-shrink: 0;
   margin-top: 3px;
 }
+

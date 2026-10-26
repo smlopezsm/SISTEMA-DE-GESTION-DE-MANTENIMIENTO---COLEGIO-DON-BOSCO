@@ -1,0 +1,32 @@
+
+.resumen-personal-card__avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: var(--color-secundario);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin: 0 auto 1rem;
+}
+
+.badge-personal-resumen {
+  display: inline-block;
+  padding: 0.35em 0.85em;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 999px;
+}
+
+.badge-personal-resumen--activo {
+  background-color: var(--estado-finalizada-bg);
+  color: var(--estado-finalizada-texto);
+}
+
+.badge-personal-resumen--inactivo {
+  background-color: var(--estado-demorada-bg);
+  color: var(--estado-demorada-texto);
+}

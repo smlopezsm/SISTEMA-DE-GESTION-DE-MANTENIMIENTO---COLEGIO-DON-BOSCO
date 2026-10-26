@@ -1,19 +1,5 @@
 import { useEffect, useState } from 'react';
-import {
-  FaChartColumn,
-  FaFileLines,
-  FaCircleCheck,
-  FaClock,
-  FaHourglassHalf,
-  FaCircleXmark,
-  FaDollarSign,
-  FaLocationDot,
-  FaUsers,
-  FaChartLine,
-  FaChartPie,
-  FaCalendarCheck,
-  FaLightbulb,
-} from 'react-icons/fa6';
+import { FaChartColumn, FaFileLines, FaCircleCheck, FaClock, FaHourglassHalf, FaCircleXmark, FaDollarSign, FaLocationDot, FaUsers, FaChartLine, FaChartPie, FaCalendarCheck, FaLightbulb, } from 'react-icons/fa6';
 import EncabezadoPagina from '../../../shared/components/EncabezadoPagina';
 import TarjetaResumen from '../../../shared/components/TarjetaResumen';
 import SeccionCard from '../../../shared/components/SeccionCard';
@@ -33,18 +19,9 @@ const KPI_CONFIG = {
   gastos: { icono: FaDollarSign, tono: 'finalizada' },
 };
 
-const COLOR_GASTO = {
-  materiales: 'var(--estado-proceso-solid)',
-  'personal-externo': 'var(--estado-con-tarea-solid)',
-  servicios: 'var(--estado-finalizada-solid)',
-  otros: 'var(--estado-pendiente-solid)',
-};
+const COLOR_GASTO = { materiales: 'var(--estado-proceso-solid)', 'personal-externo': 'var(--estado-con-tarea-solid)', servicios: 'var(--estado-finalizada-solid)', otros: 'var(--estado-pendiente-solid)', };
 
-const PERIODOS = [
-  { valor: 7, texto: 'Últimos 7 días' },
-  { valor: 30, texto: 'Últimos 30 días' },
-  { valor: 90, texto: 'Últimos 90 días' },
-];
+const PERIODOS = [{ valor: 7, texto: 'Últimos 7 días' }, { valor: 30, texto: 'Últimos 30 días' }, { valor: 90, texto: 'Últimos 90 días' },];
 
 const moneda = (n) => `$${n.toLocaleString('es-AR')}`;
 const suma = (lista, campo) => lista.reduce((acc, item) => acc + item[campo], 0);
@@ -67,25 +44,21 @@ function EstadisticasPage() {
   const { dias, variacion } = datos.tiempoResolucion;
 
   return (
-    <>
+    <div className="estadisticas">
       <EncabezadoPagina
         icono={FaChartColumn}
         titulo="Estadísticas"
-        subtitulo="Indicadores y métricas del sistema de mantenimiento."
+        subtitulo="Indicadores y métricas del sistema de mantenimiento"
+        tono="secundario"
       >
-        <select
-          className="form-select"
-          value={periodo}
-          onChange={(e) => setPeriodo(Number(e.target.value))}
-          aria-label="Período"
-        >
+        <select className="form-select" value={periodo} onChange={(e) => setPeriodo(Number(e.target.value))}>
           {PERIODOS.map((p) => (
             <option key={p.valor} value={p.valor}>{p.texto}</option>
           ))}
         </select>
       </EncabezadoPagina>
 
-      {/* Indicadores */}
+      {/* indicadores */}
       <div className="row row-cols-2 row-cols-md-3 row-cols-xl-6 g-3 mb-4">
         {datos.kpis.map((k) => {
           const { icono, tono } = KPI_CONFIG[k.clave];
@@ -108,7 +81,7 @@ function EstadisticasPage() {
       </div>
 
       <div className="row g-3 mb-3">
-        {/* Sectores más afectados */}
+        {/* sectores mas afectados */}
         <div className="col-xl-4">
           <SeccionCard
             icono={FaLocationDot}
@@ -134,7 +107,7 @@ function EstadisticasPage() {
           </SeccionCard>
         </div>
 
-        {/* Gastos en insumos y servicios */}
+        {/* gastos en insumos y servicios */}
         <div className="col-xl-4">
           <SeccionCard
             icono={FaDollarSign}
@@ -162,44 +135,7 @@ function EstadisticasPage() {
           </SeccionCard>
         </div>
 
-        {/* Rendimiento del personal */}
-        <div className="col-xl-4">
-          <SeccionCard
-            icono={FaUsers}
-            titulo="Rendimiento del personal"
-            subtitulo={`Tareas completadas por persona (últimos ${periodo} días).`}
-          >
-            <table className="tabla-personal">
-              <thead>
-                <tr>
-                  <th>Nombre</th>
-                  <th>Tareas realizadas</th>
-                  <th>Tasa de finalización</th>
-                </tr>
-              </thead>
-              <tbody>
-                {datos.personal.map((p) => (
-                  <tr key={p.nombre}>
-                    <td>{p.nombre}</td>
-                    <td className="text-center">{p.realizadas}</td>
-                    <td>
-                      <div className="tasa">
-                        <span>{p.tasa}%</span>
-                        <div className="tasa__pista">
-                          <div className="tasa__barra" style={{ width: `${p.tasa}%` }} />
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </SeccionCard>
-        </div>
-      </div>
-
-      <div className="row g-3">
-        {/* Evolución de gastos */}
+        {/* evolucion de gastos */}
         <div className="col-xl-4">
           <SeccionCard
             icono={FaChartLine}
@@ -215,7 +151,7 @@ function EstadisticasPage() {
           </SeccionCard>
         </div>
 
-        {/* Estado actual de tareas */}
+        {/* estado actual de tareas */}
         <div className="col-xl-4">
           <SeccionCard
             icono={FaChartPie}
@@ -238,7 +174,7 @@ function EstadisticasPage() {
           </SeccionCard>
         </div>
 
-        {/* Tiempo promedio de resolución */}
+        {/* tiempo promedio */}
         <div className="col-xl-4">
           <SeccionCard
             icono={FaClock}
@@ -261,7 +197,7 @@ function EstadisticasPage() {
           </SeccionCard>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

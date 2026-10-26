@@ -3,53 +3,39 @@ import { useNavigate } from "react-router";
 import { iniciarSesion } from "../services/authService";
 
 function LoginForm() {
-
-  // useNavigate() devuelve una funcion para navegar
   const navigate = useNavigate();
 
-  //campos controlados
   const [usuario, setUsuario] = useState("");
   const [password, setPassword] = useState("");
-
-  //estados para validacion y error
-  const [validado, setValidado] = useState(false);
   const [error, setError] = useState("");
   const [cargando, setCargando] = useState(false);
 
-  //funcion para manejar el envio del formulario
-  async function manejarEnvio(evento) {
+  const hayErrorCredenciales = Boolean(error);
 
-    //evitar recargar la pagina
+  async function manejarEnvio(evento) {
     evento.preventDefault();
 
     setError("");
-    setValidado(true);
 
-    //si el formulario no es valido, no hacer nada
-    if (!evento.currentTarget.checkValidity()) return;
+    if (!usuario.trim() || !password) {
+      setError("Completá usuario y contraseña.");
+      return;
+    }
 
     setCargando(true);
 
-    //llamar al servicio de inicio de sesion
     try {
-      
       await iniciarSesion(usuario.trim(), password);
       navigate("/gestor", { replace: true });
-    
     } catch (e) {
-      //si hay un error, mostrarlo
       setError(e.message);
     } finally {
-      
       setCargando(false);
-    
     }
   }
 
   return (
-    //formulario de login
-    <form noValidate className={validado ? "was-validated" : ""} onSubmit={manejarEnvio}>
-      {/* mostrar mensaje de error si existe */}
+    <form noValidate onSubmit={manejarEnvio}>
       {error && (
         <div className="alert alert-danger" role="alert">
           {error}
@@ -59,40 +45,50 @@ function LoginForm() {
       <div className="mb-3">
         <input
           type="text"
-          className="form-control form-control-custom"
+          className={`form-control form-control-custom ${
+            hayErrorCredenciales ? "is-invalid" : ""
+          }`}
           placeholder="Usuario o correo electrónico"
           aria-label="Usuario o correo electrónico"
           autoComplete="username"
           value={usuario}
-          onChange={(e) => setUsuario(e.target.value)}
-          required
+          onChange={(e) => {
+            setUsuario(e.target.value);
+            if (error) setError("");
+          }}
         />
-        <div className="invalid-feedback">Ingresá tu usuario o correo.</div>
+        <div className="invalid-feedback">
+          Ingresá tu usuario o correo.
+        </div>
       </div>
 
       <div className="mb-3">
         <input
           type="password"
-          className="form-control form-control-custom"
+          className={`form-control form-control-custom ${
+            hayErrorCredenciales ? "is-invalid" : ""
+          }`}
           placeholder="Contraseña"
           aria-label="Contraseña"
           autoComplete="current-password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
+          onChange={(e) => {
+            setPassword(e.target.value);
+            if (error) setError("");
+          }}
         />
-        <div className="invalid-feedback">Ingresá tu contraseña.</div>
+        <div className="invalid-feedback">
+          Ingresá tu contraseña.
+        </div>
       </div>
 
-      {/* boton de envio */}
-      <button type="submit" className="btn w-100 boton-ingresar" disabled={cargando}>
+      <button
+        type="submit"
+        className="btn w-100 boton-ingresar"
+        disabled={cargando}
+      >
         {cargando ? "Ingresando..." : "Ingresar"}
       </button>
-
-      <div className="mt-4 text-center">
-        {/* implementar para recuperar contraseña */}
-        <a href="#" className="link-custom">¿Olvidaste tu contraseña?</a>
-      </div>
     </form>
   );
 }

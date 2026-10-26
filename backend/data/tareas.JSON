@@ -1,36 +1,4 @@
 {
-  "proximas": [
-    {
-      "id": "T-0128",
-      "titulo": "Reparación de calefacción",
-      "prioridad": "alta",
-      "fechaPrevista": "2025-06-25"
-    },
-    {
-      "id": "T-0129",
-      "titulo": "Cambio de luminaria",
-      "prioridad": "media",
-      "fechaPrevista": "2025-06-26"
-    },
-    {
-      "id": "T-0130",
-      "titulo": "Pintura de aulas",
-      "prioridad": "baja",
-      "fechaPrevista": "2025-06-27"
-    },
-    {
-      "id": "T-0131",
-      "titulo": "Reparación de vereda",
-      "prioridad": "alta",
-      "fechaPrevista": "2025-06-28"
-    },
-    {
-      "id": "T-0132",
-      "titulo": "Mantenimiento de aire",
-      "prioridad": "media",
-      "fechaPrevista": "2025-06-30"
-    }
-  ],
   "porEstado": [
     { "estado": "Pendiente",  "clave": "pendiente",  "valor": 8 },
     { "estado": "En proceso", "clave": "en-proceso", "valor": 6 },
@@ -39,5 +7,306 @@
     { "estado": "Finalizada", "clave": "finalizada", "valor": 12 },
     { "estado": "Aprobada",   "clave": "aprobada",   "valor": 4 },
     { "estado": "Rechazada",  "clave": "rechazada",  "valor": 1 }
+  ],
+  "tareas": [
+    {
+      "id": "T-0128",
+      "requerimientoId": "REQ-0342",
+      "requerimientoTitulo": "Fuga de agua en baño",
+      "titulo": "Reparación de cañería",
+      "descripcion": "Reparar la pérdida de agua en el baño del pabellón B.",
+      "lugar": "Pabellón B - Baño",
+      "reportadoPor": "María González",
+      "rolReportante": "Ordenanza",
+      "prioridad": "alta",
+      "estado": "en-proceso",
+      "responsable": {
+        "nombre": "Carlos Méndez",
+        "tipo": "interno"
+      },
+      "telefono": "+54 9 2664 12-3456",
+      "requiereCompra": false,
+      "detalleCompra": "",
+      "observaciones": "Se necesita cerrar el paso de agua antes de reparar.",
+      "fechaCreacion": "25/06/2025 09:12",
+      "fechaFinalizacion": null,
+      "historial": [
+        {
+          "fecha": "25/06/2025 09:12",
+          "estado": "pendiente",
+          "motivo": "Tarea creada a partir del requerimiento REQ-0342"
+        },
+        {
+          "fecha": "25/06/2025 10:30",
+          "estado": "en-proceso",
+          "motivo": "El técnico Carlos Méndez inició la reparación."
+        }
+      ]
+    },
+    {
+      "id": "T-0127",
+      "requerimientoId": "REQ-0341",
+      "requerimientoTitulo": "Luz de emergencia sin funcionar",
+      "titulo": "Cambio de luminaria",
+      "descripcion": "Reemplazar la luminaria de emergencia del pasillo principal.",
+      "lugar": "Pasillo principal",
+      "reportadoPor": "Carlos Méndez",
+      "rolReportante": "Directivo",
+      "prioridad": "media",
+      "estado": "finalizada",
+      "responsable": {
+        "nombre": "ClimaSur S.A.",
+        "tipo": "externo"
+      },
+      "telefono": "+54 9 2664 98-7654",
+      "requiereCompra": true,
+      "detalleCompra": "Luminaria LED de emergencia 20W",
+      "observaciones": "",
+      "fechaCreacion": "24/06/2025 08:47",
+      "fechaFinalizacion": null,
+      "historial": [
+        {
+          "fecha": "24/06/2025 08:47",
+          "estado": "pendiente",
+          "motivo": "Tarea creada a partir del requerimiento REQ-0341"
+        },
+        {
+          "fecha": "24/06/2025 10:15",
+          "estado": "en-proceso",
+          "motivo": "ClimaSur S.A. inició el cambio de luminaria."
+        },
+        {
+          "fecha": "24/06/2025 14:00",
+          "estado": "finalizada",
+          "motivo": "El personal externo completó el cambio de luminaria."
+        }
+      ]
+    },
+    {
+      "id": "T-0126",
+      "requerimientoId": "REQ-0340",
+      "requerimientoTitulo": "Puerta rota",
+      "titulo": "Reparación de puerta",
+      "descripcion": "Arreglar la cerradura y ajustar la bisagra del aula 12.",
+      "lugar": "Aula 12",
+      "reportadoPor": "Laura Fernández",
+      "rolReportante": "Ordenanza",
+      "prioridad": "alta",
+      "estado": "en-proceso",
+      "responsable": {
+        "nombre": "Juan Torres",
+        "tipo": "interno"
+      },
+      "telefono": "+54 9 2664 12-3456",
+      "requiereCompra": true,
+      "detalleCompra": "Cerradura + bisagras",
+      "observaciones": "",
+      "fechaCreacion": "24/06/2025 16:30",
+      "fechaFinalizacion": null,
+      "historial": [
+        {
+          "fecha": "24/06/2025 16:30",
+          "estado": "pendiente",
+          "motivo": "Tarea creada a partir del requerimiento REQ-0340"
+        },
+        {
+          "fecha": "25/06/2025 08:00",
+          "estado": "en-proceso",
+          "motivo": "Se retiró la cerradura rota para su reemplazo."
+        }
+      ]
+    },
+    {
+      "id": "T-0125",
+      "requerimientoId": "REQ-0339",
+      "requerimientoTitulo": "Problemas con el aire acondicionado",
+      "titulo": "Mantenimiento de aire acondicionado",
+      "descripcion": "Revisar el equipo de aire acondicionado del laboratorio.",
+      "lugar": "Dirección",
+      "reportadoPor": "Jorge Villar",
+      "rolReportante": "Directivo",
+      "prioridad": "media",
+      "estado": "en-proceso",
+      "responsable": {
+        "nombre": "ClimaSur S.A.",
+        "tipo": "externo"
+      },
+      "telefono": "+54 9 2664 98-7654",
+      "requiereCompra": false,
+      "detalleCompra": "",
+      "observaciones": "",
+      "fechaCreacion": "24/06/2025 14:22",
+      "fechaFinalizacion": null,
+      "historial": [
+        {
+          "fecha": "24/06/2025 14:22",
+          "estado": "pendiente",
+          "motivo": "Tarea creada a partir del requerimiento REQ-0339"
+        },
+        {
+          "fecha": "25/06/2025 09:00",
+          "estado": "en-proceso",
+          "motivo": "ClimaSur S.A. se presentó para revisar el equipo."
+        }
+      ]
+    },
+    {
+      "id": "T-0124",
+      "requerimientoId": "REQ-0338",
+      "requerimientoTitulo": "Pintura descascarada",
+      "titulo": "Pintado de pared",
+      "descripcion": "Pintar la pared del patio que está descascarada.",
+      "lugar": "Patio",
+      "reportadoPor": "Ana Torres",
+      "rolReportante": "Ordenanza",
+      "prioridad": "baja",
+      "estado": "demorada",
+      "responsable": {
+        "nombre": "Laura Fernández",
+        "tipo": "interno"
+      },
+      "telefono": "+54 9 2664 12-3456",
+      "requiereCompra": true,
+      "detalleCompra": "Pintura exterior + rodillo",
+      "observaciones": "Se demora por lluvia.",
+      "fechaCreacion": "24/06/2025 11:15",
+      "fechaFinalizacion": null,
+      "historial": [
+        {
+          "fecha": "24/06/2025 11:15",
+          "estado": "pendiente",
+          "motivo": "Tarea creada a partir del requerimiento REQ-0338"
+        },
+        {
+          "fecha": "24/06/2025 13:00",
+          "estado": "en-proceso",
+          "motivo": "Se inició la preparación de la superficie."
+        },
+        {
+          "fecha": "25/06/2025 08:30",
+          "estado": "demorada",
+          "motivo": "Se demora por lluvia. Se retomará cuando el clima mejore."
+        }
+      ]
+    },
+    {
+      "id": "T-0123",
+      "requerimientoId": "REQ-0337",
+      "requerimientoTitulo": "Calefacción no funciona",
+      "titulo": "Revisión de caldera",
+      "descripcion": "Revisar la caldera del aula 8.",
+      "lugar": "Aula 8",
+      "reportadoPor": "Pedro Ruiz",
+      "rolReportante": "Ordenanza",
+      "prioridad": "alta",
+      "estado": "finalizada",
+      "responsable": {
+        "nombre": "Pedro Ruiz",
+        "tipo": "interno"
+      },
+      "telefono": "+54 9 2664 12-3456",
+      "requiereCompra": false,
+      "detalleCompra": "",
+      "observaciones": "",
+      "fechaCreacion": "23/06/2025 17:40",
+      "fechaFinalizacion": "24/06/2025 15:00",
+      "historial": [
+        {
+          "fecha": "23/06/2025 17:40",
+          "estado": "pendiente",
+          "motivo": "Tarea creada a partir del requerimiento REQ-0337"
+        },
+        {
+          "fecha": "24/06/2025 09:00",
+          "estado": "en-proceso",
+          "motivo": "Pedro Ruiz comenzó la revisión de la caldera."
+        },
+        {
+          "fecha": "24/06/2025 15:00",
+          "estado": "finalizada",
+          "motivo": "Tarea finalizada. Pendiente de evaluación del Directivo."
+        }
+      ]
+    },
+    {
+      "id": "T-0122",
+      "requerimientoId": "REQ-0336",
+      "requerimientoTitulo": "Pérdida de gas en cocina",
+      "titulo": "Reparación de fuga de gas",
+      "descripcion": "Reparar la fuga de gas en la cocina del pabellón C.",
+      "lugar": "Pabellón C - Cocina",
+      "reportadoPor": "Lucía Gómez",
+      "rolReportante": "Directivo",
+      "prioridad": "alta",
+      "estado": "cancelada",
+      "responsable": null,
+      "telefono": "",
+      "requiereCompra": false,
+      "detalleCompra": "",
+      "observaciones": "Se canceló porque el gasista no pudo venir.",
+      "fechaCreacion": "23/06/2025 12:18",
+      "fechaFinalizacion": "23/06/2025 18:00",
+      "historial": [
+        {
+          "fecha": "23/06/2025 12:18",
+          "estado": "pendiente",
+          "motivo": "Tarea creada a partir del requerimiento REQ-0336"
+        },
+        {
+          "fecha": "23/06/2025 14:00",
+          "estado": "en-proceso",
+          "motivo": "Se asignó al gasista para la revisión."
+        },
+        {
+          "fecha": "23/06/2025 18:00",
+          "estado": "cancelada",
+          "motivo": "Se canceló porque el gasista no pudo venir. Se generó nueva tarea equivalente."
+        }
+      ]
+    },
+    {
+      "id": "T-0121",
+      "requerimientoId": "REQ-0335",
+      "requerimientoTitulo": "Toma eléctrica suelta",
+      "titulo": "Reemplazo de toma eléctrica",
+      "descripcion": "Reemplazar la toma del laboratorio 3.",
+      "lugar": "Laboratorio 3",
+      "reportadoPor": "Matías Silva",
+      "rolReportante": "Ordenanza",
+      "prioridad": "media",
+      "estado": "aprobada",
+      "responsable": {
+        "nombre": "Juan Torres",
+        "tipo": "interno"
+      },
+      "telefono": "+54 9 2664 12-3456",
+      "requiereCompra": true,
+      "detalleCompra": "Toma Schuko + cable",
+      "observaciones": "",
+      "fechaCreacion": "22/06/2025 10:05",
+      "fechaFinalizacion": "22/06/2025 16:30",
+      "historial": [
+        {
+          "fecha": "22/06/2025 10:05",
+          "estado": "pendiente",
+          "motivo": "Tarea creada a partir del requerimiento REQ-0335"
+        },
+        {
+          "fecha": "22/06/2025 11:30",
+          "estado": "en-proceso",
+          "motivo": "Juan Torres inició el reemplazo de la toma."
+        },
+        {
+          "fecha": "22/06/2025 16:30",
+          "estado": "finalizada",
+          "motivo": "Tarea finalizada. Pendiente de evaluación del Directivo."
+        },
+        {
+          "fecha": "23/06/2025 09:15",
+          "estado": "aprobada",
+          "motivo": "El Directivo aprobó la tarea. Trabajo conforme."
+        }
+      ]
+    }
   ]
 }

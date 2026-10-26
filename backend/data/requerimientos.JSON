@@ -1,24 +1,90 @@
 [
   {
     "id": "REQ-0342",
-    "titulo": "Fuga de agua en baño",
-    "descripcion": "Pérdida constante en la canilla del baño de hombres.",
-    "lugar": "Pabellón B - Baño",
-    "emitidoPor": "María González",
-    "rolEmisor": "Ordenanza",
-    "fechaEmision": "2025-06-25T09:12:00",
+    "titulo": "Filtración en techo - Pabellón B",
+    "descripcion": "Se observa filtración de agua en el techo del pabellón B, principalmente en la zona del pasillo. En días de lluvia el agua se filtra hacia el interior y afecta las luminarias y el cielorraso.",
+    "lugar": "Pabellón B (Aula 12 - Pasillo)",
+    "reportadoPor": "Laura Fernández",
+    "rolReportante": "Ordenanza",
+    "fechaHora": "12/03/2025 09:42",
     "estado": "pendiente",
-    "tareaId": null
+    "imagen": "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800"
   },
   {
     "id": "REQ-0341",
     "titulo": "Luz de emergencia sin funcionar",
-    "descripcion": "La luz de emergencia del pasillo principal no enciende.",
+    "descripcion": "La luz de emergencia del pasillo principal no enciende. Se verificó que no es problema del tubo LED.",
     "lugar": "Pasillo principal",
-    "emitidoPor": "Carlos Méndez",
-    "rolEmisor": "Directivo",
-    "fechaEmision": "2025-06-25T08:47:00",
-    "estado": "con-tarea",
-    "tareaId": "T-0127"
+    "reportadoPor": "Carlos Méndez",
+    "rolReportante": "Directivo",
+    "fechaHora": "25/06/2025 08:47",
+    "estado": "pendiente",
+    "imagen": "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800"
+  },
+  {
+    "id": "REQ-0340",
+    "titulo": "Puerta rota",
+    "descripcion": "La puerta del aula 12 está dañada y no cierra correctamente. Se necesita revisar la cerradura y ajustar la bisagra.",
+    "lugar": "Aula 12",
+    "reportadoPor": "Laura Fernández",
+    "rolReportante": "Ordenanza",
+    "fechaHora": "24/06/2025 16:30",
+    "estado": "pendiente",
+    "imagen": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800"
+  },
+  {
+    "id": "REQ-0339",
+    "titulo": "Problemas con el aire acondicionado",
+    "descripcion": "El aire acondicionado del laboratorio de informática no enfría. Hace ruido extraño al encender.",
+    "lugar": "Dirección",
+    "reportadoPor": "Jorge Villar",
+    "rolReportante": "Directivo",
+    "fechaHora": "24/06/2025 14:22",
+    "estado": "pendiente",
+    "imagen": null
+  },
+  {
+    "id": "REQ-0338",
+    "titulo": "Pintura descascarada",
+    "descripcion": "Se observa pintura descascarada en la pared del patio. Necesita lijado y repintado.",
+    "lugar": "Patio",
+    "reportadoPor": "Ana Torres",
+    "rolReportante": "Ordenanza",
+    "fechaHora": "24/06/2025 11:15",
+    "estado": "pendiente",
+    "imagen": "https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=800"
+  },
+  {
+    "id": "REQ-0337",
+    "titulo": "Calefacción no funciona",
+    "descripcion": "La calefacción del aula 8 no prende. Se verificó que el termostato está en buen estado.",
+    "lugar": "Aula 8",
+    "reportadoPor": "Pedro Ruiz",
+    "rolReportante": "Ordenanza",
+    "fechaHora": "23/06/2025 17:40",
+    "estado": "pendiente",
+    "imagen": null
+  },
+  {
+    "id": "REQ-0336",
+    "titulo": "Pérdida de gas en cocina",
+    "descripcion": "Se siente olor a gas en la cocina del pabellón C. Se recomienda revisar las conexiones de la cocina.",
+    "lugar": "Pabellón C - Cocina",
+    "reportadoPor": "Lucía Gómez",
+    "rolReportante": "Directivo",
+    "fechaHora": "23/06/2025 12:18",
+    "estado": "pendiente",
+    "imagen": "https://images.unsplash.com/photo-1556909212-d5b604d0c90d?w=800"
+  },
+  {
+    "id": "REQ-0335",
+    "titulo": "Toma eléctrica suelta",
+    "descripcion": "La toma del laboratorio 3 está suelta y hace mal contacto. Puede ser peligroso.",
+    "lugar": "Laboratorio 3",
+    "reportadoPor": "Matías Silva",
+    "rolReportante": "Ordenanza",
+    "fechaHora": "22/06/2025 10:05",
+    "estado": "pendiente",
+    "imagen": "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=800"
   }
 ]

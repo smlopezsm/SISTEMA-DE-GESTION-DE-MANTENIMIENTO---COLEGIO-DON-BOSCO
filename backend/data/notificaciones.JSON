@@ -1,34 +1,67 @@
-[
-  {
-    "id": 1,
-    "tipo": "nuevo-requerimiento",
-    "titulo": "Nuevo requerimiento",
-    "texto": "Se ha emitido un nuevo requerimiento REQ-0342: Fuga de agua en baño.",
-    "hora": "09:12",
-    "leida": false
-  },
-  {
-    "id": 2,
-    "tipo": "tarea-finalizada",
-    "titulo": "Tarea finalizada",
-    "texto": "La tarea T-0123 ha sido finalizada por el personal de mantenimiento.",
-    "hora": "08:40",
-    "leida": false
-  },
-  {
-    "id": 3,
-    "tipo": "tarea-rechazada",
-    "titulo": "Tarea rechazada",
-    "texto": "La tarea T-0119 fue rechazada por el Director. Motivo: Trabajo no conforme.",
-    "hora": "07:55",
-    "leida": false
-  },
-  {
-    "id": 4,
-    "tipo": "nuevo-requerimiento",
-    "titulo": "Nuevo requerimiento",
-    "texto": "Se ha emitido un nuevo requerimiento REQ-0341: Luz de emergencia sin funcionar.",
-    "hora": "08:20",
-    "leida": true
-  }
-]
+{
+  "notificaciones": [
+    {
+      "id": 1,
+      "tipo": "requerimiento",
+      "titulo": "Nuevo requerimiento",
+      "texto": "Se emitió el requerimiento REQ-0342: Fuga de agua en baño.",
+      "fecha": "25/06/2025",
+      "hora": "09:12",
+      "leida": false
+    },
+    {
+      "id": 2,
+      "tipo": "tarea-aprobada",
+      "titulo": "Tarea aprobada",
+      "texto": "El Directivo aprobó la tarea T-0123: Reparación de calefacción.",
+      "fecha": "25/06/2025",
+      "hora": "08:40",
+      "leida": false
+    },
+    {
+      "id": 3,
+      "tipo": "tarea-rechazada",
+      "titulo": "Tarea rechazada",
+      "texto": "El Directivo rechazó la tarea T-0119. Motivo: trabajo no conforme.",
+      "fecha": "25/06/2025",
+      "hora": "07:55",
+      "leida": false
+    },
+    {
+      "id": 4,
+      "tipo": "tarea-finalizada",
+      "titulo": "Tarea finalizada",
+      "texto": "La tarea T-0130: Pintura de aulas pasó a finalizada y espera tu aprobación.",
+      "fecha": "25/06/2025",
+      "hora": "08:20",
+      "leida": false
+    },
+    {
+      "id": 5,
+      "tipo": "tarea-cancelada",
+      "titulo": "Tarea cancelada",
+      "texto": "La tarea T-0120 fue cancelada. Motivo: requerimiento duplicado.",
+      "fecha": "25/06/2025",
+      "hora": "06:32",
+      "leida": true
+    },
+    {
+      "id": 6,
+      "tipo": "requerimiento",
+      "titulo": "Nuevo requerimiento",
+      "texto": "Se emitió el requerimiento REQ-0341: Luz de emergencia sin funcionar.",
+      "fecha": "25/06/2025",
+      "hora": "08:47",
+      "leida": true
+    },
+    {
+      "id": 7,
+      "tipo": "tarea-finalizada",
+      "titulo": "Tarea finalizada",
+      "texto": "La tarea T-0128: Reparación de vereda pasó a finalizada.",
+      "fecha": "24/06/2025",
+      "hora": "17:10",
+      "leida": false
+    }
+  ]
+}

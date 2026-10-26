@@ -1,0 +1,44 @@
+
+.personal-page {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.personal-page .btn-primary {
+  background-color: var(--color-principal);
+  border-color: var(--color-principal);
+  color: var(--color-blanco);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-medium);
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.personal-page .btn-primary:hover {
+  background-color: var(--color-secundario);
+  border-color: var(--color-secundario);
+  box-shadow: 0 4px 12px rgba(228, 29, 34, 0.2);
+}
+
+.personal-page .pagination .page-link {
+  color: var(--texto-secundario);
+  border-color: var(--color-borde);
+  background-color: var(--color-blanco);
+}
+
+.personal-page .pagination .page-link:hover {
+  color: var(--color-principal);
+  background-color: #FDE8E9;
+  border-color: var(--color-principal);
+}
+
+.personal-page .pagination .page-item.active .page-link {
+  background-color: var(--color-principal);
+  border-color: var(--color-principal);
+  color: var(--color-blanco);
+}
+
+.personal-page .pagination .page-item.disabled .page-link {
+  color: var(--texto-secundario);
+  opacity: 0.5;
+}

@@ -1,18 +1,91 @@
-
 .tabla-requerimientos thead th {
   font-weight: 500;
   text-transform: uppercase;
   font-size: 0.75rem;
   letter-spacing: 0.5px;
-  color: var(--texto-secundario);
-  border-bottom: 1px solid var(--color-borde);
-}
-
-.tabla-requerimientos tbody tr:hover {
-  background-color: rgba(0, 0, 0, 0.015);
+  color: var(--texto-principal) !important;
+  background-color: #dfe0e164 !important;
+  border-bottom: 1px solid #E5E7EB !important;
+  white-space: nowrap; 
 }
 
 .tabla-requerimientos tbody td {
-  border-bottom: 1px solid var(--color-borde);
+  border-bottom: 1px solid var(--color-principal);
   vertical-align: middle;
+  white-space: nowrap; 
+  margin: 5px
+}
+
+.tabla-titulo{
+  font-weight: 600;
+  color: var(--color-secundario);
+  margin: 10px;
+}
+
+.link-ver-todos {
+  color: var(--color-principal); 
+}
+
+.link-ver-todos:hover {
+  color: var(--color-secundario);
+}
+
+.table-responsive {
+  overflow-x: auto;
+  scrollbar-width: thin;           
+}
+
+.tabla-requerimientos {
+  min-width: 800px;                
+}
+
+/* celular */
+.requerimiento-panel-card {
+  border-bottom: 1px solid var(--color-borde);
+  padding: 0.85rem 0;
+}
+
+.requerimiento-panel-card:last-child {
+  border-bottom: 0;
+}
+
+.requerimiento-panel-card__id {
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--color-principal);
+  letter-spacing: 0.3px;
+}
+
+.requerimiento-panel-card__titulo {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--texto-principal);
+  line-height: 1.3;
+}
+
+.requerimiento-panel-card__detalle {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.requerimiento-panel-card__campo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  font-size: 0.78rem;
+}
+
+.requerimiento-panel-card__label {
+  color: var(--texto-secundario);
+  flex-shrink: 0;
+  font-weight: 500;
+}
+
+.requerimiento-panel-card__valor {
+  text-align: right;
+  color: var(--texto-principal);
+  font-weight: 500;
+  word-break: break-word;
 }

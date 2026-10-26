@@ -1,52 +1,39 @@
 import { useEffect, useState } from 'react';
 import { useOutletContext } from 'react-router';
-import {
-  FaFileCirclePlus,
-  FaClipboardList,
-  FaRotate,
-  FaClock,
-  FaUsers,
-  FaCircleCheck,
-} from 'react-icons/fa6';
-
-import Tarjeta from '../components/Tarjeta';
+import { FaFileCirclePlus, FaClipboardList, FaRotate, FaClock, FaCircleCheck, FaCircleXmark, FaHouse } from 'react-icons/fa6';
+import TarjetaResumen from '../../../shared/components/TarjetaResumen';
 import TablaRequerimientos from '../components/TablaRequerimientos';
-import TareasPorEstado from '../components/TareasPorEstado';
-import ProximasTareas from '../components/ProximasTareas';
-import PanelNotificaciones from '../components/PanelNotificaciones';
+import TareasEnCurso from '../components/TareasEnCurso';
+import Encabezado from '../../../shared/components/EncabezadoPagina';
 
 import {
   obtenerResumenPanel,
   obtenerRequerimientosRecientes,
   obtenerTareas,
-  obtenerNotificaciones,
 } from '../services/panelService';
 
 function PanelInicioJefe() {
-  // obtenemos el usuario logueado desde el Outlet del LayoutGestor
   const usuario = useOutletContext();
 
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
   const [resumen, setResumen] = useState(null);
   const [requerimientos, setRequerimientos] = useState([]);
-  const [tareas, setTareas] = useState({ proximas: [], porEstado: [] });
-  const [notificaciones, setNotificaciones] = useState([]);
+  const [tareas, setTareas] = useState([]);
 
   useEffect(() => {
     let activo = true;
+
     Promise.all([
       obtenerResumenPanel(),
       obtenerRequerimientosRecientes(),
       obtenerTareas(),
-      obtenerNotificaciones(),
     ])
-      .then(([r, req, t, n]) => {
+      .then(([r, req, t]) => {
         if (!activo) return;
         setResumen(r);
         setRequerimientos(req);
-        setTareas(t);
-        setNotificaciones(n);
+        setTareas(t.tareas ?? []);
       })
       .catch((e) => activo && setError(e.message))
       .finally(() => activo && setCargando(false));
@@ -76,63 +63,73 @@ function PanelInicioJefe() {
 
   return (
     <div className="panel-inicio">
-      {/* Saludo dinámico */}
-      <div className="mb-4">
-        <h4 className="mb-1"> ¡Hola, {usuario?.nombre}!</h4>
-        <p className="text-muted mb-0 small">
-          Aquí tienes un resumen del estado de las tareas y requerimientos del colegio.
-        </p>
+
+      <Encabezado
+        icono={FaHouse}
+        titulo={usuario?.nombre ? `¡Hola, ${usuario.nombre}!` : '¡Hola!'}
+        subtitulo="Resumen del estado de las tareas y requerimientos del colegio"
+      />
+
+      {/* Tarjetas */}
+      <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-6 g-2 g-md-3 mb-3 mb-lg-4">
+        <div className="col">
+          <TarjetaResumen
+            tono="en-proceso"
+            icono={FaFileCirclePlus}
+            etiqueta="Requerimientos pendientes"
+            valor={resumen.requerimientosPendientes}
+          />
+        </div>
+        <div className="col">
+          <TarjetaResumen
+            tono="con-tarea"
+            icono={FaClipboardList}
+            etiqueta="Tareas totales"
+            valor={resumen.tareasPendientes}
+          />
+        </div>
+        <div className="col">
+          <TarjetaResumen
+            tono="en-proceso"
+            icono={FaRotate}
+            etiqueta="Tareas en proceso"
+            valor={resumen.tareasEnProceso}
+          />
+        </div>
+        <div className="col">
+          <TarjetaResumen
+            tono="demorada"
+            icono={FaClock}
+            etiqueta="Tareas demoradas"
+            valor={resumen.tareasDemoradas}
+          />
+        </div>
+        <div className="col">
+          <TarjetaResumen
+            tono="finalizada"
+            icono={FaCircleCheck}
+            etiqueta="Tareas finalizadas"
+            valor={resumen.tareasFinalizadas}
+          />
+        </div>
+        <div className="col">
+          <TarjetaResumen
+            tono="rechazada"
+            icono={FaCircleXmark}
+            etiqueta="Tareas rechazadas"
+            valor={resumen.tareasRechazadas}
+          />
+        </div>
       </div>
 
-      {/* Grid principal */}
-      <div className="row g-3 g-lg-4">
-        {/* Columna izquierda */}
-        <div className="col-12 col-xl-9">
-          {/* KPIs */}
-          <div className="row g-3 mb-3 mb-lg-4">
-            <div className="col-6 col-md-4 col-lg-2">
-              <Tarjeta titulo="Requerimientos Pendientes" valor={resumen.requerimientosPendientes} icono={FaFileCirclePlus} />
-            </div>
-            <div className="col-6 col-md-4 col-lg-2">
-              <Tarjeta titulo="Tareas pendientes" valor={resumen.tareasPendientes} icono={FaClipboardList} />
-            </div>
-            <div className="col-6 col-md-4 col-lg-2">
-              <Tarjeta titulo="Tareas en proceso" valor={resumen.tareasEnProceso} icono={FaRotate} />
-            </div>
-            <div className="col-6 col-md-4 col-lg-2">
-              <Tarjeta titulo="Tareas demoradas" valor={resumen.tareasDemoradas} icono={FaClock} />
-            </div>
-            <div className="col-6 col-md-4 col-lg-2">
-              <Tarjeta titulo="Esperando aprobación" valor={resumen.tareasEsperandoAprobacion} icono={FaUsers} />
-            </div>
-            <div className="col-6 col-md-4 col-lg-2">
-              <Tarjeta titulo="Tareas finalizadas" valor={resumen.tareasFinalizadas} icono={FaCircleCheck} />
-            </div>
-          </div>
-
-          {/* Tabla de requerimientos */}
-          <div className="mb-3 mb-lg-4">
-            <TablaRequerimientos requerimientos={requerimientos} />
-          </div>
-
-          {/* Gráfico + Próximas tareas */}
-          <div className="row g-3 g-lg-4">
-            <div className="col-12 col-lg-5">
-              <TareasPorEstado datos={tareas.porEstado} total={resumen.totalTareas} />
-            </div>
-            <div className="col-12 col-lg-7">
-              <ProximasTareas tareas={tareas.proximas} />
-            </div>
-          </div>
-        </div>
-
-        {/* Columna derecha */}
-        <div className="col-12 col-xl-3">
-          <div className="d-flex flex-column gap-3 gap-lg-4">
-            <PanelNotificaciones notificaciones={notificaciones} />
-          </div>
-        </div>
+      {/* Tabla de requerimientos */}
+      
+      <div className="mb-3 mb-lg-4">
+        <TablaRequerimientos requerimientos={requerimientos} />
       </div>
+
+      {/* Tareas en curso */}
+      <TareasEnCurso tareas={tareas} />
     </div>
   );
 }

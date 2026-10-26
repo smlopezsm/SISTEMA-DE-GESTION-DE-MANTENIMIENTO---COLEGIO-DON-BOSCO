@@ -1,0 +1,18 @@
+
+.datos-requerimiento {
+  background-color: #FAFBFC;
+  border: 1px solid var(--color-borde) !important;
+}
+
+.datos-requerimiento small.text-muted {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  font-weight: 500;
+}
+
+.datos-requerimiento .badge.bg-light {
+  font-size: 0.65rem;
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+}

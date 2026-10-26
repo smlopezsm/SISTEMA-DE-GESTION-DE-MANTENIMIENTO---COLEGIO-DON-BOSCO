@@ -1,0 +1,120 @@
+
+.nuevo-usuario {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.nuevo-usuario__volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: var(--texto-secundario);
+  text-decoration: none;
+  margin-bottom: 0.75rem;
+  transition: color 0.15s ease;
+}
+
+.nuevo-usuario__volver:hover {
+  color: var(--color-principal);
+}
+
+.nuevo-usuario__titulo {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--texto-principal);
+  margin: 0 0 0.25rem;
+}
+
+.nuevo-usuario__subtitulo {
+  font-size: 0.9rem;
+  color: var(--texto-secundario);
+  margin: 0;
+}
+
+/* seccion */
+.nuevo-usuario__seccion-titulo {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--texto-principal);
+  margin: 0 0 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* form */
+.nuevo-usuario__label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--texto-principal);
+  margin-bottom: 0.35rem;
+}
+
+.nuevo-usuario__input {
+  border-color: var(--color-borde);
+  border-radius: var(--radius-small);
+  font-size: 0.9rem;
+  padding: 0.55rem 0.85rem;
+}
+
+.nuevo-usuario__input:focus {
+  border-color: #1e40af;
+  box-shadow: 0 0 0 0.2rem rgba(30, 64, 175, 0.12);
+}
+
+/* nota */
+.nuevo-usuario__nota {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 0.9rem 1rem;
+  background-color: #eef4ff;
+  color: #1e40af;
+  border-radius: var(--radius-medium);
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+
+.nuevo-usuario__nota svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* botones */
+.nuevo-usuario__btn-cancelar {
+  border-color: #1e40af;
+  color: #1e40af;
+  font-weight: 500;
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--radius-small);
+}
+
+.nuevo-usuario__btn-cancelar:hover {
+  background-color: #1e40af;
+  border-color: #1e40af;
+  color: white;
+}
+
+.nuevo-usuario__btn-crear {
+  background-color: #1e40af;
+  border-color: #1e40af;
+  font-weight: 500;
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--radius-small);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.nuevo-usuario__btn-crear:hover:not(:disabled) {
+  background-color: #1e3a8a;
+  border-color: #1e3a8a;
+}
+
+
+@media (max-width: 767.98px) {
+  .nuevo-usuario__titulo {
+    font-size: 1.4rem;
+  }
+}

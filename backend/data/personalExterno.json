@@ -1,0 +1,68 @@
+{
+  "personalExterno": [
+    {
+      "id": "EXT-001",
+      "nombre": "Juan Carlos",
+      "apellido": "Gómez",
+      "telefono": "+54 9 2664 12-3456",
+      "especialidad": "Electricista",
+      "activo": true
+    },
+    {
+      "id": "EXT-002",
+      "nombre": "María Laura",
+      "apellido": "Torres",
+      "telefono": "+54 9 2664 22-3344",
+      "especialidad": "Plomería",
+      "activo": true
+    },
+    {
+      "id": "EXT-003",
+      "nombre": "Ramiro",
+      "apellido": "Sánchez",
+      "telefono": "+54 9 2664 33-7788",
+      "especialidad": "Albañilería",
+      "activo": true
+    },
+    {
+      "id": "EXT-004",
+      "nombre": "Fernando",
+      "apellido": "Vega",
+      "telefono": "+54 9 2664 44-5566",
+      "especialidad": "Pintura",
+      "activo": true
+    },
+    {
+      "id": "EXT-005",
+      "nombre": "Lucía",
+      "apellido": "Rojas",
+      "telefono": "+54 9 2664 55-4433",
+      "especialidad": "Carpintería",
+      "activo": true
+    },
+    {
+      "id": "EXT-006",
+      "nombre": "Pablo",
+      "apellido": "Álvarez",
+      "telefono": "+54 9 2664 66-2211",
+      "especialidad": "Mantenimiento general",
+      "activo": true
+    },
+    {
+      "id": "EXT-007",
+      "nombre": "Diego",
+      "apellido": "Martínez",
+      "telefono": "+54 9 2664 77-8899",
+      "especialidad": "Gasista",
+      "activo": false
+    },
+    {
+      "id": "EXT-008",
+      "nombre": "Sofía",
+      "apellido": "Gutiérrez",
+      "telefono": "+54 9 2664 88-6677",
+      "especialidad": "Herrería",
+      "activo": false
+    }
+  ]
+}

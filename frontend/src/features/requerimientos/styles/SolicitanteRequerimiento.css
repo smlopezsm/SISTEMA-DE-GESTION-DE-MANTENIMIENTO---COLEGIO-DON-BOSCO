@@ -1,0 +1,58 @@
+
+.solicitante-requerimiento .min-w-0 {
+  min-width: 0;
+}
+
+/* iniciales */
+.solicitante-requerimiento__avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: var(--color-secundario);
+  color: var(--color-blanco);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+/* nombre */
+.solicitante-requerimiento__nombre {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--texto-principal);
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* rol */
+.solicitante-requerimiento__badge-rol {
+  display: inline-block;
+  padding: 0.35em 0.85em;
+  font-size: 0.72rem;
+  font-weight: 500;
+  border-radius: 999px;
+  background-color: #ECEDF7;
+  color: var(--color-secundario);
+}
+
+
+@media (max-width: 767.98px) {
+  .solicitante-requerimiento .card-body {
+    padding: 1rem;
+  }
+
+  .solicitante-requerimiento__avatar {
+    width: 46px;
+    height: 46px;
+    font-size: 0.9rem;
+  }
+
+  .solicitante-requerimiento__nombre {
+    font-size: 0.9rem;
+  }
+}

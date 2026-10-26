@@ -1,6 +1,5 @@
 import './SeccionCard.css';
 
-// Contenedor blanco con encabezado (icono, título, subtítulo y acción opcional)
 function SeccionCard({ icono: Icono, titulo, subtitulo, accion, className = '', children }) {
   return (
     <section className={`seccion-card ${className}`}>

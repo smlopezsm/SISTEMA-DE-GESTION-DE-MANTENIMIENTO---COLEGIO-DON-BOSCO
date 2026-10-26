@@ -1,0 +1,182 @@
+
+.tabs-notificaciones {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--color-borde);
+  z-index: 10;
+}
+
+.tabs-notificaciones__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 0;
+  background: transparent;
+  border-radius: var(--radius-medium);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--texto-secundario);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.tabs-notificaciones__tab:hover {
+  background-color: var(--color-principal);
+  color: var(--color-blanco);
+}
+
+
+.tabs-notificaciones__contador {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 0.4rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  background-color: rgba(0, 0, 0, 0.08);
+  color: inherit;
+}
+
+.tabs-notificaciones__tab--activa .tabs-notificaciones__contador {
+  background-color: var(--color-blanco);
+  color: var(--color-principal);
+}
+
+.tabs-notificaciones__movil {
+  position: relative;
+  width: 100%;
+}
+
+/* boton */
+.tabs-notificaciones__select {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 52px;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radius-medium);
+  background-color: var(--color-blanco);
+  color: var(--texto-principal);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  outline: none;
+}
+
+.tabs-notificaciones__select:hover {
+  border-color: var(--texto-secundario);
+}
+
+.tabs-notificaciones__select:focus {
+  border-color: var(--color-principal);
+  box-shadow: 0 0 0 0.2rem rgba(228, 29, 34, 0.15);
+  outline: none;
+}
+
+.tabs-notificaciones__select--activo {
+  background-color: var(--color-principal);
+  color: var(--color-blanco);
+  border-color: var(--color-principal);
+  font-weight: 600;
+}
+
+.tabs-notificaciones__select--activo:focus {
+  box-shadow: 0 0 0 0.2rem rgba(228, 29, 34, 0.25);
+}
+
+.tabs-notificaciones__select-contenido {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tabs-notificaciones__select-contador {
+  opacity: 0.75;
+  font-weight: 400;
+}
+
+.tabs-notificaciones__chevron {
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.tabs-notificaciones__chevron--abierto {
+  transform: rotate(180deg);
+}
+
+/* menu desplegable */
+.tabs-notificaciones__menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0.35rem;
+  list-style: none;
+  background-color: var(--color-blanco);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radius-medium);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  z-index: 9999 !important;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+/* opciones */
+.tabs-notificaciones__opcion {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  border: 0;
+  border-radius: var(--radius-small);
+  background-color: transparent;
+  color: var(--texto-principal);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.tabs-notificaciones__opcion:hover {
+  background-color: var(--color-fondo);
+}
+
+/* opcion activa */
+.tabs-notificaciones__opcion--activa {
+  background-color: var(--color-principal);
+  color: var(--color-blanco);
+  font-weight: 600;
+}
+
+.tabs-notificaciones__opcion--activa:hover {
+  background-color: var(--color-hover);
+  color: var(--color-blanco);
+}
+
+.tabs-notificaciones__opcion-contador {
+  margin-left: auto;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background-color: rgba(0, 0, 0, 0.08);
+  color: inherit;
+}
+
+.tabs-notificaciones__opcion--activa .tabs-notificaciones__opcion-contador {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: var(--color-blanco);
+}

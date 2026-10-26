@@ -1,0 +1,12 @@
+{
+  "compras": [
+    {
+      "id": "COM-001",
+      "tareaId": "T-0126",
+      "fechaCompra": "26/06/2025",
+      "montoTotal": 12450,
+      "detalleCompra": "2 bultos de cemento (25 kg c/u) y 1 rollo de cinta de seguridad.",
+      "factura": null
+    }
+  ]
+}

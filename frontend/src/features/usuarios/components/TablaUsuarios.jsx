@@ -1,20 +1,22 @@
-import { FaPen, FaTrashCan } from 'react-icons/fa6';
+import { FaPen } from 'react-icons/fa6';
 import Etiqueta from '../../../shared/components/Etiqueta';
 import { ETIQUETA_ROL } from '../../../shared/config/MenuPorRol';
 
-// rol -> clave de estado de Etiqueta (solo para reutilizar sus colores)
+// rol -> clave de estado de Etiqueta 
 export const TONO_ROL = {
   directivo: 'en-proceso',
   jefeMantenimiento: 'con-tarea',
   ordenanza: 'pendiente',
 };
 
-const iniciales = (u) => `${u.nombre[0]}${u.apellido[0]}`.toUpperCase();
-
-// Directivo -> cargo, ordenanza -> teléfono, jefe de mantenimiento -> sin dato
+const iniciales = (u) => {
+  const n = (u?.nombre || '').trim()[0] ?? '?';
+  const a = (u?.apellido || '').trim()[0] ?? '';
+  return `${n}${a}`.toUpperCase() || '?';
+};
 const telefonoOCargo = (u) => u.cargo ?? u.telefono ?? '—';
 
-function TablaUsuarios({ usuarios, onEditar, onBaja }) {
+function TablaUsuarios({ usuarios, onEditar }) {
   return (
     <div className="table-responsive">
       <table className="table align-middle tabla-usuarios">
@@ -55,7 +57,11 @@ function TablaUsuarios({ usuarios, onEditar, onBaja }) {
               </td>
               <td>{u.apellido}</td>
               <td>{u.usuario}</td>
-              <td>{Number(u.dni).toLocaleString('es-AR')}</td>
+              <td>
+                {u.dni && !isNaN(Number(u.dni))
+                  ? Number(u.dni).toLocaleString('es-AR')
+                  : '—'}
+              </td>
               <td>{u.email}</td>
               <td><Etiqueta estado={TONO_ROL[u.rol]}>{ETIQUETA_ROL[u.rol]}</Etiqueta></td>
               <td>{telefonoOCargo(u)}</td>
@@ -65,19 +71,13 @@ function TablaUsuarios({ usuarios, onEditar, onBaja }) {
                 </Etiqueta>
               </td>
               <td>
-                <div className="d-flex gap-2">
-                  <button type="button" className="btn btn-outline-primary btn-sm d-inline-flex align-items-center gap-2" onClick={() => onEditar(u)}>
-                    <FaPen /> Editar
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-outline-danger btn-sm d-inline-flex align-items-center gap-2 text-nowrap"
-                    disabled={!u.activo}
-                    onClick={() => onBaja(u)}
-                  >
-                    <FaTrashCan /> Dar de baja
-                  </button>
-                </div>
+                <button
+                  type="button"
+                  className="btn btn-outline-primary btn-sm d-inline-flex align-items-center gap-2"
+                  onClick={() => onEditar(u)}
+                >
+                  <FaPen /> Editar
+                </button>
               </td>
             </tr>
           ))}

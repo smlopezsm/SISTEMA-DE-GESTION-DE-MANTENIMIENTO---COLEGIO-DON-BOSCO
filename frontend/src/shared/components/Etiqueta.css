@@ -10,16 +10,11 @@
   border-radius: 999px;
 }
 
-/* ESTADOS DE REQUERIMIENTO / TAREA*/
+/* estados */
 
 .badge-estado--pendiente {
   background-color: var(--estado-pendiente-bg);
   color: var(--estado-pendiente-texto);
-}
-
-.badge-estado--con-tarea {
-  background-color: var(--estado-con-tarea-bg);
-  color: var(--estado-con-tarea-texto);
 }
 
 .badge-estado--en-proceso {
@@ -30,6 +25,11 @@
 .badge-estado--demorada {
   background-color: var(--estado-demorada-bg);
   color: var(--estado-demorada-texto);
+}
+
+.badge-estado--cancelada {
+  background-color: var(--estado-cancelada-bg);
+  color: var(--estado-cancelada-texto);
 }
 
 .badge-estado--finalizada {
@@ -47,12 +47,7 @@
   color: var(--estado-rechazada-texto);
 }
 
-.badge-estado--cancelada {
-  background-color: var(--estado-cancelada-bg);
-  color: var(--estado-cancelada-texto);
-}
-
-/* PRIORIDADES */
+/* prioridades */
 
 .badge-estado--alta {
   background-color: var(--prioridad-alta-bg);
@@ -69,7 +64,7 @@
   color: var(--prioridad-baja-texto);
 }
 
-/*cuando el estado no esta mapeado*/
+/* estados no */
 
 .badge-estado--default {
   background-color: #F3F4F6;

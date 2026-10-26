@@ -1,7 +1,6 @@
 import { FaArrowUp, FaArrowDown, FaEquals } from 'react-icons/fa6';
 
-// Variación porcentual contra el mes anterior.
-// "subeEsBueno" indica si un aumento es positivo (ej.: finalizadas) o negativo (ej.: gastos, demoras).
+
 function Variacion({ valor, subeEsBueno }) {
   const sube = valor > 0;
   const neutra = valor === 0;

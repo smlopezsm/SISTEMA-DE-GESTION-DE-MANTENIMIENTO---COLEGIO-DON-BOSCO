@@ -1,0 +1,22 @@
+
+.formulario-tarea-page {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.formulario-tarea-page .btn-link {
+  color: var(--texto-secundario) !important;
+  font-size: 0.85rem;
+}
+
+.formulario-tarea-page .btn-link:hover {
+  color: var(--color-principal) !important;
+}
+
+.icono-titulo {
+  margin-top: 5px;
+}
+
+.titulo {
+  margin-top: 10px;
+}
