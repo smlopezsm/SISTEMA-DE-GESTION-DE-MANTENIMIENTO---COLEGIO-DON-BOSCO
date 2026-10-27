@@ -1,0 +1,20 @@
+$kind: http-request
+url: "{{baseUrl}}/auth/registro"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "nombre": "Ana",
+      "apellido": "Torres",
+      "nombreUsuario": "atorres",
+      "email": "atorres@donbosco.org.ar",
+      "password": "clave123"
+    }
+scripts:
+  - type: afterResponse
+    code: pm.test('Status 409', () => pm.response.to.have.status(409));
+    language: text/javascript
+order: 2000

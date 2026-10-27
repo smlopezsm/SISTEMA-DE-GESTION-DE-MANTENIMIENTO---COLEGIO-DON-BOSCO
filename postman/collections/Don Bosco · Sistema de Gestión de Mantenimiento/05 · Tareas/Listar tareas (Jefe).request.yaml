@@ -1,0 +1,15 @@
+$kind: http-request
+url: "{{baseUrl}}/tareas"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{tokenJefe}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      const data = pm.response.json();
+      if (data[0]?.id) pm.collectionVariables.set('tareaId', data[0]?.id);
+      pm.test('Status 200', () => pm.response.to.have.status(200));
+    language: text/javascript
+order: 1000

@@ -1,0 +1,30 @@
+$kind: http-request
+url: "{{baseUrl}}/auth/registro"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "nombre": "{{$randomFirstName}}",
+      "apellido": "{{$randomLastName}}",
+      "nombreUsuario": "user{{$randomInt}}",
+      "email": "{{$randomEmail}}",
+      "telefono": "266 4550000",
+      "password": "clave123"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      const data = pm.response.json();
+      if (data.id) pm.collectionVariables.set('usuarioRegistradoId', data.id);
+      pm.test('Status 201', () => pm.response.to.have.status(201));
+      pm.test('No devuelve contraseña ni hash', () => {
+        const txt = JSON.stringify(pm.response.json()).toLowerCase();
+        pm.expect(txt).to.not.include('password');
+        pm.expect(txt).to.not.include('contraseña');
+        pm.expect(txt).to.not.include('hash');
+      });
+    language: text/javascript
+order: 1000

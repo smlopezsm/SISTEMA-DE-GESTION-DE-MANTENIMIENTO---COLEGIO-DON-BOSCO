@@ -1,0 +1,16 @@
+$kind: http-request
+url: "{{baseUrl}}/notificaciones"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{tokenJefe}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status 200', () => pm.response.to.have.status(200));
+      const lista = (b) => Array.isArray(b) ? b : (b.data || b.items || []);
+      const l = lista(pm.response.json());
+      if (l[0]?.id) pm.collectionVariables.set('notificacionId', l[0].id);
+    language: text/javascript
+order: 1000

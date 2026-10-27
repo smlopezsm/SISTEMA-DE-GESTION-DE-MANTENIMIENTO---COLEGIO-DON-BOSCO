@@ -1,0 +1,24 @@
+$kind: http-request
+url: "{{baseUrl}}/tareas/{{tareaCreadaId}}/compras"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "monto": 1500.5,
+      "detalle": "Caños y selladores para la reparación",
+      "categoria": "materiales"
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{tokenJefe}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status 201', () => pm.response.to.have.status(201));
+      pm.collectionVariables.set('compraId', pm.response.json().id);
+    language: text/javascript
+order: 1000

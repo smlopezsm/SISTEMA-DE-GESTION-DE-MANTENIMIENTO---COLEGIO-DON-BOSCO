@@ -1,0 +1,25 @@
+$kind: http-request
+url: "{{baseUrl}}/requerimientos"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "idCategoria": 1,
+      "descripcion": "Requerimiento de prueba generado desde Postman.",
+      "sector": "Aula 12",
+      "imagen": null
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{tokenOrdenanza}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status 201', () => pm.response.to.have.status(201));
+      pm.collectionVariables.set('requerimientoBorrarId', pm.response.json().id);
+    language: text/javascript
+order: 6000
