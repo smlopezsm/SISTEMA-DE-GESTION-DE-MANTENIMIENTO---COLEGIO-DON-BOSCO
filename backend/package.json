@@ -1,27 +1,4 @@
 {
-<<<<<<< HEAD
-  "name": "sistema-de-gestion-de-mantenimiento---colegio-don-bosco",
-  "version": "1.0.0",
-  "description": "Permite registrar y dar seguimiento a requerimientos de infraestructura, asignar tareas de mantenimiento a personal interno o externo, registrar gastos, aprobar o rechazar trabajos finalizados, y visualizar estadísticas para la toma de decisiones.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/smlopezsm/SISTEMA-DE-GESTION-DE-MANTENIMIENTO---COLEGIO-DON-BOSCO.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/smlopezsm/SISTEMA-DE-GESTION-DE-MANTENIMIENTO---COLEGIO-DON-BOSCO/issues"
-  },
-  "homepage": "https://github.com/smlopezsm/SISTEMA-DE-GESTION-DE-MANTENIMIENTO---COLEGIO-DON-BOSCO#readme",
-  "dependencies": {
-    "express": "^5.3.0"
-=======
   "name": "don-bosco-mantenimiento-backend",
   "version": "1.0.0",
   "private": true,
@@ -38,6 +15,5 @@
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
     "pg": "^8.13.1"
->>>>>>> origin/back-completo
   }
 }

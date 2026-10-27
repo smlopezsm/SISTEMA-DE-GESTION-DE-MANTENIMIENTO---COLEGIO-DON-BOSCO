@@ -1,70 +1,78 @@
-import dataInicial from '@data/requerimientos.json';
-import { leer, guardar } from '../../../shared/utils/storage';
+import { apiRequest } from '../../../shared/api/apiClient';
+import { obtenerToken } from '../../auth/services/authService';
 
-const CLAVE = 'requerimientos';
-
-export function obtenerRequerimientos() {
-  return leer(CLAVE, dataInicial);
+function formatearFechaHora(valor) {
+  if (!valor) return '';
+  const fecha = new Date(valor);
+  if (Number.isNaN(fecha.getTime())) return String(valor);
+  return fecha
+    .toLocaleString('es-AR', {
+      day: '2-digit', month: '2-digit', year: 'numeric',
+      hour: '2-digit', minute: '2-digit',
+    })
+    .replace(/,\s*/, ' ');
 }
 
-export function getRequerimientos() {
-  return obtenerRequerimientos();  
+function mapearRequerimiento(r) {
+  return {
+    id: r.id,
+    titulo: r.titulo,
+    descripcion: r.descripcion,
+    sector: r.sector ?? r.lugar ?? '',
+    lugar: r.sector ?? r.lugar ?? '',
+    reportadoPor: r.reportadoPor,
+    rolReportante: r.rolReportante,
+    fechaHora: formatearFechaHora(r.fechaHora ?? r.fecha),
+    estado: r.estado,
+    imagen: r.imagen ?? null,
+  };
 }
 
-export function obtenerRequerimientoPorId(id) {
-  return obtenerRequerimientos().find((r) => r.id === id);
+export async function obtenerRequerimientos() {
+  const requerimientos = await apiRequest('/requerimientos', {
+    token: obtenerToken(),
+  });
+  return requerimientos.map(mapearRequerimiento);
+}
+
+export const getRequerimientos = obtenerRequerimientos;
+
+export async function obtenerRequerimientoPorId(id) {
+  const requerimiento = await apiRequest(`/requerimientos/${id}`, {
+    token: obtenerToken(),
+  });
+  return mapearRequerimiento(requerimiento);
 }
 
 export function obtenerLugares() {
-  const requerimientos = obtenerRequerimientos();
-  return [...new Set(requerimientos.map((r) => r.lugar))].sort();
+  // Se calcula desde el listado que ya se trajo
+  // O se puede pedir al back un endpoint de sectores (no está implementado)
+  return [];
 }
 
-export function crearRequerimiento(datos) {
-  const actual = obtenerRequerimientos();
-
-  // Generar ID nuevo: REQ-0001, REQ-0002, ...
-  const numeros = actual
-    .map((r) => parseInt(String(r.id).replace(/\D/g, ''), 10))
-    .filter((n) => !isNaN(n));
-  const siguiente = numeros.length > 0 ? Math.max(...numeros) + 1 : 1;
-  const nuevoId = `REQ-${String(siguiente).padStart(4, '0')}`;
-
-  const ahora = new Date().toLocaleString('es-AR', {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
+export async function crearRequerimiento(datos) {
+  const requerimiento = await apiRequest('/requerimientos', {
+    method: 'POST',
+    token: obtenerToken(),
+    body: datos,
   });
-
-  const nuevoRequerimiento = {
-    id: nuevoId,
-    titulo: datos.titulo,
-    descripcion: datos.descripcion,
-    sector: datos.sector ?? '',
-    lugar: datos.lugar,
-    reportadoPor: datos.reportadoPor,
-    rolReportante: datos.rolReportante,
-    fechaHora: ahora,
-    estado: 'pendiente',
-    imagen: datos.imagen ?? null,
-  };
-
-  guardar(CLAVE, [nuevoRequerimiento, ...actual]);  // el nuevo al principio
-  return nuevoRequerimiento;
+  return mapearRequerimiento(requerimiento);
 }
 
 export const guardarRequerimiento = crearRequerimiento;
 
-export function actualizarRequerimiento(id, datos) {
-  const actual = obtenerRequerimientos();
-  const actualizado = actual.map((r) => (r.id === id ? { ...r, ...datos } : r));
-  guardar(CLAVE, actualizado);
-  return actualizado.find((r) => r.id === id);
+export async function actualizarRequerimiento(id, datos) {
+  const requerimiento = await apiRequest(`/requerimientos/${id}`, {
+    method: 'PUT',
+    token: obtenerToken(),
+    body: datos,
+  });
+  return mapearRequerimiento(requerimiento);
 }
 
-export function eliminarRequerimiento(id) {
-  const actual = obtenerRequerimientos();
-  guardar(CLAVE, actual.filter((r) => r.id !== id));
+export async function eliminarRequerimiento(id) {
+  await apiRequest(`/requerimientos/${id}`, {
+    method: 'DELETE',
+    token: obtenerToken(),
+  });
 }

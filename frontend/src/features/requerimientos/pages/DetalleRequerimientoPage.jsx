@@ -1,8 +1,9 @@
+import { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router';
 import { FaArrowLeft, FaFileLines } from 'react-icons/fa6';
 import '../styles/DetalleRequerimientoPage.css';
 
-import { obtenerRequerimientoPorId } from '../services/requerimientosService';
+import { obtenerRequerimientoPorId } from '../services/requerimientosApiService';
 
 import InfoPrincipalRequerimiento from '../components/InfoPrincipalRequerimiento';
 import SolicitanteRequerimiento from '../components/SolicitanteRequerimiento';
@@ -10,14 +11,46 @@ import AccionesRequerimiento from '../components/AccionesRequerimiento';
 
 function DetalleRequerimientoPage() {
   const { id } = useParams();
+  const [requerimiento, setRequerimiento] = useState(null);
+  const [cargando, setCargando] = useState(true);
+  const [error, setError] = useState('');
 
-  const requerimiento = obtenerRequerimientoPorId(id);
+  useEffect(() => {
+    let activo = true;
+    
+    obtenerRequerimientoPorId(id)
+      .then((data) => {
+        if (activo) setRequerimiento(data);
+      })
+      .catch((err) => {
+        if (activo) setError(err.message || 'No se pudo cargar el requerimiento.');
+      })
+      .finally(() => {
+        if (activo) setCargando(false);
+      });
 
-  // no se encontro
-  if (!requerimiento) {
+    return () => {
+      activo = false;
+    };
+  }, [id]);
+
+  // Estado de carga
+  if (cargando) {
     return (
       <div className="container-fluid py-5 text-center">
-        <p className="text-muted mb-3">No se encontró el requerimiento solicitado.</p>
+        <div className="spinner-border text-secondary" role="status">
+          <span className="visually-hidden">Cargando...</span>
+        </div>
+        <p className="text-muted mt-3">Cargando requerimiento...</p>
+      </div>
+    );
+  }
+
+  // Error o no encontrado
+  if (error || !requerimiento) {
+    return (
+      <div className="container-fluid py-5 text-center">
+        <p className="text-muted mb-3">{error || 'No se encontró el requerimiento solicitado.'}</p>
         <Link to="/gestor/requerimientos" className="btn btn-primary">
           Volver al listado
         </Link>

@@ -30,6 +30,7 @@ function mapearRequerimiento(requerimiento) {
     fechaHora: formatearFechaHora(requerimiento.fechaHora),
     estado: requerimiento.estado,
     imagen: requerimiento.imagen ?? null,
+    categoria: requerimiento.categoria ?? null, // <-- AGREGADO
   };
 }
 
@@ -47,4 +48,29 @@ export async function obtenerMisRequerimientos() {
   });
 
   return requerimientos.map(mapearRequerimiento);
+}
+
+export async function obtenerRequerimientos() {
+  const requerimientos = await apiRequest('/requerimientos', {
+    token: obtenerToken(),
+  });
+  return requerimientos.map(mapearRequerimiento);
+}
+
+export async function obtenerRequerimientoPorId(id) {
+  const requerimiento = await apiRequest(`/requerimientos/${id}`, {
+    token: obtenerToken(),
+  });
+  return mapearRequerimiento(requerimiento);
+}
+
+export async function obtenerCategorias() {
+  return apiRequest('/requerimientos/categorias', { token: obtenerToken() });
+}
+
+export async function eliminarRequerimiento(id) {
+  await apiRequest(`/requerimientos/${id}`, {
+    method: 'DELETE',
+    token: obtenerToken(),
+  });
 }

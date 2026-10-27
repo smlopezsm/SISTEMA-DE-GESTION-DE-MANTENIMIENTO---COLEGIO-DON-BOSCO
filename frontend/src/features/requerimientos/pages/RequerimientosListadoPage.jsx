@@ -1,11 +1,12 @@
-import { useState, useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router';
-import { FaFileLines, FaPlus, FaChevronLeft, FaChevronRight, } from 'react-icons/fa6';
+import { FaFileLines, FaPlus, FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
 import '../styles/RequerimientosListadoPage.css';
-import { obtenerRequerimientos, obtenerLugares, } from '../services/requerimientosService';
+import { obtenerRequerimientos, eliminarRequerimiento } from '../services/requerimientosApiService';
 import Filtros from '../../../shared/components/Filtros';
 import TablaRequerimientos from '../components/TablaRequerimientos';
 import EncabezadoPagina from '../../../shared/components/EncabezadoPagina';
+
 const POR_PAGINA = 8;
 
 function fechaAISO(fechaHora) {
@@ -16,31 +17,55 @@ function fechaAISO(fechaHora) {
 }
 
 function RequerimientosListadoPage() {
-  const todosLosRequerimientos = obtenerRequerimientos();
-  const lugares = obtenerLugares();
-
-  const [filtros, setFiltros] = useState({ busqueda: '', lugar: 'todos', fechaDesde: '', fechaHasta: '', });
+  const [todosLosRequerimientos, setTodosLosRequerimientos] = useState([]);
+  const [cargando, setCargando] = useState(true);
+  const [error, setError] = useState('');
+  const [filtros, setFiltros] = useState({ busqueda: '', lugar: 'todos', fechaDesde: '', fechaHasta: '' });
   const [pagina, setPagina] = useState(1);
+
+  useEffect(() => {
+    let activo = true;
+    obtenerRequerimientos()
+      .then((data) => { if (activo) setTodosLosRequerimientos(data); })
+      .catch((err) => { if (activo) setError(err.message || 'No se pudieron cargar los requerimientos.'); })
+      .finally(() => { if (activo) setCargando(false); });
+    return () => { activo = false; };
+  }, []);
+
+  const lugares = useMemo(
+    () => [...new Set(todosLosRequerimientos.map((r) => r.lugar))].sort(),
+    [todosLosRequerimientos]
+  );
 
   function manejarCambioFiltro(campo, valor) {
     setFiltros((anteriores) => ({ ...anteriores, [campo]: valor }));
     setPagina(1);
   }
 
+  // FUNCIÓN PARA ELIMINAR
+  const handleEliminar = async (id) => {
+    if (window.confirm('¿Estás seguro de eliminar este requerimiento?')) {
+      try {
+        await eliminarRequerimiento(id);
+        // Recargamos la lista quitando el eliminado
+        setTodosLosRequerimientos(prev => prev.filter(r => r.id !== id));
+      } catch (err) {
+        alert('Error al eliminar: ' + err.message);
+      }
+    }
+  };
+
   const requerimientosFiltrados = useMemo(() => {
     return todosLosRequerimientos
-      //solo pendientes, sin tarea creada
-      .filter((req) => req.estado === 'pendiente')
+      //.filter((req) => req.estado === 'pendiente')
       .filter((req) => {
         const coincideBusqueda =
           filtros.busqueda === '' ||
-          req.id.toLowerCase().includes(filtros.busqueda.toLowerCase()) ||
+          req.id.toString().includes(filtros.busqueda.toLowerCase()) ||
           req.titulo.toLowerCase().includes(filtros.busqueda.toLowerCase()) ||
           req.descripcion.toLowerCase().includes(filtros.busqueda.toLowerCase());
 
-        const coincideLugar =
-          filtros.lugar === 'todos' || req.lugar === filtros.lugar;
-
+        const coincideLugar = filtros.lugar === 'todos' || req.lugar === filtros.lugar;
         const fechaReq = fechaAISO(req.fechaHora);
         const coincideDesde = !filtros.fechaDesde || fechaReq >= filtros.fechaDesde;
         const coincideHasta = !filtros.fechaHasta || fechaReq <= filtros.fechaHasta;
@@ -56,7 +81,6 @@ function RequerimientosListadoPage() {
 
   return (
     <div className="requerimientos-listado">
-      {/* encabezado */}
       <EncabezadoPagina
         icono={FaFileLines}
         titulo="Requerimientos pendientes"
@@ -70,85 +94,71 @@ function RequerimientosListadoPage() {
       <Filtros
         filtros={filtros}
         onCambiar={manejarCambioFiltro}
-        onAplicar={() => { }}   // opcional, si querés mantener el botón
+        onAplicar={() => {}}
         campos={[
+          { tipo: 'busqueda', clave: 'busqueda', placeholder: 'Buscar por ID, título o descripción…' },
           {
-            tipo: 'busqueda',
-            clave: 'busqueda',
-            placeholder: 'Buscar por ID, título o descripción…',
+            tipo: 'select', clave: 'lugar', etiqueta: 'Lugar',
+            opciones: [{ valor: 'todos', texto: 'Todos' }, ...lugares.map((l) => ({ valor: l, texto: l }))],
           },
-          {
-            tipo: 'select',
-            clave: 'lugar',
-            etiqueta: 'Lugar',
-            opciones: [
-              { valor: 'todos', texto: 'Todos' },
-              ...lugares.map((l) => ({ valor: l, texto: l })),
-            ],
-          },
-          {
-            tipo: 'fecha',
-            clave: 'fechaDesde',
-            etiqueta: 'Fecha desde',
-          },
-          {
-            tipo: 'fecha',
-            clave: 'fechaHasta',
-            etiqueta: 'Fecha hasta',
-          },
+          { tipo: 'fecha', clave: 'fechaDesde', etiqueta: 'Fecha desde' },
+          { tipo: 'fecha', clave: 'fechaHasta', etiqueta: 'Fecha hasta' },
         ]}
       />
 
-      {/* tabla */}
-      <TablaRequerimientos requerimientos={requerimientosPagina} />
-
-      {/* paginacion */}
-      <div className="d-flex justify-content-between align-items-center mt-3">
-        <small className="text-muted">
-          Mostrando {desde} – {hasta} de {requerimientosFiltrados.length}{' '}
-          requerimientos pendientes
-        </small>
-
-        {totalPaginas > 1 && (
-          <nav>
-            <ul className="pagination pagination-sm mb-0">
-              <li className={`page-item ${pagina === 1 ? 'disabled' : ''}`}>
-                <button className="page-link" onClick={() => setPagina((p) => Math.max(1, p - 1))} disabled={pagina === 1} aria-label="Anterior" >
-                  <FaChevronLeft size={12} />
-                </button>
-              </li>
-
-              {Array.from({ length: totalPaginas }, (_, i) => i + 1).map(
-                (numero) => (
-                  <li
-                    key={numero}
-                    className={`page-item ${pagina === numero ? 'active' : ''}`}
-                  >
-                    <button className="page-link" onClick={() => setPagina(numero)} >
-                      {numero}
-                    </button>
-                  </li>
-                )
-              )}
-
-              <li
-                className={`page-item ${pagina === totalPaginas ? 'disabled' : ''}`}
-              >
-                <button
-                  className="page-link"
-                  onClick={() =>
-                    setPagina((p) => Math.min(totalPaginas, p + 1))
-                  }
-                  disabled={pagina === totalPaginas}
-                  aria-label="Siguiente"
-                >
-                  <FaChevronRight size={12} />
-                </button>
-              </li>
-            </ul>
-          </nav>
+      <div className="card border-0 shadow-sm">
+        {cargando ? (
+          <div className="card-body text-center py-5">
+            <div className="spinner-border text-secondary" role="status">
+              <span className="visually-hidden">Cargando...</span>
+            </div>
+            <p className="text-muted mt-3 mb-0">Cargando requerimientos...</p>
+          </div>
+        ) : error ? (
+          <div className="card-body text-center py-5">
+            <div className="alert alert-danger" role="alert">{error}</div>
+          </div>
+        ) : requerimientosFiltrados.length === 0 ? (
+          <div className="card-body text-center text-muted py-5">
+            <p className="mb-1 fw-medium">No hay requerimientos pendientes</p>
+            <small>Cuando se emita uno nuevo, va a aparecer acá.</small>
+          </div>
+        ) : (
+          <TablaRequerimientos 
+            requerimientos={requerimientosPagina} 
+            onEliminar={handleEliminar} 
+          />
         )}
       </div>
+
+      {!cargando && !error && requerimientosFiltrados.length > 0 && (
+        <div className="d-flex justify-content-between align-items-center mt-3">
+          <small className="text-muted">
+            Mostrando {desde} – {hasta} de {requerimientosFiltrados.length} requerimientos pendientes
+          </small>
+          {totalPaginas > 1 && (
+            <nav>
+              <ul className="pagination pagination-sm mb-0">
+                <li className={`page-item ${pagina === 1 ? 'disabled' : ''}`}>
+                  <button className="page-link" onClick={() => setPagina((p) => Math.max(1, p - 1))} disabled={pagina === 1} aria-label="Anterior">
+                    <FaChevronLeft size={12} />
+                  </button>
+                </li>
+                {Array.from({ length: totalPaginas }, (_, i) => i + 1).map((numero) => (
+                  <li key={numero} className={`page-item ${pagina === numero ? 'active' : ''}`}>
+                    <button className="page-link" onClick={() => setPagina(numero)}>{numero}</button>
+                  </li>
+                ))}
+                <li className={`page-item ${pagina === totalPaginas ? 'disabled' : ''}`}>
+                  <button className="page-link" onClick={() => setPagina((p) => Math.min(totalPaginas, p + 1))} disabled={pagina === totalPaginas} aria-label="Siguiente">
+                    <FaChevronRight size={12} />
+                  </button>
+                </li>
+              </ul>
+            </nav>
+          )}
+        </div>
+      )}
     </div>
   );
 }
