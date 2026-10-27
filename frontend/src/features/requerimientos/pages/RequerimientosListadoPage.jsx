@@ -42,12 +42,10 @@ function RequerimientosListadoPage() {
     setPagina(1);
   }
 
-  // FUNCIÓN PARA ELIMINAR
   const handleEliminar = async (id) => {
     if (window.confirm('¿Estás seguro de eliminar este requerimiento?')) {
       try {
         await eliminarRequerimiento(id);
-        // Recargamos la lista quitando el eliminado
         setTodosLosRequerimientos(prev => prev.filter(r => r.id !== id));
       } catch (err) {
         alert('Error al eliminar: ' + err.message);
@@ -57,12 +55,11 @@ function RequerimientosListadoPage() {
 
   const requerimientosFiltrados = useMemo(() => {
     return todosLosRequerimientos
-      //.filter((req) => req.estado === 'pendiente')
       .filter((req) => {
         const coincideBusqueda =
           filtros.busqueda === '' ||
           req.id.toString().includes(filtros.busqueda.toLowerCase()) ||
-          req.titulo.toLowerCase().includes(filtros.busqueda.toLowerCase()) ||
+          (req.categoria ?? '').toLowerCase().includes(filtros.busqueda.toLowerCase()) ||
           req.descripcion.toLowerCase().includes(filtros.busqueda.toLowerCase());
 
         const coincideLugar = filtros.lugar === 'todos' || req.lugar === filtros.lugar;
@@ -96,7 +93,7 @@ function RequerimientosListadoPage() {
         onCambiar={manejarCambioFiltro}
         onAplicar={() => {}}
         campos={[
-          { tipo: 'busqueda', clave: 'busqueda', placeholder: 'Buscar por ID, título o descripción…' },
+          { tipo: 'busqueda', clave: 'busqueda', placeholder: 'Buscar por ID, categoría o descripción…' },
           {
             tipo: 'select', clave: 'lugar', etiqueta: 'Lugar',
             opciones: [{ valor: 'todos', texto: 'Todos' }, ...lugares.map((l) => ({ valor: l, texto: l }))],

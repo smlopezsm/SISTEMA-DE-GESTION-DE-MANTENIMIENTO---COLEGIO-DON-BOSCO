@@ -1,36 +1,54 @@
-import resumen from '@data/resumen-panel.json';
-import requerimientos from '@data/requerimientos.json';
-import tareas from '@data/tareas.json';
-import tareasEvaluacion from '@data/tareas-evaluacion.json';
-import notificacionesData from '@data/notificaciones.json';
+import { apiRequest } from '../../../shared/api/apiClient';
+import { obtenerToken } from '../../auth/services/authService';
 
+export async function obtenerResumenPanel() {
+  // Hacemos dos consultas en paralelo: estadísticas y requerimientos pendientes
+  const [estadisticas, requerimientos] = await Promise.all([
+    apiRequest('/estadisticas', { token: obtenerToken() }),
+    apiRequest('/requerimientos?estado=pendiente', { token: obtenerToken() }),
+  ]);
 
-const notificaciones = Array.isArray(notificacionesData) ? notificacionesData : notificacionesData.notificaciones ?? [];
-
-const TIPOS_POR_ROL = { jefeMantenimiento: ['requerimiento', 'tarea-aprobada', 'tarea-rechazada'], directivo: ['tarea-finalizada', 'tarea-cancelada'], };
-
-function notificacionesPorRol(rol) {
-  const tipos = TIPOS_POR_ROL[rol] ?? [];
-  return notificaciones.filter((n) => tipos.includes(n.tipo));
-}
-
-export const obtenerResumenPanel = async () => resumen;
-export const obtenerRequerimientosRecientes = async () => requerimientos;
-export const obtenerTareas = async () => tareas;
-export const obtenerNotificaciones = async () => notificaciones;
-
-export async function obtenerPanelDirectivo() {
-  const rechazadas =
-    tareas.porEstado?.find((e) => e.clave === 'rechazada')?.valor ?? 0;
+  const kpis = estadisticas.kpis || [];
+  const getKpi = (clave) => kpis.find((k) => k.clave === clave)?.valor || 0;
 
   return {
-    resumen: {
-      pendientesEvaluacion: resumen.tareasEsperandoAprobacion ?? 0,
-      enProceso: resumen.tareasEnProceso ?? 0,
-      finalizadas: resumen.tareasFinalizadas ?? 0,
-      rechazadas,
-    },
-    tareasEvaluacion,
-    notificaciones: notificacionesPorRol('directivo'),
+    requerimientosPendientes: requerimientos.length, // Contamos los requerimientos pendientes reales
+    tareasPendientes: getKpi('en-proceso'), // Usamos el total en proceso
+    tareasEnProceso: getKpi('en-proceso'),
+    tareasDemoradas: getKpi('demoradas'),
+    tareasFinalizadas: getKpi('finalizadas'),
+    tareasRechazadas: getKpi('rechazadas'),
+  };
+}
+
+export async function obtenerRequerimientosRecientes() {
+  // Traemos los requerimientos del backend (limitamos a los 10 más recientes)
+  const requerimientos = await apiRequest('/requerimientos', {
+    token: obtenerToken(),
+  });
+  return requerimientos.slice(0, 10); // Tomamos solo los primeros 10
+}
+
+export async function obtenerTareas() {
+  // Traemos las tareas del backend
+  const tareas = await apiRequest('/tareas', {
+    token: obtenerToken(),
+  });
+  return { tareas }; // El componente espera un objeto con la propiedad 'tareas'
+}
+
+export async function obtenerNotificaciones() {
+  const notificaciones = await apiRequest('/notificaciones', {
+    token: obtenerToken(),
+  });
+  return notificaciones;
+}
+
+// Esta función ya no se usa, pero la dejamos para que no rompa si alguna página la importa
+export async function obtenerPanelDirectivo() {
+  return {
+    resumen: {},
+    tareasEvaluacion: [],
+    notificaciones: [],
   };
 }

@@ -4,8 +4,8 @@ const SELECT_TAREA = `
   SELECT
     t.id_tarea AS id,
     t.id_requerimiento AS "idRequerimiento",
-    r.titulo AS "requerimientoTitulo",
-    r.titulo,
+    c.nombre AS "requerimientoTitulo",
+    c.nombre AS titulo,               
     r.descripcion,
     r.id_sector AS "idSector",
     s.nombre AS sector,
@@ -36,6 +36,7 @@ const SELECT_TAREA = `
     COALESCE(u2.telefono, p.telefono) AS telefono
   FROM tareas t
   JOIN requerimientos r ON r.id_requerimiento = t.id_requerimiento
+  JOIN categorias c ON c.id_categoria = r.id_categoria
   JOIN sectores s ON s.id_sector = r.id_sector
   JOIN usuarios u ON u.id_usuario = r.id_usuario
   JOIN roles rr ON rr.id_rol = u.id_rol

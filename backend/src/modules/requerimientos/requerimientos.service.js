@@ -48,18 +48,14 @@ export async function crear(datos, usuario) {
     throw new ApiError(400, 'Categoría y descripción son obligatorias');
   }
 
-  // Buscamos el nombre de la categoría para usarlo como título
-  const categorias = await repository.listarCategorias();
-  const catEncontrada = categorias.find(c => c.id_categoria === idCategoria);
-  if (!catEncontrada) throw new ApiError(400, 'La categoría seleccionada no existe');
-  
-  const titulo = catEncontrada.nombre; // El título es el nombre de la categoría
+  const categoria = await repository.obtenerCategoriaPorId(idCategoria);
+  if (!categoria) throw new ApiError(400, 'La categoría seleccionada no existe');
 
   const idSector = await resolverSector(datos);
 
   return withTransaction(async (client) => {
     const id = await repository.crear(
-      { titulo, descripcion, idSector, idCategoria, imagen: datos.imagen ?? null, idUsuario: usuario.id },
+      { descripcion, idSector, idCategoria, imagen: datos.imagen ?? null, idUsuario: usuario.id },
       client,
     );
 
@@ -69,7 +65,7 @@ export async function crear(datos, usuario) {
         idRequerimiento: id,
         tipo: 'requerimiento',
         titulo: 'Nuevo requerimiento',
-        mensaje: `Se emitió el requerimiento REQ-${String(id).padStart(4, '0')}: ${titulo}.`,
+        mensaje: `Se emitió el requerimiento REQ-${String(id).padStart(4, '0')}: ${categoria.nombre}.`,
       },
       client,
     );
@@ -96,15 +92,12 @@ export async function actualizar(id, datos, usuario) {
   }
 
   const idCategoria = datos.idCategoria !== undefined ? Number(datos.idCategoria) : actual.idCategoria;
-  let titulo = actual.titulo;
   if (idCategoria !== actual.idCategoria) {
-    const categorias = await repository.listarCategorias();
-    const catEncontrada = categorias.find(c => c.id_categoria === idCategoria);
-    if (!catEncontrada) throw new ApiError(400, 'La categoría seleccionada no existe');
-    titulo = catEncontrada.nombre;
+    const categoria = await repository.obtenerCategoriaPorId(idCategoria);
+    if (!categoria) throw new ApiError(400, 'La categoría seleccionada no existe');
   }
 
-  await repository.actualizar(id, { titulo, descripcion, idSector, idCategoria, imagen: datos.imagen !== undefined ? datos.imagen : actual.imagen });
+  await repository.actualizar(id, { descripcion, idSector, idCategoria, imagen: datos.imagen !== undefined ? datos.imagen : actual.imagen });
   return repository.obtenerPorId(id);
 }
 

@@ -2,15 +2,17 @@
 -- Datos de prueba - Sistema de Gestión de Mantenimiento
 -- Ejecutar después de schema.sql:
 --   psql -U postgres -d donbosco_mantenimiento -f seed.sql
+-- (la base se crea antes: CREATE DATABASE donbosco_mantenimiento;)
 --
 -- Usuarios de prueba (todos usan la contraseña 1234):
 --   atorres      Ordenanza
 --   jrodriguez   Jefe de Mantenimiento
 --   cperez       Directivo
 -- ============================================================
+\encoding UTF8
 
 TRUNCATE TABLE notificaciones, compras, historial, tareas, requerimientos,
-  personal_externo, usuarios, especialidades, sectores, cargos, roles
+  personal_externo, usuarios, especialidades, sectores, cargos, roles, categorias
   RESTART IDENTITY CASCADE;
 
 -- ------------------------------------------------------------
@@ -60,6 +62,16 @@ INSERT INTO especialidades (id_especialidad, nombre) OVERRIDING SYSTEM VALUE VAL
   (9, 'Mantenimiento general'),
   (10, 'Vidriería');
 
+INSERT INTO categorias (id_categoria, nombre) OVERRIDING SYSTEM VALUE VALUES
+  (1, 'Plomería'),
+  (2, 'Electricidad'),
+  (3, 'Pintura'),
+  (4, 'Carpintería'),
+  (5, 'Albañilería'),
+  (6, 'Climatización'),
+  (7, 'Limpieza'),
+  (8, 'Otros');
+
 -- ------------------------------------------------------------
 -- Usuarios (hash de bcrypt para la contraseña 1234)
 -- ------------------------------------------------------------
@@ -85,7 +97,7 @@ INSERT INTO usuarios (
    3, NULL, 3, TRUE, '2025-01-10 08:00:00-03'),
   (6, 'jrodriguez', 'Juan', 'Rodríguez', '22345678', 'jrodriguez@donbosco.org.ar',
    '$2b$10$MdAWYQmY/Ad3ejF6JByxHORzZfhywigohgRnzU0r17CECKem0UBTm',
-   2, '266 4556789', NULL, TRUE, '2025-01-10 08:00:00-03'),
+   2, NULL, NULL, TRUE, '2025-01-10 08:00:00-03'),
   (7, 'laurafernandez', 'Laura', 'Fernández', '33456789', 'laurafernandez@donbosco.org.ar',
    '$2b$10$MdAWYQmY/Ad3ejF6JByxHORzZfhywigohgRnzU0r17CECKem0UBTm',
    1, '266 4557890', NULL, TRUE, '2025-01-10 08:00:00-03'),
@@ -133,41 +145,33 @@ INSERT INTO personal_externo (
 -- ------------------------------------------------------------
 
 INSERT INTO requerimientos (
-  id_requerimiento, titulo, descripcion, id_sector, imagen, id_usuario,
-  estado, fecha_emision
+  id_requerimiento, descripcion, id_sector, imagen, id_usuario,
+  estado, fecha_emision, id_categoria
 ) OVERRIDING SYSTEM VALUE VALUES
-  (342, 'Filtración en techo - Pabellón B',
-   'Se observa filtración de agua en el techo del pabellón B, principalmente en la zona del pasillo. En días de lluvia el agua se filtra hacia el interior y afecta las luminarias y el cielorraso.',
+  (342, 'Se observa filtración de agua en el techo del pabellón B, principalmente en la zona del pasillo. En días de lluvia el agua se filtra hacia el interior y afecta las luminarias y el cielorraso.',
    12, 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800', 7,
-   'en-proceso', TO_TIMESTAMP('12/03/2025 09:42', 'DD/MM/YYYY HH24:MI')),
-  (341, 'Luz de emergencia sin funcionar',
-   'La luz de emergencia del pasillo principal no enciende. Se verificó que no es problema del tubo LED.',
+   'en-proceso', TO_TIMESTAMP('25/06/2025 09:12', 'DD/MM/YYYY HH24:MI'), 1),
+  (341, 'La luz de emergencia del pasillo principal no enciende. Se verificó que no es problema del tubo LED.',
    6, 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=800', 8,
-   'finalizada', TO_TIMESTAMP('25/06/2025 08:47', 'DD/MM/YYYY HH24:MI')),
-  (340, 'Puerta rota',
-   'La puerta del aula 12 está dañada y no cierra correctamente. Se necesita revisar la cerradura y ajustar la bisagra.',
+   'finalizada', TO_TIMESTAMP('24/06/2025 08:47', 'DD/MM/YYYY HH24:MI'), 2),
+  (340, 'La puerta del aula 12 está dañada y no cierra correctamente. Se necesita revisar la cerradura y ajustar la bisagra.',
    1, 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800', 7,
-   'en-proceso', TO_TIMESTAMP('24/06/2025 16:30', 'DD/MM/YYYY HH24:MI')),
-  (339, 'Problemas con el aire acondicionado',
-   'El aire acondicionado del laboratorio de informática no enfría. Hace ruido extraño al encender.',
-   5, NULL, 9,
-   'en-proceso', TO_TIMESTAMP('24/06/2025 14:22', 'DD/MM/YYYY HH24:MI')),
-  (338, 'Pintura descascarada',
-   'Se observa pintura descascarada en la pared del patio. Necesita lijado y repintado.',
+   'en-proceso', TO_TIMESTAMP('24/06/2025 16:30', 'DD/MM/YYYY HH24:MI'), 4),
+  (339, 'El aire acondicionado del laboratorio de informática no enfría. Hace ruido extraño al encender.',
+   15, NULL, 9,
+   'en-proceso', TO_TIMESTAMP('24/06/2025 14:22', 'DD/MM/YYYY HH24:MI'), 6),
+  (338, 'Se observa pintura descascarada en la pared del patio. Necesita lijado y repintado.',
    3, 'https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=800', 1,
-   'en-proceso', TO_TIMESTAMP('24/06/2025 11:15', 'DD/MM/YYYY HH24:MI')),
-  (337, 'Calefacción no funciona',
-   'La calefacción del aula 8 no prende. Se verificó que el termostato está en buen estado.',
+   'en-proceso', TO_TIMESTAMP('24/06/2025 11:15', 'DD/MM/YYYY HH24:MI'), 3),
+  (337, 'La calefacción del aula 8 no prende. Se verificó que el termostato está en buen estado.',
    11, NULL, 10,
-   'finalizada', TO_TIMESTAMP('23/06/2025 17:40', 'DD/MM/YYYY HH24:MI')),
-  (336, 'Pérdida de gas en cocina',
-   'Se siente olor a gas en la cocina del pabellón C. Se recomienda revisar las conexiones de la cocina.',
+   'finalizada', TO_TIMESTAMP('23/06/2025 17:40', 'DD/MM/YYYY HH24:MI'), 6),
+  (336, 'Se siente olor a gas en la cocina del pabellón C. Se recomienda revisar las conexiones de la cocina.',
    13, 'https://images.unsplash.com/photo-1556909212-d5b604d0c90d?w=800', 11,
-   'cancelada', TO_TIMESTAMP('23/06/2025 12:18', 'DD/MM/YYYY HH24:MI')),
-  (335, 'Toma eléctrica suelta',
-   'La toma del laboratorio 3 está suelta y hace mal contacto. Puede ser peligroso.',
+   'cancelada', TO_TIMESTAMP('23/06/2025 12:18', 'DD/MM/YYYY HH24:MI'), 1),
+  (335, 'La toma del laboratorio 3 está suelta y hace mal contacto. Puede ser peligroso.',
    4, 'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=800', 12,
-   'finalizada', TO_TIMESTAMP('22/06/2025 10:05', 'DD/MM/YYYY HH24:MI'));
+   'finalizada', TO_TIMESTAMP('22/06/2025 10:05', 'DD/MM/YYYY HH24:MI'), 2);
 
 -- ------------------------------------------------------------
 -- Tareas
@@ -186,7 +190,7 @@ INSERT INTO tareas (
    TO_TIMESTAMP('24/06/2025 08:47', 'DD/MM/YYYY HH24:MI'),
    TO_TIMESTAMP('24/06/2025 10:15', 'DD/MM/YYYY HH24:MI'),
    TO_TIMESTAMP('24/06/2025 14:00', 'DD/MM/YYYY HH24:MI'),
-   '', NULL, NULL, 9, 40000.00),
+   '', NULL, NULL, 1, 40000.00),
   (126, 340, 'alta', 'en-proceso',
    TO_TIMESTAMP('24/06/2025 16:30', 'DD/MM/YYYY HH24:MI'),
    TO_TIMESTAMP('25/06/2025 08:00', 'DD/MM/YYYY HH24:MI'),
@@ -208,7 +212,7 @@ INSERT INTO tareas (
    TO_TIMESTAMP('23/06/2025 12:18', 'DD/MM/YYYY HH24:MI'),
    TO_TIMESTAMP('23/06/2025 14:00', 'DD/MM/YYYY HH24:MI'),
    TO_TIMESTAMP('23/06/2025 18:00', 'DD/MM/YYYY HH24:MI'),
-   'Se canceló porque el gasista no pudo venir.', NULL, NULL, NULL, NULL),
+   'Se canceló porque el gasista no pudo venir.', NULL, NULL, 7, NULL),
   (121, 335, 'media', 'aprobada',
    TO_TIMESTAMP('22/06/2025 10:05', 'DD/MM/YYYY HH24:MI'),
    TO_TIMESTAMP('22/06/2025 11:30', 'DD/MM/YYYY HH24:MI'),
@@ -226,7 +230,7 @@ INSERT INTO historial (id_tarea, estado, motivo, id_usuario, fecha_hora) VALUES
    TO_TIMESTAMP('25/06/2025 10:30', 'DD/MM/YYYY HH24:MI')),
   (127, 'pendiente', 'Tarea creada a partir del requerimiento REQ-0341', 6,
    TO_TIMESTAMP('24/06/2025 08:47', 'DD/MM/YYYY HH24:MI')),
-  (127, 'en-proceso', 'ClimaSur S.A. inició el cambio de luminaria.', 6,
+  (127, 'en-proceso', 'Juan Carlos Gómez inició el cambio de luminaria.', 6,
    TO_TIMESTAMP('24/06/2025 10:15', 'DD/MM/YYYY HH24:MI')),
   (127, 'finalizada', 'El personal externo completó el cambio de luminaria.', 6,
    TO_TIMESTAMP('24/06/2025 14:00', 'DD/MM/YYYY HH24:MI')),
@@ -254,7 +258,7 @@ INSERT INTO historial (id_tarea, estado, motivo, id_usuario, fecha_hora) VALUES
    TO_TIMESTAMP('23/06/2025 12:18', 'DD/MM/YYYY HH24:MI')),
   (122, 'en-proceso', 'Se asignó al gasista para la revisión.', 6,
    TO_TIMESTAMP('23/06/2025 14:00', 'DD/MM/YYYY HH24:MI')),
-  (122, 'cancelada', 'Se canceló porque el gasista no pudo venir. Se generó nueva tarea equivalente.', 6,
+  (122, 'cancelada', 'Se canceló porque el gasista no pudo venir.', 6,
    TO_TIMESTAMP('23/06/2025 18:00', 'DD/MM/YYYY HH24:MI')),
   (121, 'pendiente', 'Tarea creada a partir del requerimiento REQ-0335', 6,
    TO_TIMESTAMP('22/06/2025 10:05', 'DD/MM/YYYY HH24:MI')),
@@ -271,8 +275,8 @@ INSERT INTO historial (id_tarea, estado, motivo, id_usuario, fecha_hora) VALUES
 
 INSERT INTO compras (id_tarea, monto, detalle, categoria, fecha, factura) VALUES
   (126, 12450.00,
-   '2 bultos de cemento (25 kg c/u) y 1 rollo de cinta de seguridad.',
-   'materiales', TO_TIMESTAMP('26/06/2025 09:00', 'DD/MM/YYYY HH24:MI'), NULL),
+   'Cerradura de embutir y juego de bisagras.',
+   'materiales', TO_TIMESTAMP('25/06/2025 08:30', 'DD/MM/YYYY HH24:MI'), NULL),
   (127, 12500.00,
    'Luminaria LED de emergencia 20W.', 'materiales',
    TO_TIMESTAMP('24/06/2025 09:30', 'DD/MM/YYYY HH24:MI'), NULL),
@@ -298,7 +302,7 @@ INSERT INTO notificaciones (
    FALSE, TO_TIMESTAMP('25/06/2025 09:12', 'DD/MM/YYYY HH24:MI')),
   (6, 341, NULL, 'requerimiento', 'Nuevo requerimiento',
    'Se emitió el requerimiento REQ-0341: Luz de emergencia sin funcionar.',
-   TRUE, TO_TIMESTAMP('25/06/2025 08:47', 'DD/MM/YYYY HH24:MI')),
+   TRUE, TO_TIMESTAMP('24/06/2025 08:47', 'DD/MM/YYYY HH24:MI')),
   (4, NULL, 123, 'tarea-finalizada', 'Tarea finalizada',
    'La tarea T-0123: Revisión de caldera pasó a finalizada y espera tu aprobación.',
    FALSE, TO_TIMESTAMP('24/06/2025 15:00', 'DD/MM/YYYY HH24:MI')),
@@ -327,3 +331,4 @@ SELECT setval(pg_get_serial_sequence('usuarios', 'id_usuario'), (SELECT MAX(id_u
 SELECT setval(pg_get_serial_sequence('personal_externo', 'id_personal'), (SELECT MAX(id_personal) FROM personal_externo));
 SELECT setval(pg_get_serial_sequence('requerimientos', 'id_requerimiento'), (SELECT MAX(id_requerimiento) FROM requerimientos));
 SELECT setval(pg_get_serial_sequence('tareas', 'id_tarea'), (SELECT MAX(id_tarea) FROM tareas));
+SELECT setval(pg_get_serial_sequence('categorias', 'id_categoria'), (SELECT MAX(id_categoria) FROM categorias));

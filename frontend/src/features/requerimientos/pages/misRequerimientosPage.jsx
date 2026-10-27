@@ -88,7 +88,7 @@ function MisRequerimientosPage() {
     return misRequerimientos.filter((req) => {
       const coincideBusqueda =
         !filtros.busqueda ||
-        req.titulo.toLowerCase().includes(filtros.busqueda.toLowerCase()) ||
+        (req.categoria ?? '').toLowerCase().includes(filtros.busqueda.toLowerCase()) ||
         req.lugar.toLowerCase().includes(filtros.busqueda.toLowerCase());
 
       const coincideEstado =
@@ -135,7 +135,7 @@ function MisRequerimientosPage() {
           {
             tipo: 'busqueda',
             clave: 'busqueda',
-            placeholder: 'Buscar por título o lugar…',
+            placeholder: 'Buscar por categoría o lugar…',
           },
           {
             tipo: 'select',
@@ -199,7 +199,7 @@ function MisRequerimientosPage() {
             <table className="table table-hover align-middle mb-0 mis-requerimientos__tabla">
               <thead>
                 <tr>
-                  <th>Título</th>
+                  <th>Categoría</th>
                   <th>Lugar</th>
                   <th>Fecha de emisión</th>
                   <th>Estado</th>
@@ -214,7 +214,7 @@ function MisRequerimientosPage() {
                     <tr key={req.id}>
                       <td>
                         <div className="mis-requerimientos__titulo-celda">
-                          {req.titulo}
+                          {req.categoria}
                         </div>
                         <small className="mis-requerimientos__descripcion-celda">
                           {req.descripcion}

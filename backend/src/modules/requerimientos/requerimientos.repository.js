@@ -3,7 +3,6 @@ import { pool } from '../../config/db.js';
 const SELECT_REQUERIMIENTO = `
   SELECT
     r.id_requerimiento AS id,
-    r.titulo,
     r.descripcion,
     r.id_sector AS "idSector",
     s.nombre AS sector,
@@ -13,13 +12,14 @@ const SELECT_REQUERIMIENTO = `
     r.activo,
     r.id_categoria AS "idCategoria",
     c.nombre AS categoria,
+    c.nombre AS titulo, -- alias de compatibilidad con el front; borrar cuando use 'categoria'
     r.id_usuario AS "idUsuario",
     u.nombre || ' ' || u.apellido AS "reportadoPor",
     ro.nombre AS "rolReportante",
     r.fecha_emision AS "fechaHora"
   FROM requerimientos r
   JOIN sectores s ON s.id_sector = r.id_sector
-  LEFT JOIN categorias c ON c.id_categoria = r.id_categoria
+  JOIN categorias c ON c.id_categoria = r.id_categoria
   JOIN usuarios u ON u.id_usuario = r.id_usuario
   JOIN roles ro ON ro.id_rol = u.id_rol
 `;
@@ -27,7 +27,6 @@ const SELECT_REQUERIMIENTO = `
 const SELECT_REQUERIMIENTO_RESUMEN = `
   SELECT
     r.id_requerimiento AS id,
-    r.titulo,
     r.descripcion,
     r.id_sector AS "idSector",
     s.nombre AS sector,
@@ -37,13 +36,14 @@ const SELECT_REQUERIMIENTO_RESUMEN = `
     r.activo,
     r.id_categoria AS "idCategoria",
     c.nombre AS categoria,
+    c.nombre AS titulo, -- alias de compatibilidad con el front; borrar cuando use 'categoria'
     r.id_usuario AS "idUsuario",
     u.nombre || ' ' || u.apellido AS "reportadoPor",
     ro.nombre AS "rolReportante",
     r.fecha_emision AS "fechaHora"
   FROM requerimientos r
   JOIN sectores s ON s.id_sector = r.id_sector
-  LEFT JOIN categorias c ON c.id_categoria = r.id_categoria
+  JOIN categorias c ON c.id_categoria = r.id_categoria
   JOIN usuarios u ON u.id_usuario = r.id_usuario
   JOIN roles ro ON ro.id_rol = u.id_rol
 `;
@@ -90,6 +90,11 @@ export async function listarCategorias() {
   return rows;
 }
 
+export async function obtenerCategoriaPorId(id, db = pool) {
+  const { rows } = await db.query('SELECT id_categoria, nombre FROM categorias WHERE id_categoria = $1', [id]);
+  return rows[0] ?? null;
+}
+
 export async function obtenerOCrearSector(nombre) {
   const { rows } = await pool.query(
     `INSERT INTO sectores (nombre) VALUES ($1) ON CONFLICT (nombre) DO UPDATE SET nombre = EXCLUDED.nombre RETURNING id_sector`,
@@ -105,18 +110,18 @@ export async function obtenerSectorPorId(id) {
 
 export async function crear(datos, db = pool) {
   const { rows } = await db.query(
-    `INSERT INTO requerimientos (titulo, descripcion, id_sector, id_categoria, imagen, id_usuario)
-     VALUES ($1, $2, $3, $4, $5, $6)
+    `INSERT INTO requerimientos (descripcion, id_sector, id_categoria, imagen, id_usuario)
+     VALUES ($1, $2, $3, $4, $5)
      RETURNING id_requerimiento`,
-    [datos.titulo, datos.descripcion, datos.idSector, datos.idCategoria ?? null, datos.imagen ?? null, datos.idUsuario],
+    [datos.descripcion, datos.idSector, datos.idCategoria, datos.imagen ?? null, datos.idUsuario],
   );
   return rows[0].id_requerimiento;
 }
 
 export async function actualizar(id, datos, db = pool) {
   const { rows } = await db.query(
-    `UPDATE requerimientos SET titulo = $1, descripcion = $2, id_sector = $3, id_categoria = $4, imagen = $5 WHERE id_requerimiento = $6 RETURNING id_requerimiento`,
-    [datos.titulo, datos.descripcion, datos.idSector, datos.idCategoria ?? null, datos.imagen ?? null, id],
+    `UPDATE requerimientos SET descripcion = $1, id_sector = $2, id_categoria = $3, imagen = $4 WHERE id_requerimiento = $5 RETURNING id_requerimiento`,
+    [datos.descripcion, datos.idSector, datos.idCategoria, datos.imagen ?? null, id],
   );
   return rows[0] ?? null;
 }

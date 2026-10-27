@@ -20,6 +20,7 @@ DROP TABLE IF EXISTS especialidades CASCADE;
 DROP TABLE IF EXISTS sectores CASCADE;
 DROP TABLE IF EXISTS cargos CASCADE;
 DROP TABLE IF EXISTS roles CASCADE;
+DROP TABLE IF EXISTS categorias CASCADE;
 
 -- ------------------------------------------------------------
 -- Catálogos
@@ -29,6 +30,11 @@ CREATE TABLE roles (
   id_rol INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   nombre VARCHAR(30) NOT NULL UNIQUE
     CHECK (nombre IN ('ordenanza', 'jefeMantenimiento', 'directivo'))
+);
+
+CREATE TABLE categorias (
+  id_categoria INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  nombre VARCHAR(100) NOT NULL UNIQUE
 );
 
 CREATE TABLE cargos (
@@ -54,7 +60,7 @@ CREATE TABLE usuarios (
   id_usuario INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   nombre_usuario VARCHAR(50) NOT NULL UNIQUE,
   nombre VARCHAR(60) NOT NULL,
-  apellido VARCHAR(60) NOT NULL DEFAULT '',
+  apellido VARCHAR(60) NOT NULL,
   dni VARCHAR(10) UNIQUE,
   email VARCHAR(100) NOT NULL UNIQUE,
   password_hash VARCHAR(100) NOT NULL,
@@ -99,7 +105,7 @@ CREATE INDEX personal_externo_especialidad_idx ON personal_externo (id_especiali
 
 CREATE TABLE requerimientos (
   id_requerimiento INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  titulo VARCHAR(100) NOT NULL,
+  id_categoria INTEGER NOT NULL REFERENCES categorias(id_categoria),
   descripcion TEXT NOT NULL,
   id_sector INTEGER NOT NULL REFERENCES sectores(id_sector),
   imagen TEXT,
@@ -119,6 +125,7 @@ CREATE TABLE requerimientos (
 
 CREATE INDEX requerimientos_usuario_idx ON requerimientos (id_usuario);
 CREATE INDEX requerimientos_sector_idx ON requerimientos (id_sector);
+CREATE INDEX requerimientos_categoria_idx ON requerimientos (id_categoria);
 CREATE INDEX requerimientos_estado_idx ON requerimientos (estado);
 CREATE INDEX requerimientos_fecha_idx ON requerimientos (fecha_emision);
 
@@ -153,6 +160,12 @@ CREATE TABLE tareas (
     CHECK (costo_personal_externo IS NULL OR costo_personal_externo >= 0),
   CONSTRAINT tareas_un_solo_responsable CHECK (
     NOT (id_responsable IS NOT NULL AND id_personal_externo IS NOT NULL)
+  ),
+  CONSTRAINT tareas_fechas_coherentes CHECK (
+    fecha_inicio IS NULL OR fecha_fin IS NULL OR fecha_fin >= fecha_inicio
+  ),
+  CONSTRAINT tareas_origen_distinto CHECK (
+    id_tarea_origen IS NULL OR id_tarea_origen <> id_tarea
   )
 );
 
@@ -176,6 +189,7 @@ CREATE TABLE historial (
 );
 
 CREATE INDEX historial_tarea_idx ON historial (id_tarea);
+CREATE INDEX historial_usuario_idx ON historial (id_usuario);
 
 -- ------------------------------------------------------------
 -- Compras
@@ -219,3 +233,5 @@ CREATE TABLE notificaciones (
 
 CREATE INDEX notificaciones_usuario_idx ON notificaciones (id_usuario);
 CREATE INDEX notificaciones_leida_idx ON notificaciones (leida);
+CREATE INDEX notificaciones_tarea_idx ON notificaciones (id_tarea);
+CREATE INDEX notificaciones_requerimiento_idx ON notificaciones (id_requerimiento);
