@@ -1,7 +1,7 @@
 try {
   process.loadEnvFile();
 } catch {
-  // Si no existe .env, se usan las variables del entorno.
+  // Si no existe .env, se usan las variables del entorno
 }
 
 export const env = {
@@ -14,10 +14,12 @@ export const env = {
   PGPASSWORD: process.env.PGPASSWORD ?? '',
   PGDATABASE: process.env.PGDATABASE ?? 'donbosco_mantenimiento',
 
+  //lee process.env.JWT_SECRET
   JWT_SECRET: process.env.JWT_SECRET,
   JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN ?? '1h',
 };
 
+//validan que exista
 if (!env.JWT_SECRET) {
   throw new Error('Falta JWT_SECRET en el archivo .env');
 }

@@ -12,10 +12,12 @@ function leerSesion() {
   }
 }
 
+//guarda en sessionStorage y el token queda en el cliente
 function guardarSesion(sesion) {
   sessionStorage.setItem(CLAVE_SESION, JSON.stringify(sesion));
 }
 
+//hace una peticion al back
 export async function iniciarSesion(usuarioOEmail, password) {
   const identificador = String(usuarioOEmail ?? '').trim();
 
@@ -32,6 +34,7 @@ export async function iniciarSesion(usuarioOEmail, password) {
   return data.usuario;
 }
 
+//si el back devuelve error lanza una excepcion 
 export async function registrarUsuario(datos) {
   return apiRequest('/auth/registro', {
     method: 'POST',

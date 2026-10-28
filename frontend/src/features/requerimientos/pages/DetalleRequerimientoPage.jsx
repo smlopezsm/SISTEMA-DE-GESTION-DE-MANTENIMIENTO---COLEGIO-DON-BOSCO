@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router';
 import { FaArrowLeft, FaFileLines } from 'react-icons/fa6';
 import '../styles/DetalleRequerimientoPage.css';
 
-import { obtenerRequerimientoPorId } from '../services/requerimientosApiService';
+import { obtenerRequerimientoPorId } from '../services/requerimientosService';
 
 import InfoPrincipalRequerimiento from '../components/InfoPrincipalRequerimiento';
 import SolicitanteRequerimiento from '../components/SolicitanteRequerimiento';

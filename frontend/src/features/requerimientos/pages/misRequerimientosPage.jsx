@@ -3,7 +3,7 @@ import { useOutletContext } from 'react-router';
 import { FaFileLines, FaLocationDot } from 'react-icons/fa6';
 import Encabezado from '../../../shared/components/EncabezadoPagina';
 import Filtros from '../../../shared/components/Filtros';
-import { obtenerMisRequerimientos } from '../services/requerimientosApiService';
+import { obtenerMisRequerimientos } from '../services/requerimientosService';
 import '../styles/MisRequerimientosPage.css';
 
 const ESTILO_ESTADO = {

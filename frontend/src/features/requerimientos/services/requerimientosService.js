@@ -1,6 +1,8 @@
 import { apiRequest } from '../../../shared/api/apiClient';
 import { obtenerToken } from '../../auth/services/authService';
 
+// Funciones auxiliares
+
 function formatearFechaHora(valor) {
   if (!valor) return '';
   const fecha = new Date(valor);
@@ -25,8 +27,11 @@ function mapearRequerimiento(r) {
     fechaHora: formatearFechaHora(r.fechaHora ?? r.fecha),
     estado: r.estado,
     imagen: r.imagen ?? null,
+    categoria: r.categoria ?? null, // Campo que estaba en el Api
   };
 }
+
+// Endpoints de Requerimientos
 
 export async function obtenerRequerimientos() {
   const requerimientos = await apiRequest('/requerimientos', {
@@ -35,19 +40,21 @@ export async function obtenerRequerimientos() {
   return requerimientos.map(mapearRequerimiento);
 }
 
+// Alias para mantener compatibilidad si algun componente usa el nombre viejo
 export const getRequerimientos = obtenerRequerimientos;
+
+export async function obtenerMisRequerimientos() {
+  const requerimientos = await apiRequest('/requerimientos', {
+    token: obtenerToken(),
+  });
+  return requerimientos.map(mapearRequerimiento);
+}
 
 export async function obtenerRequerimientoPorId(id) {
   const requerimiento = await apiRequest(`/requerimientos/${id}`, {
     token: obtenerToken(),
   });
   return mapearRequerimiento(requerimiento);
-}
-
-export function obtenerLugares() {
-  // Se calcula desde el listado que ya se trajo
-  // O se puede pedir al back un endpoint de sectores (no está implementado)
-  return [];
 }
 
 export async function crearRequerimiento(datos) {
@@ -59,12 +66,18 @@ export async function crearRequerimiento(datos) {
   return mapearRequerimiento(requerimiento);
 }
 
+// Alias para mantener compatibilidad si algun componente usa el nombre viejo
 export const guardarRequerimiento = crearRequerimiento;
-
 
 export async function eliminarRequerimiento(id) {
   await apiRequest(`/requerimientos/${id}`, {
     method: 'DELETE',
     token: obtenerToken(),
   });
+}
+
+// Endpoints de Categorías
+
+export async function obtenerCategorias() {
+  return apiRequest('/requerimientos/categorias', { token: obtenerToken() });
 }

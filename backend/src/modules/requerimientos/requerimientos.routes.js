@@ -6,9 +6,10 @@ import { verificarRol } from '../../middlewares/verificarRol.js';
 import { validar } from '../../middlewares/validar.js';
 
 const router = Router();
+// ruta protegida por verificarToken, solo usuarios autenticados pueden acceder a estas rutas
 router.use(verificarToken);
 
-// Ruta de categorías (TIENE QUE IR ANTES DE /:id)
+// Ruta de categorias
 router.get('/categorias', asyncHandler(controller.listarCategorias));
 
 router.get('/', asyncHandler(controller.listar));

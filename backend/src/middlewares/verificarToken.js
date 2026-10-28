@@ -1,6 +1,8 @@
 import jwt from 'jsonwebtoken';
 import { env } from '../config/env.js';
 
+
+//devuelve un error si el token no es valido o no esta presente en la cabecera de autorizacion
 export const verificarToken = (req, res, next) => {
   const authHeader = req.headers.authorization;
 

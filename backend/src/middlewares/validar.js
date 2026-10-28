@@ -9,9 +9,9 @@ function vacio(valor) {
 }
 
 /**
- * Middleware de validación de body.
+ * Middleware de validacion
  *
- * Reglas soportadas por campo:
+ * Reglas
  * - requerido: boolean
  * - tipo: 'string' | 'email' | 'numero' | 'boolean' | 'array'
  * - min / max: longitud mínima/máxima para strings

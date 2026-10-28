@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router';
 import { FaFileLines, FaLocationDot, FaCloudArrowUp, FaXmark, FaTag } from 'react-icons/fa6';
-import { crearRequerimiento, obtenerCategorias } from '../services/requerimientosApiService';
+import { crearRequerimiento, obtenerCategorias } from '../services/requerimientosService';
 import { useToast } from '../../../shared/context/ToastContext';
 import Encabezado from '../../../shared/components/EncabezadoPagina';
 import '../styles/EmitirRequerimientoPage.css';

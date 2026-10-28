@@ -24,6 +24,7 @@ function normalizarDni(dni) {
   return limpio;
 }
 
+//normaliza los dtos, valida los datos y crea el usuario en la base de datos
 export async function registrar(datos) {
   const nombre = String(datos.nombre ?? '').trim();
   const apellido = String(datos.apellido ?? '').trim();
@@ -56,6 +57,7 @@ export async function registrar(datos) {
   }
 
   const dni = normalizarDni(datos.dni);
+  //bsuca en la base de datos si ya existe un usuario con el mismo nombre de usuario, email o dni y lanza un error
   const conflicto = await repository.existeConflicto({
     nombreUsuario,
     email,
@@ -69,11 +71,13 @@ export async function registrar(datos) {
     );
   }
 
+  //llama al repositorio para obtener el rol de ordenanza, si no existe lanza un error
   const rol = await repository.obtenerRolPorNombre('ordenanza');
   if (!rol) {
     throw new ApiError(500, 'No está configurado el rol Ordenanza');
   }
 
+  //hashea la contraseña
   const passwordHash = await bcrypt.hash(password, SALT_ROUNDS);
   const id = await repository.crearUsuario({
     nombreUsuario,
@@ -85,33 +89,34 @@ export async function registrar(datos) {
     idRol: rol.id_rol,
     telefono,
   });
-
+  //busca el usuario creado y lo mapea para devolverlo
   const usuario = await repository.buscarPorId(id);
   return mapearUsuario(usuario);
 }
 
+//valida las credenciales y devuelve un token JWT y los datos del usuario
 export async function login(datos) {
   const identificador = String(
     datos.nombreUsuario ?? datos.email ?? datos.usuario ?? '',
   ).trim();
   const password = String(datos.password ?? '');
-
+  
   if (!identificador || !password) {
     throw new ApiError(400, 'Usuario/email y contraseña son obligatorios');
   }
-
   const usuario = await repository.buscarPorCredencial(identificador);
+  //si no existe el usuario lanza un error
   const passwordOk =
     usuario && (await bcrypt.compare(password, usuario.password_hash));
-
+  //si la contraseña no coincide lanza un error
   if (!passwordOk) {
     throw new ApiError(401, 'Credenciales inválidas');
   }
-
+  //si el usuario esta dado de baja lanza un error
   if (!usuario.activo) {
     throw new ApiError(403, 'Esta cuenta está dada de baja');
   }
-
+  //si todo es correcto genera un token JWT con los datos del usuario y lo devuelve junto con los datos del usuario
   const token = jwt.sign(
     {
       sub: usuario.id_usuario,
@@ -121,13 +126,13 @@ export async function login(datos) {
     env.JWT_SECRET,
     { expiresIn: env.JWT_EXPIRES_IN },
   );
-
+  //devuelve el token y los datos del usuario mapeados
   return {
     token,
     usuario: mapearUsuario(usuario),
   };
 }
-
+//busca el usuario por id y devuelve los datos mapeados, si no existe lanza un error
 export async function perfil(id) {
   const usuario = await repository.buscarPorId(id);
 

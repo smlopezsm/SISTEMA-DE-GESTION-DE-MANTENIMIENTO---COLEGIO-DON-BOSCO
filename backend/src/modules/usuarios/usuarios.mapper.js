@@ -1,6 +1,7 @@
 export function mapearUsuario(row) {
   if (!row) return null;
 
+  //construye un objeto con ampos seleccionados manualmente, para no exponer datos sensibles como la contraseña
   return {
     id: row.id_usuario,
     nombre: row.nombre,
