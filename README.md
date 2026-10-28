@@ -229,6 +229,7 @@ Base: `http://localhost:3000/api/v1`
 | PUT | `/usuarios/:id` | Directivo o el propio usuario |
 | DELETE | `/usuarios/:id` | Directivo (baja lógica) |
 | GET | `/requerimientos` | Autenticado, filtrado por rol |
+| GET | `/requerimientos/categorias` | Autenticado |
 | GET | `/requerimientos/:id` | Jefe o el dueño |
 | POST | `/requerimientos` | Autenticado |
 | PUT | `/requerimientos/:id` | Jefe o el dueño si está pendiente |
@@ -293,7 +294,7 @@ Integrado con la API:
 - Persistencia del token en `sessionStorage`.
 - Envío de `Authorization` en las peticiones protegidas.
 - Redirección a `/login` cuando no hay sesión y control de acceso por rol.
-- **Emitir requerimiento**: el formulario consume `POST /api/v1/requerimientos`, guarda título, descripción, sector e imagen en PostgreSQL y muestra estados de carga y error.
+- **Emitir requerimiento**: el formulario consume `POST /api/v1/requerimientos`, guarda categoría, descripción, sector e imagen en PostgreSQL y muestra estados de carga y error. Las categorías se cargan desde `GET /api/v1/requerimientos/categorias`.
 - **Mis requerimientos**: consume `GET /api/v1/requerimientos` y muestra los requerimientos reales del usuario, con estados de carga, error y reintento.
 - La imagen del requerimiento se guarda como texto (URL o data URL) en la columna `imagen`.
 
