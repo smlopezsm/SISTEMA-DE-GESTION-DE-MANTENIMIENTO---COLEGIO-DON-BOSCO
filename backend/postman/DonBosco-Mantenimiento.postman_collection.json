@@ -159,8 +159,8 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "const data = pm.response.json();",
-                  "if (data.id) pm.collectionVariables.set('usuarioRegistradoId', data.id);",
+                  "const respuestaApi = pm.response.json();",
+                  "if (respuestaApi.id) pm.collectionVariables.set('usuarioRegistradoId', respuestaApi.id);",
                   "pm.test('Status 201', () => pm.response.to.have.status(201));",
                   "pm.test('No devuelve contraseña ni hash', () => {",
                   "  const txt = JSON.stringify(pm.response.json()).toLowerCase();",
@@ -239,8 +239,8 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "const data = pm.response.json();",
-                  "if (data.token) { pm.collectionVariables.set('tokenOrdenanza', data.token); pm.collectionVariables.set('token', data.token); }",
+                  "const respuestaApi = pm.response.json();",
+                  "if (respuestaApi.token) { pm.collectionVariables.set('tokenOrdenanza', respuestaApi.token); pm.collectionVariables.set('token', respuestaApi.token); }",
                   "pm.test('Status 200', () => pm.response.to.have.status(200));",
                   "pm.test('Devuelve token JWT', () => pm.expect(pm.response.json().token).to.be.a('string').and.not.empty);",
                   "pm.test('No devuelve contraseña ni hash', () => {",
@@ -284,8 +284,8 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "const data = pm.response.json();",
-                  "if (data.token) { pm.collectionVariables.set('tokenJefe', data.token); pm.collectionVariables.set('token', data.token); }",
+                  "const respuestaApi = pm.response.json();",
+                  "if (respuestaApi.token) { pm.collectionVariables.set('tokenJefe', respuestaApi.token); pm.collectionVariables.set('token', respuestaApi.token); }",
                   "pm.test('Status 200', () => pm.response.to.have.status(200));",
                   "pm.test('Devuelve token JWT', () => pm.expect(pm.response.json().token).to.be.a('string').and.not.empty);",
                   "pm.test('No devuelve contraseña ni hash', () => {",
@@ -329,8 +329,8 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "const data = pm.response.json();",
-                  "if (data.token) { pm.collectionVariables.set('tokenDirectivo', data.token); pm.collectionVariables.set('token', data.token); }",
+                  "const respuestaApi = pm.response.json();",
+                  "if (respuestaApi.token) { pm.collectionVariables.set('tokenDirectivo', respuestaApi.token); pm.collectionVariables.set('token', respuestaApi.token); }",
                   "pm.test('Status 200', () => pm.response.to.have.status(200));",
                   "pm.test('Devuelve token JWT', () => pm.expect(pm.response.json().token).to.be.a('string').and.not.empty);",
                   "pm.test('No devuelve contraseña ni hash', () => {",
@@ -661,8 +661,8 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "const data = pm.response.json();",
-                  "if (data.id) pm.collectionVariables.set('usuarioCreadoId', data.id);",
+                  "const respuestaApi = pm.response.json();",
+                  "if (respuestaApi.id) pm.collectionVariables.set('usuarioCreadoId', respuestaApi.id);",
                   "pm.test('Status 201', () => pm.response.to.have.status(201));",
                   "pm.test('No devuelve contraseña ni hash', () => {",
                   "  const txt = JSON.stringify(pm.response.json()).toLowerCase();",
@@ -964,8 +964,8 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "const data = pm.response.json();",
-                  "if (data[0]?.id) pm.collectionVariables.set('requerimientoId', data[0]?.id);",
+                  "const respuestaApi = pm.response.json();",
+                  "if (respuestaApi[0]?.id) pm.collectionVariables.set('requerimientoId', respuestaApi[0]?.id);",
                   "pm.test('Status 200', () => pm.response.to.have.status(200));"
                 ]
               }
@@ -1048,8 +1048,8 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "const data = pm.response.json();",
-                  "if (data.id) pm.collectionVariables.set('requerimientoCreadoId', data.id);",
+                  "const respuestaApi = pm.response.json();",
+                  "if (respuestaApi.id) pm.collectionVariables.set('requerimientoCreadoId', respuestaApi.id);",
                   "pm.test('Status 201', () => pm.response.to.have.status(201));"
                 ]
               }
@@ -1478,8 +1478,8 @@
               "listen": "test",
               "script": {
                 "exec": [
-                  "const data = pm.response.json();",
-                  "if (data[0]?.id) pm.collectionVariables.set('tareaId', data[0]?.id);",
+                  "const respuestaApi = pm.response.json();",
+                  "if (respuestaApi[0]?.id) pm.collectionVariables.set('tareaId', respuestaApi[0]?.id);",
                   "pm.test('Status 200', () => pm.response.to.have.status(200));"
                 ]
               }
