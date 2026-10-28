@@ -24,15 +24,6 @@ router.post(
   asyncHandler(controller.crear),
 );
 
-router.put(
-  '/:id',
-  validar({
-    idCategoria: { tipo: 'numero', entero: true, minNumero: 1 },
-    descripcion: { tipo: 'string', min: 5, max: 2000 },
-    imagen: { tipo: 'string', max: 8000000 },
-  }),
-  asyncHandler(controller.actualizar),
-);
 
 router.delete('/:id', verificarRol('jefeMantenimiento'), asyncHandler(controller.eliminar));
 

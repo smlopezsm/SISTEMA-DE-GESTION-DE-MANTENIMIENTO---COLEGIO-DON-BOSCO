@@ -61,14 +61,6 @@ export async function crearRequerimiento(datos) {
 
 export const guardarRequerimiento = crearRequerimiento;
 
-export async function actualizarRequerimiento(id, datos) {
-  const requerimiento = await apiRequest(`/requerimientos/${id}`, {
-    method: 'PUT',
-    token: obtenerToken(),
-    body: datos,
-  });
-  return mapearRequerimiento(requerimiento);
-}
 
 export async function eliminarRequerimiento(id) {
   await apiRequest(`/requerimientos/${id}`, {
