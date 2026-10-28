@@ -21,8 +21,8 @@ auth:
 scripts:
   - type: afterResponse
     code: |-
-      const data = pm.response.json();
-      if (data.id) pm.collectionVariables.set('usuarioCreadoId', data.id);
+      const respuestaApi = pm.response.json();
+      if (respuestaApi.id) pm.collectionVariables.set('usuarioCreadoId', respuestaApi.id);
       pm.test('Status 201', () => pm.response.to.have.status(201));
       pm.test('No devuelve contraseña ni hash', () => {
         const txt = JSON.stringify(pm.response.json()).toLowerCase();

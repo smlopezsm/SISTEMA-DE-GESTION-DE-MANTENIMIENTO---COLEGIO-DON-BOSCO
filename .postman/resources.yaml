@@ -6,7 +6,7 @@ workspace:
 
 cloudResources:
   collections:
-    ../postman/collections/Don Bosco · Sistema de Gestión de Mantenimiento: b8067cf6-6717-4b44-a59b-2f4f9fd1736d
+    ../postman/collections/Don Bosco · Sistema de Gestión de Mantenimiento: d3baadbb-5690-48f0-837a-d8ffd638f3f5
 
 # All resources in the `postman/` folder are automatically registered in Local View.
 # Point to additional files outside the `postman/` folder to register them individually. Example:

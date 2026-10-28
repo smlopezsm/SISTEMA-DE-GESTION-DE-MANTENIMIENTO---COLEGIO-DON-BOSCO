@@ -68,7 +68,7 @@ INSERT INTO categorias (id_categoria, nombre) OVERRIDING SYSTEM VALUE VALUES
 -- ------------------------------------------------------------
 -- Personal externo
 -- ------------------------------------------------------------
-
+\ir usuarios.sql
 INSERT INTO personal_externo (
   id_personal, nombre, apellido, telefono, id_especialidad, activo, created_at
 ) OVERRIDING SYSTEM VALUE VALUES

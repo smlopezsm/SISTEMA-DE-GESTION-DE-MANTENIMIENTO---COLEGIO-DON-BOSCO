@@ -8,8 +8,8 @@ auth:
 scripts:
   - type: afterResponse
     code: |-
-      const data = pm.response.json();
-      if (data[0]?.id) pm.collectionVariables.set('tareaId', data[0]?.id);
+      const respuestaApi = pm.response.json();
+      if (respuestaApi[0]?.id) pm.collectionVariables.set('tareaId', respuestaApi[0]?.id);
       pm.test('Status 200', () => pm.response.to.have.status(200));
     language: text/javascript
 order: 1000

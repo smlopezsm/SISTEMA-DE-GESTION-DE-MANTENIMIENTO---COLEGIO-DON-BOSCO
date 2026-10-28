@@ -13,8 +13,8 @@ body:
 scripts:
   - type: afterResponse
     code: |-
-      const data = pm.response.json();
-      if (data.token) { pm.collectionVariables.set('tokenOrdenanza', data.token); pm.collectionVariables.set('token', data.token); }
+      const respuestaApi = pm.response.json();
+      if (respuestaApi.token) { pm.collectionVariables.set('tokenOrdenanza', respuestaApi.token); pm.collectionVariables.set('token', respuestaApi.token); }
       pm.test('Status 200', () => pm.response.to.have.status(200));
       pm.test('Devuelve token JWT', () => pm.expect(pm.response.json().token).to.be.a('string').and.not.empty);
       pm.test('No devuelve contraseña ni hash', () => {
@@ -24,4 +24,5 @@ scripts:
         pm.expect(txt).to.not.include('hash');
       });
     language: text/javascript
+examples: .resources/Login Ordenanza.resources/examples
 order: 3000
