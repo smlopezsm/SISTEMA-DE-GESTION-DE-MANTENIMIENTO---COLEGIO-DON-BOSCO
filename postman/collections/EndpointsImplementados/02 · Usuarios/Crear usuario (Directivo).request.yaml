@@ -1,0 +1,28 @@
+$kind: http-request
+url: "{{baseUrl}}/usuarios"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "nombre": "Usuario",
+      "apellido": "De Prueba",
+      "nombreUsuario": "prueba{{$randomInt}}",
+      "email": "prueba{{$randomInt}}@donbosco.org.ar",
+      "rol": "ordenanza",
+      "telefono": "266 4559999"
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{tokenDirectivo}}"
+scripts:
+  - type: afterResponse
+    code: |-
+      const res = pm.response.json();
+      if (res.id) { pm.collectionVariables.set('usuarioCreadoId', res.id); }
+      pm.test('Status 201', () => pm.response.to.have.status(201));
+    language: text/javascript
+order: 5000

@@ -21,11 +21,6 @@ export async function crear(req, res) {
   res.status(201).json(requerimiento);
 }
 
-export async function actualizar(req, res) {
-  const requerimiento = await service.actualizar(req.params.id, req.body, req.usuario);
-  res.json(requerimiento);
-}
-
 export async function eliminar(req, res) {
   await service.eliminar(req.params.id);
   res.status(204).end();

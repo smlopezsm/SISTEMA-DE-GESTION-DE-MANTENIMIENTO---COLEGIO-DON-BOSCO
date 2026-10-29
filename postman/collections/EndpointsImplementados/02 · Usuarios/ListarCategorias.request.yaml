@@ -1,0 +1,23 @@
+$kind: http-request
+url: "{{baseUrl}}/requerimientos/categorias"
+method: GET
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "idCategoria": 1,
+      "descripcion": "Requerimiento de prueba generado desde Postman.",
+      "sector": "Aula 12",
+      "imagen": null
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{tokenJefe}}"
+scripts:
+  - type: afterResponse
+    code: pm.test("Status code is 200", () => pm.response.to.have.status(200));
+    language: text/javascript
+order: 11000

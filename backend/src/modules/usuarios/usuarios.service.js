@@ -28,10 +28,13 @@ function generarPasswordTemporal() {
   return crypto.randomBytes(8).toString('base64url').slice(0, 10);
 }
 
-async function buscarUsuario(id) {
+async function buscarUsuario(id, verificarActivo=true) {
   const usuario = await repository.obtenerPorId(id);
   if (!usuario) {
     throw new ApiError(404, 'Usuario no encontrado');
+  }
+  if (verificarActivo && !usuario.activo) {
+    throw new ApiError(404, 'Usuario dado de baja');
   }
   return usuario;
 }
@@ -72,7 +75,7 @@ export async function listar(filtros) {
 }
 
 export async function obtener(id, actor) {
-  const usuario = await buscarUsuario(id);
+  const usuario = await buscarUsuario(id, true);
   const esPropio = Number(actor.id) === Number(id);
 
   if (actor.rol !== 'directivo' && !esPropio) {
@@ -154,7 +157,7 @@ export async function crear(datos) {
 }
 
 export async function actualizar(id, datos, actor) {
-  const usuario = await buscarUsuario(id);
+  const usuario = await buscarUsuario(id,false);
   const esDirectivo = actor.rol === 'directivo';
   const esPropio = Number(actor.id) === Number(id);
 

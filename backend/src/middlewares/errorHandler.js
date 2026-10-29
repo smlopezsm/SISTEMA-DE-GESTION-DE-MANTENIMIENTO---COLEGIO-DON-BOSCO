@@ -3,7 +3,6 @@ export const errorHandler = (err, req, res, next) => {
     return next(err);
   }
   //atrapa el codigo de postgres y lo convierte en un mensaje de error
-
   if (err.code === '23505') {
     return res
       .status(409)

@@ -31,6 +31,8 @@ export async function listar({ especialidad, activo, busqueda } = {}) {
   if (activo !== undefined) {
     valores.push(activo);
     condiciones.push(`p.activo = $${valores.length}`);
+  }else {
+    condiciones.push(`p.activo = TRUE`);
   }
 
   if (busqueda) {

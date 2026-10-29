@@ -1,0 +1,15 @@
+$kind: http-request
+url: "{{baseUrl}}/tareas/{{idTarea}}/compras"
+method: POST
+body:
+  type: json
+  content: '{ "monto": 1500, "detalle": "Compra de prueba", "categoria": "materiales" }'
+auth:
+  type: bearer
+  credentials:
+    token: "{{tokenJefe}}"
+scripts:
+  - type: afterResponse
+    code: pm.test("Status code is 201", () => pm.response.to.have.status(201));
+    language: text/javascript
+order: 10000

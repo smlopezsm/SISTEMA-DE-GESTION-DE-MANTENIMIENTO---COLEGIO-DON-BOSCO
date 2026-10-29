@@ -19,6 +19,9 @@ async function buscarPersonal(id) {
   if (!personal) {
     throw new ApiError(404, 'Personal externo no encontrado');
   }
+   if (!personal.activo) {
+    throw new ApiError(404, 'Personal externo dado de baja');
+  }
   return personal;
 }
 

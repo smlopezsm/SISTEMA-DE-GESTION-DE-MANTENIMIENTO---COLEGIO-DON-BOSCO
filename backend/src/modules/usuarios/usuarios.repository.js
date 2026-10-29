@@ -22,6 +22,8 @@ export async function listar({ rol, activo, busqueda } = {}) {
   if (activo !== undefined) {
     valores.push(activo);
     condiciones.push(`u.activo = $${valores.length}`);
+  } else {
+    condiciones.push(`u.activo = TRUE`);
   }
 
   if (busqueda) {

@@ -1,0 +1,23 @@
+$kind: http-request
+url: "{{baseUrl}}/personal-externos"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "nombre": "Personal",
+      "apellido": "De Prueba",
+      "telefono": "266 4000000",
+      "especialidad": "Electricista"
+    }
+auth:
+  type: bearer
+  credentials:
+    token: "{{tokenJefe}}"
+scripts:
+  - type: afterResponse
+    code: pm.test('Status 201', () => pm.response.to.have.status(201));
+    language: text/javascript
+order: 3000

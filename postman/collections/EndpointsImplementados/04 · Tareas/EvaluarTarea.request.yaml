@@ -1,0 +1,15 @@
+$kind: http-request
+url: "{{baseUrl}}/tareas/{{idTarea}}/evaluacion"
+method: PUT
+body:
+  type: json
+  content: '{ "estado": "aprobada" }'
+auth:
+  type: bearer
+  credentials:
+    token: "{{tokenDirectivo}}"
+scripts:
+  - type: afterResponse
+    code: pm.test("Status code is 200", () => pm.response.to.have.status(200));
+    language: text/javascript
+order: 8000

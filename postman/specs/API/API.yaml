@@ -1,0 +1,393 @@
+openapi: 3.1.0
+info:
+  title: API
+  version: 1.0.0
+  description: 'Colección restaurada. Para probar con otros IDs, cambiá las variables idUsuario, idRequerimiento, idTarea o idPersonal en la pestaña ''Variables'' de la colección.'
+servers:
+  - url: 'http://localhost:3000/api/v1'
+paths:
+  /health:
+    get:
+      summary: Health check
+      responses: {}
+      tags:
+        - 00 · Health
+  /auth/login:
+    post:
+      summary: Login Ordenanza
+      responses: {}
+      tags:
+        - 01 · Autenticación
+  /auth/perfil:
+    get:
+      summary: Perfil con token (Directivo)
+      responses: {}
+      tags:
+        - 01 · Autenticación
+      security:
+        - BearerAuth: []
+  /usuarios:
+    get:
+      summary: Listar usuarios sin token
+      responses: {}
+      tags:
+        - 02 · Usuarios
+    post:
+      summary: Crear usuario (Directivo)
+      responses: {}
+      tags:
+        - 02 · Usuarios
+      security:
+        - BearerAuth: []
+  '/usuarios/{idUsuario}':
+    get:
+      summary: Obtener usuario (usar variable idUsuario)
+      responses: {}
+      tags:
+        - 02 · Usuarios
+      security:
+        - BearerAuth: []
+    parameters:
+      - name: idUsuario
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 1
+    delete:
+      summary: Error - Eliminar usuario sin permiso (403)
+      responses: {}
+      tags:
+        - 02 · Usuarios
+      security:
+        - BearerAuth: []
+    put:
+      summary: ActualizarUsuario
+      responses: {}
+      tags:
+        - 02 · Usuarios
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nombre:
+                  type: string
+                telefono:
+                  type: string
+            example:
+              nombre: Usuario Editado
+              telefono: 266 4111111
+  /usuarios/99999:
+    get:
+      summary: Error - Usuario Inexistente (404)
+      responses: {}
+      tags:
+        - 02 · Usuarios
+      security:
+        - BearerAuth: []
+  /requerimientos/categorias:
+    get:
+      summary: ListarCategorias
+      responses: {}
+      tags:
+        - 02 · Usuarios
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idCategoria:
+                  type: integer
+                descripcion:
+                  type: string
+                sector:
+                  type: string
+                imagen:
+                  type: 'null'
+            example:
+              idCategoria: 1
+              descripcion: Requerimiento de prueba generado desde Postman.
+              sector: Aula 12
+              imagen: null
+  /requerimientos:
+    get:
+      summary: Listar requerimientos (Jefe)
+      responses: {}
+      tags:
+        - 03 · Requerimientos
+      security:
+        - BearerAuth: []
+    post:
+      summary: Crear requerimiento (Ordenanza)
+      responses: {}
+      tags:
+        - 03 · Requerimientos
+      security:
+        - BearerAuth: []
+  /tareas:
+    get:
+      summary: Listar tareas
+      responses: {}
+      tags:
+        - 04 · Tareas
+      security:
+        - BearerAuth: []
+    post:
+      summary: CrearTarea
+      responses: {}
+      tags:
+        - 04 · Tareas
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                idRequerimiento:
+                  type: integer
+                prioridad:
+                  type: string
+                idResponsable:
+                  type: integer
+            example:
+              idRequerimiento: 342
+              prioridad: alta
+              idResponsable: 8
+  /tareas/99999:
+    get:
+      summary: Obtener tarea inexistente
+      responses: {}
+      tags:
+        - 04 · Tareas
+      security:
+        - BearerAuth: []
+  '/tareas/{idTarea}':
+    get:
+      summary: Obtener tarea (usar variable idTarea)
+      responses: {}
+      tags:
+        - 04 · Tareas
+      security:
+        - BearerAuth: []
+    parameters:
+      - name: idTarea
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 128
+    put:
+      summary: ModificarTarea
+      responses: {}
+      tags:
+        - 04 · Tareas
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                prioridad:
+                  type: string
+                observaciones:
+                  type: string
+            example:
+              prioridad: baja
+              observaciones: Prueba
+  '/tareas/{idTarea}/estado':
+    put:
+      summary: Cambiar estado de tarea (usar variable idTarea)
+      responses: {}
+      tags:
+        - 04 · Tareas
+      security:
+        - BearerAuth: []
+    parameters:
+      - name: idTarea
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 128
+  '/tareas/{idTarea}/evaluacion':
+    put:
+      summary: EvaluarTarea
+      responses: {}
+      tags:
+        - 04 · Tareas
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                estado:
+                  type: string
+            example:
+              estado: aprobada
+    parameters:
+      - name: idTarea
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 128
+  '/tareas/{idTarea}/compras':
+    get:
+      summary: ListarCompras
+      responses: {}
+      tags:
+        - 04 · Tareas
+      security:
+        - BearerAuth: []
+    parameters:
+      - name: idTarea
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 128
+    post:
+      summary: RegistrarCompra
+      responses: {}
+      tags:
+        - 04 · Tareas
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                monto:
+                  type: integer
+                detalle:
+                  type: string
+                categoria:
+                  type: string
+            example:
+              monto: 1500
+              detalle: Compra de prueba
+              categoria: materiales
+  '/tareas/{idTarea}/historial':
+    get:
+      summary: Historial
+      responses: {}
+      tags:
+        - 04 · Tareas
+      security:
+        - BearerAuth: []
+    parameters:
+      - name: idTarea
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 128
+  /personal-externos:
+    get:
+      summary: Listar personal (Jefe)
+      responses: {}
+      tags:
+        - 05 · Personal Externo
+      security:
+        - BearerAuth: []
+    post:
+      summary: Crear personal Invalido
+      responses: {}
+      tags:
+        - 05 · Personal Externo
+      security:
+        - BearerAuth: []
+  '/personal-externos/{idPersonal}':
+    delete:
+      summary: Baja Personal
+      responses: {}
+      tags:
+        - 05 · Personal Externo
+      security:
+        - BearerAuth: []
+    parameters:
+      - name: idPersonal
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 1
+    put:
+      summary: ModificarPersonal
+      responses: {}
+      tags:
+        - 05 · Personal Externo
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                telefono:
+                  type: string
+            example:
+              telefono: 266 4111111
+  /notificaciones:
+    get:
+      summary: Listar notificaciones
+      responses: {}
+      tags:
+        - 06 · Notificaciones y Estadísticas
+      security:
+        - BearerAuth: []
+  /estadisticas:
+    get:
+      summary: Estadísticas
+      responses: {}
+      tags:
+        - 06 · Notificaciones y Estadísticas
+      security:
+        - BearerAuth: []
+  '/notificaciones/{idNotificacion}':
+    put:
+      summary: NotificacionLeida
+      responses: {}
+      tags:
+        - 06 · Notificaciones y Estadísticas
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                leida:
+                  type: boolean
+            example:
+              leida: true
+    parameters:
+      - name: idNotificacion
+        in: path
+        required: true
+        schema:
+          type: integer
+        example: 1
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer

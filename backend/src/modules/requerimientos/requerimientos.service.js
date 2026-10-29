@@ -69,7 +69,6 @@ export async function crear(datos, usuario) {
       },
       client,
     );
-
     return repository.obtenerPorId(id, client);
   });
 }

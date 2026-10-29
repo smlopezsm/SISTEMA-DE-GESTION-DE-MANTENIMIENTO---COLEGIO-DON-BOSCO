@@ -1,0 +1,16 @@
+$kind: collection
+description: Colección restaurada. Para probar con otros IDs, cambiá las variables idUsuario, idRequerimiento, idTarea o idPersonal en la pestaña 'Variables' de la colección.
+variables:
+  baseUrl: http://localhost:3000/api/v1
+  token: ""
+  tokenJefe: ""
+  tokenDirectivo: ""
+  tokenOrdenanza: ""
+  idUsuario: "1"
+  idRequerimiento: "342"
+  idTarea: "128"
+  idPersonal: "1"
+  idNotificacion: "1"
+  usuarioCreadoId: ""
+  requerimientoCreadoId: ""
+  personalCreadoId: ""

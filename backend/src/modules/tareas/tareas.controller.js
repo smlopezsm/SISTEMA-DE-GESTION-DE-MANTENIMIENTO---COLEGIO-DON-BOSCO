@@ -2,14 +2,7 @@ import * as service from './tareas.service.js';
 
 export async function listar(req, res) {
   const { estado, prioridad, sector, desde, hasta } = req.query;
-  const tareas = await service.listar({
-    estado,
-    prioridad,
-    sector,
-    desde,
-    hasta,
-  });
-
+  const tareas = await service.listar({ estado, prioridad, sector, desde, hasta });
   res.json(tareas);
 }
 
@@ -24,11 +17,7 @@ export async function crear(req, res) {
 }
 
 export async function actualizar(req, res) {
-  const tarea = await service.actualizar(
-    req.params.id,
-    req.body,
-    req.usuario,
-  );
+  const tarea = await service.actualizar(req.params.id, req.body, req.usuario);
   res.json(tarea);
 }
 

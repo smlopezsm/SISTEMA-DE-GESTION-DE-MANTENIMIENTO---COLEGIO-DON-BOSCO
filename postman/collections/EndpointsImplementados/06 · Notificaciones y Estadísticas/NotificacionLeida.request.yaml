@@ -1,0 +1,15 @@
+$kind: http-request
+url: "{{baseUrl}}/notificaciones/{{idNotificacion}}"
+method: PUT
+body:
+  type: json
+  content: '{ "leida": true }'
+auth:
+  type: bearer
+  credentials:
+    token: "{{token}}"
+scripts:
+  - type: afterResponse
+    code: pm.test("Status code is 200", () => pm.response.to.have.status(200));
+    language: text/javascript
+order: 4000

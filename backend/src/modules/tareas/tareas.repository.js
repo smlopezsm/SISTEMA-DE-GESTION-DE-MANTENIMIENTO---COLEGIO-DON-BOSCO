@@ -181,23 +181,36 @@ export async function actualizar(id, datos, db = pool) {
   return rows[0] ?? null;
 }
 
-export async function cambiarEstado(id, datos, db = pool) {
+// ESTA ES LA FUNCION QUE ESTABA MAL Y TE ROMPIA TODO
+export async function cambiarEstado(id, datos, idUsuario, db = pool) {
+  // 1. Actualizamos la tarea (sin abrir conexion nueva)
   const { rows } = await db.query(
     `UPDATE tareas
      SET estado = $1,
-         fecha_inicio = $2,
-         fecha_fin = $3,
-         id_directivo = $4
-     WHERE id_tarea = $5
+         fecha_inicio = COALESCE($2, fecha_inicio),
+         fecha_fin = COALESCE($3, fecha_fin),
+         id_directivo = COALESCE($4, id_directivo),
+         observaciones = COALESCE($5, observaciones)
+     WHERE id_tarea = $6
      RETURNING id_tarea`,
     [
-      datos.estado,
-      datos.fechaInicio,
-      datos.fechaFin,
+      datos.estado ?? null,
+      datos.fechaInicio ?? null,
+      datos.fechaFin ?? null,
       datos.idDirectivo ?? null,
+      datos.observaciones ?? null,
       id,
     ],
   );
 
-  return rows[0] ?? null;
+  if (rows.length === 0) throw new Error('Tarea no encontrada');
+
+  // 2. Guardamos en el historial
+  await db.query(
+    `INSERT INTO historial (id_tarea, estado, motivo, id_usuario)
+     VALUES ($1, $2, $3, $4)`,
+    [id, datos.estado, datos.motivo || `Cambio a ${datos.estado}`, idUsuario],
+  );
+
+  return rows[0];
 }
